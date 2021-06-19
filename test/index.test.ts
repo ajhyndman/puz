@@ -1,13 +1,25 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-// const buffer = readFileSync(new URL('./puzzles/av110622.puz', import.meta.url));
-const buffer = readFileSync(join(__dirname, './puzzles/av110622.puz'));
-
-console.log(buffer);
+import { parseBinaryFile, printBinaryFile } from '../src/index';
 
 describe('puz', () => {
-  it('', () => {
-    expect(true).toBeTruthy();
+  const puzzleFiles = [
+    './puzzles/av110622.puz',
+    './puzzles/cs080904.puz',
+    './puzzles/washpost.puz',
+  ].map((path) => readFileSync(join(__dirname, path)));
+
+  it('parses binary puzzles without crashing', () => {
+    puzzleFiles.forEach((buffer) => {
+      parseBinaryFile(buffer);
+    });
+  });
+
+  it('parses and prints binary files preserving exact bytes', () => {
+    puzzleFiles.forEach((buffer) => {
+      const puzzle = parseBinaryFile(buffer);
+      expect(printBinaryFile(puzzle)).toEqual(buffer);
+    });
   });
 });
