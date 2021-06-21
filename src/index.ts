@@ -9,7 +9,6 @@ const enum ENCODING {
 const enum HEADER_OFFSET {
   FILE_CHECKSUM_START = 0x00,
   FILE_SIGNATURE_START = 0x02,
-  FILE_SIGNATURE_END = 0x0d,
   HEADER_CHECKSUM_START = 0x0e,
   ICHEATED_CHECKSUM_START = 0x10,
   ICHEATED_CHECKSUM_END = 0x17,
@@ -45,9 +44,12 @@ export type Puzzle = {
 
   // clues
   clues: string[];
+
+  // misc
+  preamble?: Uint8Array;
 };
 
-const FILE_SIGNATURE = 'ACROSS&DOWN';
+const FILE_SIGNATURE = 'ACROSS&DOWN\x00';
 const VERSION_REGEX = /^(\d+)\.(\d+)$/;
 
 function getVersionTuple(version: string): [number, number] {
@@ -100,18 +102,22 @@ class StringReader {
 
 export function parseBinaryFile(data: Uint8Array): Puzzle {
   // Transform to Buffer class for easier binary manipulation.
-  const buffer = Buffer.from(data);
+  let buffer = Buffer.from(data);
 
   // validate filetype
-  // try {
-  const signature = buffer.toString(
-    'ascii',
-    HEADER_OFFSET.FILE_SIGNATURE_START,
-    HEADER_OFFSET.FILE_SIGNATURE_END,
+  const signatureIndex = buffer.indexOf(FILE_SIGNATURE, 0, 'ascii');
+  invariant(
+    signatureIndex >= HEADER_OFFSET.FILE_SIGNATURE_START,
+    'File does not appear to be an AcrossLite PUZ file',
   );
-  invariant(signature === FILE_SIGNATURE);
 
-  // TODO: Support file preambles
+  // If file contains data before the signature, extract it and shift our buffer view.
+  const fileStartOffset = signatureIndex - HEADER_OFFSET.FILE_SIGNATURE_START;
+  let preamble;
+  if (fileStartOffset > 0) {
+    preamble = buffer.subarray(0, fileStartOffset);
+    buffer = buffer.subarray(fileStartOffset);
+  }
 
   // } catch (e) {
   //   // throw error indicating file is not an Across Lite Puzzle
@@ -199,6 +205,8 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
     state,
 
     clues,
+
+    preamble,
   };
 }
 

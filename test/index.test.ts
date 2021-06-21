@@ -7,10 +7,21 @@ describe('puz', () => {
   const puzzleFiles = [
     './puzzles/av110622.puz',
     './puzzles/cs080904.puz',
+    './puzzles/Feb0308_oddnumbering.puz',
+    './puzzles/nyt_diagramless.puz',
+    './puzzles/nyt_locked.puz',
+    './puzzles/nyt_partlyfilled.puz',
+    './puzzles/nyt_rebus_with_notes_and_shape.puz',
+    './puzzles/nyt_sun_rebus.puz',
+    './puzzles/nyt_v1_4.puz',
+    './puzzles/nyt_weekday_with_notes.puz',
+    './puzzles/nyt_with_shape.puz',
+    './puzzles/unicode.puz',
     './puzzles/washpost.puz',
+    './puzzles/wsj110624.puz',
   ].map((path) => readFileSync(join(__dirname, path)));
 
-  it.skip('parses binary puzzles without crashing', () => {
+  it('parses binary puzzles without crashing', () => {
     puzzleFiles.forEach((buffer) => {
       parseBinaryFile(buffer);
     });
