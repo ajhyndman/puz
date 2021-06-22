@@ -52,7 +52,7 @@ export type Puzzle = {
 const FILE_SIGNATURE = 'ACROSS&DOWN\x00';
 const VERSION_REGEX = /^(\d+)\.(\d+)$/;
 
-function getVersionTuple(version: string): [number, number] {
+function parseVersion(version: string): [number, number] {
   invariant(
     VERSION_REGEX.test(version),
     'file version data did not match expected format',
@@ -104,7 +104,7 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
   // Transform to Buffer class for easier binary manipulation.
   let buffer = Buffer.from(data);
 
-  // validate filetype
+  // VALIDATE FILETYPE
   const signatureIndex = buffer.indexOf(FILE_SIGNATURE, 0, 'ascii');
   invariant(
     signatureIndex >= HEADER_OFFSET.FILE_SIGNATURE_START,
@@ -119,45 +119,43 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
     buffer = buffer.subarray(fileStartOffset);
   }
 
-  // } catch (e) {
-  //   // throw error indicating file is not an Across Lite Puzzle
-  // }
-
-  // extract header
+  // EXTRACT HEADER
   // try {
-  const header = {
-    fileChecksum: buffer.readUInt16LE(HEADER_OFFSET.FILE_CHECKSUM_START),
-    headerChecksum: buffer.readUInt16LE(HEADER_OFFSET.HEADER_CHECKSUM_START),
-    iCheatedChecksum: buffer.subarray(
-      HEADER_OFFSET.ICHEATED_CHECKSUM_START,
-      HEADER_OFFSET.ICHEATED_CHECKSUM_END,
-    ),
-    version: buffer.toString(
-      'ascii',
-      HEADER_OFFSET.VERSION_START,
-      HEADER_OFFSET.VERSION_END,
-    ),
-    scrambledChecksum: buffer.readUInt16LE(
-      HEADER_OFFSET.SCRAMBLED_CHECKSUM_START,
-    ),
-    width: buffer.readUInt8(HEADER_OFFSET.WIDTH_START),
-    height: buffer.readUInt8(HEADER_OFFSET.HEIGHT_START),
-    numberOfClues: buffer.readUInt16LE(HEADER_OFFSET.NUMBER_OF_CLUES_START),
-    scrambledTag: buffer.readUInt16LE(HEADER_OFFSET.SCRAMBLED_START),
-  };
+  const fileChecksum = buffer.readUInt16LE(HEADER_OFFSET.FILE_CHECKSUM_START);
+  const headerChecksum = buffer.readUInt16LE(
+    HEADER_OFFSET.HEADER_CHECKSUM_START,
+  );
+  const iCheatedChecksum = buffer.subarray(
+    HEADER_OFFSET.ICHEATED_CHECKSUM_START,
+    HEADER_OFFSET.ICHEATED_CHECKSUM_END,
+  );
+  const fileVersion = buffer.toString(
+    'ascii',
+    HEADER_OFFSET.VERSION_START,
+    HEADER_OFFSET.VERSION_END,
+  );
+  const scrambledChecksum = buffer.readUInt16LE(
+    HEADER_OFFSET.SCRAMBLED_CHECKSUM_START,
+  );
+  const width = buffer.readUInt8(HEADER_OFFSET.WIDTH_START);
+  const height = buffer.readUInt8(HEADER_OFFSET.HEIGHT_START);
+  const numberOfClues = buffer.readUInt16LE(
+    HEADER_OFFSET.NUMBER_OF_CLUES_START,
+  );
+  const scrambledTag = buffer.readUInt16LE(HEADER_OFFSET.SCRAMBLED_START);
   // } catch (e) {
   //   // throw error indicating corrupt header data
   // }
 
-  // validate checksums
+  // VALIDATE CHECKSUM
   // TODO: Validate all checksums
 
-  // get version & encoding
-  const [majorVersion] = getVersionTuple(header.version);
+  // READ STRINGS
+  // Guess string encoding from file version..
+  const [majorVersion] = parseVersion(fileVersion);
   const encoding = majorVersion >= 2 ? ENCODING.UTF_8 : ENCODING.ISO_8859_1;
 
-  // Read null-terminated strings from the remainder of the file.
-  // let cursorOffset = HEADER_OFFSET.HEADER_END + 1;
+  // Use a cursor-based reader to traverse the rest of the binary data.
   const reader = new StringReader(
     buffer,
     encoding,
@@ -165,20 +163,18 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
   );
 
   // read solution and state
-  const gridSize = header.width * header.height;
+  const gridSize = width * height;
   const solution = reader.read(gridSize);
   const state = reader.read(gridSize);
 
   // read meta strings
   const title = reader.readNullTerminatedString();
-
   const author = reader.readNullTerminatedString();
-
   const copyright = reader.readNullTerminatedString();
 
   // read clues
   let clues = [];
-  for (let i = 0; i < header.numberOfClues; i += 1) {
+  for (let i = 0; i < numberOfClues; i += 1) {
     const clue = reader.readNullTerminatedString();
     clues.push(clue);
   }
@@ -193,13 +189,13 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
     author,
     copyright,
     encoding,
-    fileVersion: header.version,
-    height: header.height,
-    isScrambled: Boolean(header.scrambledTag),
+    fileVersion,
+    height,
+    isScrambled: Boolean(scrambledTag),
     notepad,
-    numberOfClues: header.numberOfClues,
+    numberOfClues,
     title,
-    width: header.width,
+    width,
 
     solution,
     state,
