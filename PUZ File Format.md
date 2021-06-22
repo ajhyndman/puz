@@ -83,7 +83,7 @@ In some NYT puzzles, a "Note" has been included in the title instead of using th
 
 The clues are arranged numerically. When two clues have the same number, the Across clue comes before the Down clue.
 
-## Clue Assignment
+# Clue Assignment
 
 Nowhere in the file does it specify which cells get numbers or which clues correspond to which numbers. These are instead derived from the shape of the puzzle.
 
@@ -130,7 +130,7 @@ for y in 0..height:
       cell_number += 1
 ```
 
-## Checksums
+# Checksums
 
 The file format uses a variety of checksums.
 
@@ -149,7 +149,7 @@ unsigned short cksum_region(unsigned char *base, int len, unsigned short cksum) 
 }
 ```
 
-The CIB checksum (which appears as its own field in the header as well as elsewhere) is a checksum over eight bytes of the header starting at the board width: c_cib = cksum_region(data + 0x2C, 8, 0);
+The CIB checksum (which appears as its own field in the header as well as elsewhere) is a checksum over eight bytes of the header starting at the board width: `c_cib = cksum_region(data + 0x2C, 8, 0);`
 
 The primary board checksum uses the CIB checksum and other data:
 
@@ -219,7 +219,7 @@ file[0x17] = 0x44 ^ ((c_part & 0xFF00) >> 8);
 
 Note that these hex values in ASCII are the string "ICHEATED".
 
-## Locked/Scrambled Puzzles
+# Locked/Scrambled Puzzles
 
 The header contains two pieces related to scrambled puzzles. The short at 0x32 records whether the puzzle is scrambled. If it is scrambled, the short at 0x1E is a checksum suitable for verifying an attempt at unscrambling. If the correct solution is laid out as a string in column-major order, omitting black squares, then 0x1E contains cksum_region(string,0x0000).
 
@@ -227,7 +227,7 @@ The header contains two pieces related to scrambled puzzles. The short at 0x32 r
 
 The algorithm used to scramble the puzzles, discovered by Mike Richards, is documented in his comments below. Eventually, they will be migrated to the main body of the document.
 
-## Extra Sections
+# Extra Sections
 
 The known extra sections are:
 
