@@ -1,4 +1,5 @@
 import { invariant } from 'ts-invariant';
+import { checksum } from './checksum';
 
 // supported text encodings
 const enum ENCODING {
@@ -11,7 +12,7 @@ const enum HEADER_OFFSET {
   FILE_SIGNATURE_START = 0x02,
   HEADER_CHECKSUM_START = 0x0e,
   ICHEATED_CHECKSUM_START = 0x10,
-  ICHEATED_CHECKSUM_END = 0x17,
+  ICHEATED_CHECKSUM_END = 0x18,
   VERSION_START = 0x18,
   VERSION_END = 0x1b,
   // RESERVED_1C_START = 0x1c,
@@ -22,7 +23,7 @@ const enum HEADER_OFFSET {
   NUMBER_OF_CLUES_START = 0x2e,
   // UNKNOWN_BITMASK_START = 0x30,
   SCRAMBLED_START = 0x32,
-  HEADER_END = 0x33,
+  HEADER_END = 0x34,
 }
 
 export type Puzzle = {
@@ -49,6 +50,7 @@ export type Puzzle = {
   preamble?: Uint8Array;
 };
 
+const ICHEATED = Buffer.from('ICHEATED', 'ascii');
 const FILE_SIGNATURE = 'ACROSS&DOWN\x00';
 const VERSION_REGEX = /^(\d+)\.(\d+)$/;
 
@@ -61,6 +63,17 @@ function parseVersion(version: string): [number, number] {
 
   const [, majorVersion, minorVersion] = VERSION_REGEX.exec(version);
   return [parseInt(majorVersion), parseInt(minorVersion)];
+}
+
+/**
+ * Format an input string as a null-terminated string.
+ *
+ * @param input Optional string.to be formatted.
+ * @returns If input is non-null, appends a null character to the end.
+ * If no input is supplied, returns the empty string.
+ */
+function zstring(input?: string): string {
+  return input != null ? input + '\x00' : '';
 }
 
 /**
@@ -147,20 +160,13 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
   //   // throw error indicating corrupt header data
   // }
 
-  // VALIDATE CHECKSUM
-  // TODO: Validate all checksums
-
   // READ STRINGS
   // Guess string encoding from file version..
-  const [majorVersion] = parseVersion(fileVersion);
+  const [majorVersion, minorVersion] = parseVersion(fileVersion);
   const encoding = majorVersion >= 2 ? ENCODING.UTF_8 : ENCODING.ISO_8859_1;
 
   // Use a cursor-based reader to traverse the rest of the binary data.
-  const reader = new StringReader(
-    buffer,
-    encoding,
-    HEADER_OFFSET.HEADER_END + 1,
-  );
+  const reader = new StringReader(buffer, encoding, HEADER_OFFSET.HEADER_END);
 
   // read solution and state
   const gridSize = width * height;
@@ -184,6 +190,59 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
 
   // extra sections?
   // TODO: support extra data
+
+  // VALIDATE CHECKSUMS
+
+  // validate header checksum
+  const checksum_h = checksum(
+    buffer.subarray(HEADER_OFFSET.WIDTH_START, HEADER_OFFSET.HEADER_END),
+  );
+  invariant(
+    checksum_h === headerChecksum,
+    "Header checksum doesn't match contents.  Please check that you are reading a valid PUZ file.",
+  );
+
+  // validate file checksum
+  const boardStrings = solution + state;
+  const metaStrings =
+    zstring(title) +
+    zstring(author) +
+    zstring(copyright) +
+    clues.join('') +
+    (majorVersion >= 1 && minorVersion >= 3 ? zstring(notepad) : '');
+  const checksum_f = checksum(
+    Buffer.from(boardStrings + metaStrings, encoding),
+    checksum_h,
+  );
+  invariant(
+    checksum_f === fileChecksum,
+    "File checksum (1) doesn't match contents.  Please check that you are reading a valid PUZ file.",
+  );
+
+  // validate "ICHEATED" checksum
+  const checksum_i1 = checksum_h;
+  const checksum_i2 = checksum(Buffer.from(solution, encoding));
+  const checksum_i3 = checksum(Buffer.from(state, encoding));
+  const checksum_i4 = checksum(Buffer.from(metaStrings, encoding));
+  const checksum_i = Uint8Array.from(
+    [
+      // low bytes
+      checksum_i1 & 0x00ff,
+      checksum_i2 & 0x00ff,
+      checksum_i3 & 0x00ff,
+      checksum_i4 & 0x00ff,
+      // high bytes
+      checksum_i1 >> 8,
+      checksum_i2 >> 8,
+      checksum_i3 >> 8,
+      checksum_i4 >> 8,
+    ],
+    (byte, i) => byte ^ ICHEATED[i],
+  );
+  invariant(
+    iCheatedChecksum.equals(checksum_i),
+    "File checksum (2) doesn't match contents.  Please check that you are reading a valid PUZ file.",
+  );
 
   return {
     author,
