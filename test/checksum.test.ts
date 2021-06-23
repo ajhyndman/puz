@@ -1,6 +1,12 @@
 import { checksum } from '../src/checksum';
 
 describe('checksum', () => {
+  it('returns initialValue for empty data array', () => {
+    expect(checksum(Uint8Array.from([]))).toBe(0x0000);
+    expect(checksum(Uint8Array.from([]), 0x1111)).toBe(0x1111);
+    expect(checksum(Uint8Array.from([]), 0xffff)).toBe(0xffff);
+  });
+
   // test against a few real-world header checksums
   it.each([
     ['0f0f4e0001000000', 0xea02],
@@ -10,7 +16,19 @@ describe('checksum', () => {
     ['0f0f4e0001000000', 0xea02],
     ['0f0f4c0001000000', 0xda02],
     ['15158c0001000400', 0xfe06],
-  ])('checksum of "%s" should be: %s', (hexString, value) => {
+  ])('checksum ("%s") matches expected value: %s', (hexString, value) => {
     expect(checksum(Buffer.from(hexString, 'hex'))).toBe(value);
+  });
+
+  describe('chained calls', () => {
+    it('return equivalent checksum to concatenated data', () => {
+      const a = Buffer.from('0f0f4e0001000000', 'hex');
+      const b = Buffer.from('15158c0001000000', 'hex');
+
+      const chainedChecksum = checksum(b, checksum(a));
+      const concatenatedChecksum = checksum(Buffer.concat([a, b]));
+
+      expect(chainedChecksum).toBe(concatenatedChecksum);
+    });
   });
 });

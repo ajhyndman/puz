@@ -1,8 +1,8 @@
 // 16-bit bit masks
 const enum BIT_MASK {
-  LEAST_SIGNIFICANT = 0x0001, // 0000 0000 0000 0001
+  LEAST_SIGNIFICANT_BIT = 0x0001, // 0000 0000 0000 0001
   ALL = 0xffff, // 1111 1111 1111 1111
-  MOST_SIGNIFICANT = 0x8000, // 1000 0000 0000 0000
+  MOST_SIGNIFICANT_BIT = 0x8000, // 1000 0000 0000 0000
 }
 
 /**
@@ -17,10 +17,10 @@ const enum BIT_MASK {
 export function checksum(data: Uint8Array, initialValue: number = 0x0000) {
   return data.reduce((sum, byte) => {
     // rotate sum bits to the right
-    const leastSignificantBit = sum & BIT_MASK.LEAST_SIGNIFICANT;
+    const leastSignificantBit = sum & BIT_MASK.LEAST_SIGNIFICANT_BIT;
     sum = sum >>> 1;
     if (leastSignificantBit) {
-      sum = (sum | BIT_MASK.MOST_SIGNIFICANT) & BIT_MASK.ALL;
+      sum = (sum | BIT_MASK.MOST_SIGNIFICANT_BIT) & BIT_MASK.ALL;
     }
 
     // add next byte of data and re-apply mask
