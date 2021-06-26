@@ -27,9 +27,11 @@ describe('puz', () => {
     });
   });
 
-  it.skip('parses and prints binary files preserving exact bytes', () => {
+  it('parses and prints binary files preserving exact bytes', () => {
     puzzleFiles.forEach((buffer) => {
       const puzzle = parseBinaryFile(buffer);
+      console.log(puzzle.solution);
+      console.log(puzzle.state);
       expect(printBinaryFile(puzzle)).toEqual(buffer);
     });
   });
@@ -39,7 +41,6 @@ describe('puz', () => {
 
     expect(puzzle.author).toBe('Ben Tausig');
     expect(puzzle.copyright).toBe(undefined);
-    expect(puzzle.encoding).toBe('latin1');
     expect(puzzle.fileVersion).toBe('1.2');
     expect(puzzle.height).toBe(15);
     expect(puzzle.isScrambled).toBe(false);
