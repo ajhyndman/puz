@@ -12,7 +12,6 @@ import {
   encodeHeaderWithoutChecksums,
   guessFileEncodingFromVersion,
   getMetaStrings,
-  parseVersion,
 } from './util/misc';
 
 export function getFileChecksum(puzzle: Puzzle): number {
