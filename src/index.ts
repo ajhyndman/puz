@@ -1,32 +1,13 @@
 import { invariant } from 'ts-invariant';
-import { checksum } from './checksum';
 
-// supported text encodings
-const enum ENCODING {
-  UTF_8 = 'utf-8',
-  ISO_8859_1 = 'latin1',
-}
-
-const enum HEADER_OFFSET {
-  FILE_CHECKSUM_START = 0x00,
-  FILE_SIGNATURE_START = 0x02,
-  FILE_SIGNATURE_END = 0x0e,
-  HEADER_CHECKSUM_START = 0x0e,
-  HEADER_END = 0x34,
-  ICHEATED_CHECKSUM_START = 0x10,
-  ICHEATED_CHECKSUM_END = 0x18,
-  VERSION_START = 0x18,
-  VERSION_END = 0x1b,
-  RESERVED_1C_START = 0x1c,
-  SCRAMBLED_CHECKSUM_START = 0x1e,
-  RESERVED_20_START = 0x20,
-  RESERVED_20_END = 0x1e,
-  WIDTH_START = 0x2c,
-  HEIGHT_START = 0x2d,
-  NUMBER_OF_CLUES_START = 0x2e,
-  UNKNOWN_BITMASK_START = 0x30,
-  SCRAMBLED_START = 0x32,
-}
+import {
+  getFileChecksum,
+  getHeaderChecksum,
+  getICheatedChecksum,
+} from './functions';
+import { FILE_SIGNATURE, HEADER_OFFSET } from './util/constants';
+import { encodeHeaderWithoutChecksums, getFileEncoding } from './util/misc';
+import { StringReader } from './util/StringReader';
 
 export type Puzzle = {
   // meta
@@ -56,188 +37,6 @@ export type Puzzle = {
     scrambledChecksum: number;
   };
 };
-
-const ICHEATED = Buffer.from('ICHEATED', 'ascii');
-const FILE_SIGNATURE = 'ACROSS&DOWN\x00';
-const VERSION_REGEX = /^(\d+)\.(\d+)$/;
-
-function parseVersion(version: string): [number, number] {
-  invariant(
-    VERSION_REGEX.test(version),
-    'file version data did not match expected format',
-  );
-  version;
-
-  const [, majorVersion, minorVersion] = VERSION_REGEX.exec(version);
-  return [Number.parseInt(majorVersion), Number.parseInt(minorVersion)];
-}
-
-/**
- * Format an input string as a null-terminated string.
- *
- * @param input Optional string to be formatted.
- * @returns If input is non-null, appends a null character to the end.
- * If no input is supplied, returns the empty string.
- */
-function zstring(input?: string): string {
-  return input != null ? input + '\x00' : '';
-}
-
-function getFileEncoding(fileVersion: string): ENCODING {
-  const [majorVersion] = parseVersion(fileVersion);
-
-  return majorVersion >= 2 ? ENCODING.UTF_8 : ENCODING.ISO_8859_1;
-}
-
-function getMetaStrings({
-  title,
-  author,
-  copyright,
-  clues,
-  notepad,
-  fileVersion,
-}: Puzzle): string {
-  const [majorVersion, minorVersion] = parseVersion(fileVersion);
-
-  return (
-    zstring(title) +
-    zstring(author) +
-    zstring(copyright) +
-    clues.join('') +
-    // include notepad in v1.3 and above
-    (majorVersion >= 1 && minorVersion >= 3 ? zstring(notepad) : '')
-  );
-}
-
-function getFileChecksum(puzzle: Puzzle): number {
-  const { fileVersion, solution, state } = puzzle;
-  const encoding = getFileEncoding(fileVersion);
-  const metaStrings = getMetaStrings(puzzle);
-
-  const headerBuffer = encodeHeaderWithoutChecksums(puzzle);
-
-  const boardStrings = solution + state;
-  const checksum_h = checksum(
-    headerBuffer.subarray(HEADER_OFFSET.WIDTH_START, HEADER_OFFSET.HEADER_END),
-  );
-  const checksum_f = checksum(
-    Buffer.from(boardStrings + metaStrings, encoding),
-    checksum_h,
-  );
-
-  return checksum_f;
-}
-
-function getICheatedChecksum(puzzle: Puzzle) {
-  const encoding = getFileEncoding(puzzle.fileVersion);
-
-  const header = encodeHeaderWithoutChecksums(puzzle);
-  const checksum_h = checksum(
-    header.subarray(HEADER_OFFSET.WIDTH_START, HEADER_OFFSET.HEADER_END),
-  );
-
-  const metaStrings = getMetaStrings(puzzle);
-  const checksum_i1 = checksum_h;
-  const checksum_i2 = checksum(Buffer.from(puzzle.solution, encoding));
-  const checksum_i3 = checksum(Buffer.from(puzzle.state, encoding));
-  const checksum_i4 = checksum(Buffer.from(metaStrings, encoding));
-  const checksum_i = Uint8Array.from(
-    [
-      // low bytes
-      checksum_i1 & 0x00ff,
-      checksum_i2 & 0x00ff,
-      checksum_i3 & 0x00ff,
-      checksum_i4 & 0x00ff,
-      // high bytes
-      checksum_i1 >> 8,
-      checksum_i2 >> 8,
-      checksum_i3 >> 8,
-      checksum_i4 >> 8,
-    ],
-    (byte, i) => byte ^ ICHEATED[i],
-  );
-  return checksum_i;
-}
-
-function encodeHeaderWithoutChecksums(puzzle): Buffer {
-  const header = Buffer.alloc(HEADER_OFFSET.HEADER_END);
-
-  header.fill(
-    FILE_SIGNATURE,
-    HEADER_OFFSET.FILE_SIGNATURE_START,
-    HEADER_OFFSET.FILE_SIGNATURE_END,
-    'ascii',
-  );
-  header.fill(
-    puzzle.fileVersion,
-    HEADER_OFFSET.VERSION_START,
-    HEADER_OFFSET.VERSION_END,
-    'ascii',
-  );
-  header.writeUInt16LE(puzzle.misc.unknown1, HEADER_OFFSET.RESERVED_1C_START);
-  header.writeUInt16LE(
-    puzzle.misc.scrambledChecksum,
-    HEADER_OFFSET.SCRAMBLED_CHECKSUM_START,
-  );
-  header.fill(
-    puzzle.misc.unknown2,
-    HEADER_OFFSET.RESERVED_20_START,
-    HEADER_OFFSET.RESERVED_20_END,
-  );
-  header.writeUInt8(puzzle.width, HEADER_OFFSET.WIDTH_START);
-  header.writeUInt8(puzzle.height, HEADER_OFFSET.HEIGHT_START);
-  header.writeUInt16LE(
-    puzzle.numberOfClues,
-    HEADER_OFFSET.NUMBER_OF_CLUES_START,
-  );
-  header.writeUInt16LE(
-    puzzle.misc.unknown3,
-    HEADER_OFFSET.UNKNOWN_BITMASK_START,
-  );
-  header.writeUInt16LE(
-    puzzle.isScrambled ? 0x04 : 0x00,
-    HEADER_OFFSET.SCRAMBLED_START,
-  );
-
-  return header;
-}
-
-/**
- * A cursor-based readeer that provides methods useful for reading strings from
- * puzzle binary data.
- */
-class StringReader {
-  private buffer: Buffer;
-  private encoding: ENCODING;
-  private cursor: number;
-
-  constructor(buffer: Buffer, encoding: ENCODING, cursorOffset?: number) {
-    this.buffer = buffer;
-    this.encoding = encoding;
-    this.cursor = cursorOffset ?? 0;
-  }
-
-  read(length: number): string | undefined {
-    const endOffset = this.cursor + length;
-    if (length === 0) {
-      return undefined;
-    }
-    const decodedString = this.buffer.toString(
-      this.encoding,
-      this.cursor,
-      endOffset,
-    );
-    this.cursor = endOffset;
-    return decodedString;
-  }
-
-  readNullTerminatedString(): string | undefined {
-    const length = this.buffer.indexOf(0x0, this.cursor) - this.cursor;
-    const decodedString = this.read(length);
-    this.cursor += 1;
-    return decodedString;
-  }
-}
 
 export function parseBinaryFile(data: Uint8Array): Puzzle {
   // Transform to Buffer class for easier binary manipulation.
@@ -352,11 +151,8 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
   // validate scrambled checksum
 
   // validate header checksum
-  const checksum_h = checksum(
-    buffer.subarray(HEADER_OFFSET.WIDTH_START, HEADER_OFFSET.HEADER_END),
-  );
   invariant(
-    checksum_h === headerChecksum,
+    getHeaderChecksum(puzzle) === headerChecksum,
     "Header checksum doesn't match contents.  Please check that you are reading a valid PUZ file.",
   );
 
@@ -405,11 +201,9 @@ export function printBinaryFile(puzzle: Puzzle): Uint8Array {
   // ENCODE HEADER
   const header = encodeHeaderWithoutChecksums(puzzle);
 
-  // GENERATE CHECKSUMS
+  // generate checksuns
   const checksum_f = getFileChecksum(puzzle);
-  const checksum_h = checksum(
-    header.subarray(HEADER_OFFSET.WIDTH_START, HEADER_OFFSET.HEADER_END),
-  );
+  const checksum_h = getHeaderChecksum(puzzle);
   const checksum_i = getICheatedChecksum(puzzle);
 
   // write checksums
