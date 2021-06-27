@@ -5,7 +5,7 @@ import {
   getHeaderChecksum,
   getICheatedChecksum,
 } from './projections';
-import { FILE_SIGNATURE, HEADER_OFFSET } from './util/constants';
+import { FILE_SIGNATURE, HEADER_OFFSET, SQUARE_MARKUP } from './util/constants';
 import {
   encodeHeaderWithoutChecksums,
   guessFileEncodingFromVersion,
@@ -31,6 +31,23 @@ export type Puzzle = {
   // clues
   clues: string[];
 
+  // rebus data
+  rebus?: {
+    grid: number[];
+    solution: { [key: number]: string };
+    state?: { [key: number]: string };
+  };
+
+  markup?: {
+    grid: SQUARE_MARKUP[];
+  };
+
+  // solution timer
+  timer?: {
+    secondsElapsed: number;
+    isPaused: boolean;
+  };
+
   // misc
   misc: {
     unknown1: number;
@@ -40,6 +57,10 @@ export type Puzzle = {
     scrambledChecksum: number;
   };
 };
+
+export function validatePuzzle(puzzle: Puzzle) {
+  // TODO: Throw if puzzle file isn't valid in any way.
+}
 
 export function parseBinaryFile(data: Uint8Array): Puzzle {
   // Transform to Buffer class for easier binary manipulation.
@@ -175,6 +196,8 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
 }
 
 export function printBinaryFile(puzzle: Puzzle): Uint8Array {
+  validatePuzzle(puzzle);
+
   // Guess string encoding from file version.
   const encoding = guessFileEncodingFromVersion(puzzle.fileVersion);
 

@@ -1,5 +1,5 @@
 // supported text encodings
-export const enum ENCODING {
+export enum ENCODING {
   UTF_8 = 'utf-8',
   ISO_8859_1 = 'latin1',
 }
@@ -23,6 +23,21 @@ export const enum HEADER_OFFSET {
   NUMBER_OF_CLUES_START = 0x2e,
   UNKNOWN_BITMASK_START = 0x30,
   SCRAMBLED_START = 0x32,
+}
+
+export enum SQUARE_MARKUP {
+  DEFAULT = 0x00,
+  PREVIOUSLY_INCORRECT = 0x10,
+  INCORRECT = 0x20,
+  REVEALED = 0x40,
+  CIRCLED = 0x80,
+}
+
+export const enum EXTENSION {
+  REBUS_GRID = 'GRBS',
+  REBUS_SOLUTION = 'RTBL',
+  REBUS_STATE = 'RUSR',
+  MARKUP_GRID = 'GEXT',
 }
 
 export const ICHEATED = Buffer.from('ICHEATED', 'ascii');
