@@ -1,4 +1,4 @@
-import { checksum } from '../src/checksum';
+import { checksum } from '../src/util/checksum';
 
 describe('checksum', () => {
   it('returns initialValue for empty data array', () => {
