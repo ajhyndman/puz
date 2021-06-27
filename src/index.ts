@@ -177,19 +177,19 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
   // validate header checksum
   invariant(
     getHeaderChecksum(puzzle) === headerChecksum,
-    "Header checksum doesn't match contents.  Please check that you are reading a valid PUZ file.",
+    "Header contents don't match checksum.  Please check that you are reading a valid PUZ file.",
   );
 
   // validate file checksum
   invariant(
     getFileChecksum(puzzle) === fileChecksum,
-    "File checksum (1) doesn't match contents.  Please check that you are reading a valid PUZ file.",
+    "File contents don't match checksum (1).  Please check that you are reading a valid PUZ file.",
   );
 
   // validate "ICHEATED" checksum
   invariant(
     iCheatedChecksum.equals(getICheatedChecksum(puzzle)),
-    "File checksum (2) doesn't match contents.  Please check that you are reading a valid PUZ file.",
+    "File contents don't match checksum (2).  Please check that you are reading a valid PUZ file.",
   );
 
   return puzzle;
