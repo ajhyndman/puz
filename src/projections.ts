@@ -10,14 +10,14 @@ import { checksum } from './util/checksum';
 import { ENCODING, HEADER_OFFSET, ICHEATED } from './util/constants';
 import {
   encodeHeaderWithoutChecksums,
-  getFileEncodingFromFileVersion,
+  guessFileEncodingFromVersion,
   getMetaStrings,
   parseVersion,
 } from './util/misc';
 
 export function getFileChecksum(puzzle: Puzzle): number {
   const { fileVersion, solution, state } = puzzle;
-  const encoding = getFileEncodingFromFileVersion(fileVersion);
+  const encoding = guessFileEncodingFromVersion(fileVersion);
   const metaStrings = getMetaStrings(puzzle);
 
   const headerBuffer = encodeHeaderWithoutChecksums(puzzle);
@@ -42,7 +42,7 @@ export function getHeaderChecksum(puzzle: Puzzle): number {
 }
 
 export function getICheatedChecksum(puzzle: Puzzle): Uint8Array {
-  const encoding = getFileEncodingFromFileVersion(puzzle.fileVersion);
+  const encoding = guessFileEncodingFromVersion(puzzle.fileVersion);
 
   const header = encodeHeaderWithoutChecksums(puzzle);
   const checksum_h = checksum(
@@ -73,5 +73,5 @@ export function getICheatedChecksum(puzzle: Puzzle): Uint8Array {
 }
 
 export function getFileEncoding(puzzle: Puzzle): ENCODING {
-  return getFileEncodingFromFileVersion(puzzle.fileVersion);
+  return guessFileEncodingFromVersion(puzzle.fileVersion);
 }

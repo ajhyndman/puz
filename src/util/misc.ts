@@ -30,7 +30,7 @@ export function zstring(input?: string): string {
   return input != null ? input + '\x00' : '';
 }
 
-export function getFileEncodingFromFileVersion(fileVersion: string): ENCODING {
+export function guessFileEncodingFromVersion(fileVersion: string): ENCODING {
   const [majorVersion] = parseVersion(fileVersion);
 
   return majorVersion >= 2 ? ENCODING.UTF_8 : ENCODING.ISO_8859_1;

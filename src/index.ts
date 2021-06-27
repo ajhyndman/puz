@@ -8,7 +8,7 @@ import {
 import { FILE_SIGNATURE, HEADER_OFFSET } from './util/constants';
 import {
   encodeHeaderWithoutChecksums,
-  getFileEncodingFromFileVersion,
+  guessFileEncodingFromVersion,
 } from './util/misc';
 import { StringReader } from './util/StringReader';
 
@@ -96,7 +96,7 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
 
   // READ STRINGS
   // Guess string encoding from file version.
-  const encoding = getFileEncodingFromFileVersion(fileVersion);
+  const encoding = guessFileEncodingFromVersion(fileVersion);
 
   // Use a cursor-based reader to traverse the rest of the binary data.
   const reader = new StringReader(buffer, encoding, HEADER_OFFSET.HEADER_END);
@@ -176,7 +176,7 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
 
 export function printBinaryFile(puzzle: Puzzle): Uint8Array {
   // Guess string encoding from file version.
-  const encoding = getFileEncodingFromFileVersion(puzzle.fileVersion);
+  const encoding = guessFileEncodingFromVersion(puzzle.fileVersion);
 
   // ENCODE STRINGS
   // format solution and state
