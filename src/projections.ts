@@ -1,19 +1,23 @@
 /**
- * "Functions" define useful operations on Puzzle objects.  They should have
- * defined behaviour for any valie Puzzle object.
+ * Publicly-defined projections of Puzzle objects.
+ *
+ * "Projections" define useful operations on Puzzle objects.  Think of these as
+ * the functional equivalents to "getter" methods from object-oriented software
+ * patterns.
  */
 import { Puzzle } from '.';
 import { checksum } from './util/checksum';
-import { HEADER_OFFSET, ICHEATED } from './util/constants';
+import { ENCODING, HEADER_OFFSET, ICHEATED } from './util/constants';
 import {
   encodeHeaderWithoutChecksums,
-  getFileEncoding,
+  getFileEncodingFromFileVersion,
   getMetaStrings,
+  parseVersion,
 } from './util/misc';
 
 export function getFileChecksum(puzzle: Puzzle): number {
   const { fileVersion, solution, state } = puzzle;
-  const encoding = getFileEncoding(fileVersion);
+  const encoding = getFileEncodingFromFileVersion(fileVersion);
   const metaStrings = getMetaStrings(puzzle);
 
   const headerBuffer = encodeHeaderWithoutChecksums(puzzle);
@@ -38,7 +42,7 @@ export function getHeaderChecksum(puzzle: Puzzle): number {
 }
 
 export function getICheatedChecksum(puzzle: Puzzle): Uint8Array {
-  const encoding = getFileEncoding(puzzle.fileVersion);
+  const encoding = getFileEncodingFromFileVersion(puzzle.fileVersion);
 
   const header = encodeHeaderWithoutChecksums(puzzle);
   const checksum_h = checksum(
@@ -66,4 +70,8 @@ export function getICheatedChecksum(puzzle: Puzzle): Uint8Array {
     (byte, i) => byte ^ ICHEATED[i],
   );
   return checksum_i;
+}
+
+export function getFileEncoding(puzzle: Puzzle): ENCODING {
+  return getFileEncodingFromFileVersion(puzzle.fileVersion);
 }
