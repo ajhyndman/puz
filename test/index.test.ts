@@ -5,39 +5,40 @@ import { parseBinaryFile, printBinaryFile } from '../src/index';
 
 describe('puz', () => {
   const puzzleFiles = [
-    './puzzles/av110622.puz',
-    './puzzles/cs080904.puz',
-    './puzzles/Feb0308_oddnumbering.puz',
-    './puzzles/nyt_diagramless.puz',
-    './puzzles/nyt_locked.puz',
-    './puzzles/nyt_partlyfilled.puz',
-    './puzzles/nyt_rebus_with_notes_and_shape.puz',
-    './puzzles/nyt_sun_rebus.puz',
-    './puzzles/nyt_v1_4.puz',
-    './puzzles/nyt_weekday_with_notes.puz',
-    './puzzles/nyt_with_shape.puz',
-    './puzzles/unicode.puz',
-    './puzzles/washpost.puz',
-    './puzzles/wsj110624.puz',
-  ].map((path) => readFileSync(join(__dirname, path)));
+    'av110622.puz',
+    'cs080904.puz',
+    'Feb0308_oddnumbering.puz',
+    'nyt_diagramless.puz',
+    'nyt_locked.puz',
+    'nyt_partlyfilled.puz',
+    'nyt_rebus_with_notes_and_shape.puz',
+    'nyt_sun_rebus.puz',
+    'nyt_v1_4.puz',
+    'nyt_weekday_with_notes.puz',
+    'nyt_with_shape.puz',
+    'unicode.puz',
+    'washpost.puz',
+    'wsj110624.puz',
+  ].map(
+    (path) => [path, readFileSync(join(__dirname, 'puzzles', path))] as const,
+  );
 
-  it('parses binary puzzles without crashing', () => {
-    puzzleFiles.forEach((buffer) => {
-      parseBinaryFile(buffer);
-    });
+  it.each(puzzleFiles)('parses "%s" without crashing', (path, buffer) => {
+    parseBinaryFile(buffer);
   });
 
-  it('parses and prints binary files preserving exact bytes', () => {
-    puzzleFiles.forEach((buffer) => {
+  it.each(puzzleFiles)(
+    'parses and prints "%s" preserving exact bytes',
+    (path, buffer) => {
       const puzzle = parseBinaryFile(buffer);
-      console.log(puzzle.solution);
-      console.log(puzzle.state);
       expect(printBinaryFile(puzzle)).toEqual(buffer);
-    });
-  });
+    },
+  );
 
   it('extracts binary data into a Puzzle Object', () => {
-    const puzzle = parseBinaryFile(puzzleFiles[0]);
+    const puzzle = parseBinaryFile(
+      readFileSync(join(__dirname, 'puzzles/av110622.puz')),
+    );
 
     expect(puzzle.author).toBe('Ben Tausig');
     expect(puzzle.copyright).toBe(undefined);
