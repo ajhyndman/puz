@@ -51,9 +51,17 @@ export function parseRebusTable(tableString: string): {
 }
 
 /**
+ * Print an object of key-value pairs as a semocolon-delimited string.
+ *
+ * @example
+ * printRebusTable({0: "CAT", 10: "DOG", 4: "MOUSE"})
+ *   => ' 0:CAT;10:DOG; 4:MOUSE;'
  *
  * @param tableObject
+ * Object mapping rebus keys to expected solutions.
+ * NOTE: Keys should not exceed 99.
  * @returns
+ * A semicolon-delimited string. Note that there will be a trailing semicolon.
  */
 export function printRebusTable(tableObject: {
   [key: number]: string | undefined;
