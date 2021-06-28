@@ -28,7 +28,7 @@ export function parseVersion(
  * Parse a string of key-value pairs into a JavaScript object.
  *
  * @example
- * parseRebusTable(' 0:CAT;10:DOG; 4:MOUSE')
+ * parseRebusTable(' 0:CAT;10:DOG; 4:MOUSE;')
  *   => {0: "CAT", 10: "DOG", 4: "MOUSE"}
  * @param tableString String should be semicolon terminated.
  */
@@ -59,7 +59,7 @@ export function printRebusTable(tableObject: {
   [key: number]: string | undefined;
 }): string {
   return Object.entries(tableObject).reduce(
-    (acc, [key, value]) => `${acc}${key}:${value};`,
+    (acc, [key, value]) => `${acc}${key.padStart(2, ' ')}:${value};`,
     '',
   );
 }
