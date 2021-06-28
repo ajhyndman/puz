@@ -46,9 +46,7 @@ export type Puzzle = {
     state?: (string | undefined)[];
   };
 
-  markup?: {
-    grid: SQUARE_MARKUP[];
-  };
+  markupGrid?: SQUARE_MARKUP[];
 
   // solution timer
   timer?: {
@@ -200,9 +198,7 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
         grid.forEach((entry, i) => {
           if (entry <= 0) delete grid[i];
         });
-        puzzle.markup = {
-          grid,
-        };
+        puzzle.markupGrid = grid;
         break;
       }
       case EXTENSION.REBUS_GRID: {
