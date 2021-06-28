@@ -538,6 +538,10 @@ Object {
   "numberOfClues": 82,
   "solution": "::::::YRIGY:::::::::::OYILSAM::::::LYVWBSYCNZUZIRL:MNBNMKF:::QIGVZKRSDATV::LZK::LRPNYAUBL:PQUKJJD:CVRXRPR:UALSSWCST:ZNZBPYGSMZ::BLKFKLUW:::CCCY:::QUUS:::FIMQRXQ:::HCVDDFCGOZ:CYVCTGBXI:HNCYFEJ:FWJZSAO:CHDLSSZGG::WYB::TOBKZUITEANV:::VZEDFJE:CGNQHNPOVAHFTJT::::::ZCAPCAJ:::::::::::KMIVZ::::::",
   "state": "::::::-----:::::::::::-------::::::---------------:-------:::------------::---::---------:-------:-------:---------:----------::--------:::----:::----:::-------:::----------:---------:-------:-------:---------::---::------------:::-------:---------------::::::-------:::::::::::-----::::::",
+  "timer": Object {
+    "isPaused": false,
+    "secondsElapsed": 0,
+  },
   "title": "NY Times, Sun, Feb 24, 2008  DIAGRAMLESS",
   "width": 17,
 }
@@ -768,6 +772,10 @@ Object {
   "numberOfClues": 78,
   "solution": "FLAG.FOCI.SALUTEARL.RAIN.ALONESPEAKOFTHEDEVILSPADE..YAPS.ETE...TEAS.LEO.LEXSITONTHEFENCE..ASH.SOAP..GOTONGLIB.PHOTO.OTTOAESOP..CIRC.EIN..STAYTHECOURSEEPI.ROW.RAMP...COD.TREE..ISLIPOBEDIENCESCHOOLLOUIE.THEE.OCTOEXPOS.YOGA.THAW",
   "state": "FLAG.----.-----EARL.----.-----S--------------S----..----.---...----.---.----------------..---.----..---------.-----.---------..----.---..----------------.---.----...---.----..-------------------------.----.---------.----.----",
+  "timer": Object {
+    "isPaused": false,
+    "secondsElapsed": 8,
+  },
   "title": "NY Times, Mon, Mar 10, 2008",
   "width": 15,
 }
@@ -1346,6 +1354,10 @@ All the daily crosswords this week, Monday through Saturday, have been contribut
   },
   "solution": "GREW.ANAIS.LABSLARA.NOSCH.EBONANIL.ESTEE.ADUERACKETEERS.DOLEETHOS.......MER...FAM.RAP.LIV.CHEF.IRENE.ONANCOLA.LOSTS.SARSSLAM.ATEST.ALDA.LIE.NEA.OWN...AYN.......AGATETWEE.VAMPIREBATTOMA.EDUCT.LASHHOAR.RESTS.ETTAEDYS.ANDSO.SEEN",
   "state": "----.-----.--------.-----.--------.-----.--------------.---------.......---...---.---.---.----.-----.--------.-----.--------.-----.----.---.---.---...---.......---------.--------------.-----.--------.-----.--------.-----.----",
+  "timer": Object {
+    "isPaused": true,
+    "secondsElapsed": 0,
+  },
   "title": "NY Times, Thu, Sep 11, 2008  When this puzzle is done, connect the circled letters in alphabetical order, and then back to the start, to reveal something seen on the 32-Down 4-Down.",
   "width": 15,
 }
@@ -1986,6 +1998,10 @@ Object {
   },
   "solution": ".IJIHZY.LRFGZ...CWZVJ.YYWDDO.OEZRC.FLZPCYTQPNFDLK.DQINR.BBNOENWXPH.LIM.WCNE.BWNZ.KNBOIKX..KTCEC.EMPE.RGCAJBSLGZQKH..PYZXY.XZCPIUWQUANMEHHPWR..NTYLJ...VYHG..ACND.JESO...YNYHA..ZVFIS.DWVTVSVUEND.ICRSWC.DYKSL.UUFSNFFCMGFPMA.NGCDTNVTWWZNXG.ZQJZW.MRKKAA.PYKKWHZBGOR.RGXNE..XMFWO...YLNZ.TZRR..EOFX...PPXUY..XIGUCKIXLELDWCPEOF.LDCCW..TXLBCWWZESKPG.TWQR.JLUJW..LCQHOBH.AGGM.JPOW.VZJ.RRPHDJIIZV.YJHZH.CAGAFHZSJUVQRR.MYQGX.PEVCGC.RYICV...BZTRK.AZQAGX.",
   "state": ".------.-----...-----.------.-----.--------------.-----.----------.---.----.----.-------..-----.----.-------------..-----.------------------..-----...----..----.----...-----..-----.-----------.------.-----.--------------.--------------.-----.------.-----------.-----..-----...----.----..----...-----..------------------.-----..-------------.----.-----..-------.----.----.---.----------.-----.--------------.-----.------.-----...-----.------.",
+  "timer": Object {
+    "isPaused": true,
+    "secondsElapsed": 0,
+  },
   "title": "NY Times, Sun, Sep 14, 2008  YEAR-ROUND",
   "width": 21,
 }
@@ -3169,6 +3185,10 @@ All the daily crosswords this week, Monday through Saturday, have been contribut
   "numberOfClues": 70,
   "solution": "HRWLEXCZD..FZQPINPAIBASDK.IMRJLLQEVHDQAA.XUNTUJEP.UGFTXHHHEQ...HLJK.GUIG....KZJOR.XNPDGJOHIMFJQN.YDIV.ILBHTCNB.MMK.VEMEBAAC.WKEV.KZPXJBGFOPIOFJ.NHQVP....FIRU.EPOK...TCHMMSEZCD.XICCESWK.PFSGGDFUXUYYWO.MYKHIEUTCNDMEG..YXGDXMXEM",
   "state": "---------..--------------.--------------.--------.----------...----.----....-----.--------------.----.--------.---.--------.----.--------------.-----....----.----...----------.--------.--------------.--------------..---------",
+  "timer": Object {
+    "isPaused": true,
+    "secondsElapsed": 0,
+  },
   "title": "NY Times, Fri, Sep 12, 2008",
   "width": 15,
 }
@@ -4303,6 +4323,10 @@ Object {
   },
   "solution": "SPAOHMLIT",
   "state": "spaohmlit",
+  "timer": Object {
+    "isPaused": true,
+    "secondsElapsed": 1965,
+  },
   "title": "⚔️",
   "width": 3,
 }
@@ -4374,6 +4398,10 @@ Object {
   },
   "solution": "SPAOHMLIT",
   "state": "spaohmlit",
+  "timer": Object {
+    "isPaused": true,
+    "secondsElapsed": 1965,
+  },
   "title": "⚔️",
   "width": 3,
 }
