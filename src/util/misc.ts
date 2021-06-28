@@ -20,6 +20,30 @@ export function parseVersion(version: string): [number, number] {
 }
 
 /**
+ * Parse a string of key-value pairs into a JavaScript object.
+ *
+ * @example
+ * parseRebusTable(' 0:CAT;10:DOG; 4:MOUSE')
+ *   => {0: "CAT", 10: "DOG", 4: "MOUSE"}
+ * @param tableString String should be semicolon terminated.
+ */
+export function parseRebusTable(tableString) {
+  invariant(
+    /^([ 0-9]\d:[^:;]*?;)*$/.test(tableString),
+    `Rebus table text doesn't match expected format.`,
+  );
+
+  return tableString
+    .slice(0, -1) // drop trailing semicolon
+    .split(';')
+    .map((entryString) => entryString.split(':'))
+    .reduce(
+      (acc, [key, value]) => ({ ...acc, [Number.parseInt(key)]: value }),
+      {},
+    );
+}
+
+/**
  * Format an input string as a null-terminated string.
  *
  * @param input Optional string to be formatted.

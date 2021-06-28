@@ -1434,6 +1434,66 @@ Object {
 }
 `;
 
+exports[`puz parseBinaryFile extracts expected Puzzle object from "unicode_with_state.puz" 1`] = `
+Object {
+  "author": "Chris Pickel",
+  "clues": Array [
+    "💆🏻‍♂️",
+    "☀️",
+    "φ",
+    "量",
+    "Ω",
+    "🔥🔥🔥",
+  ],
+  "copyright": "2018, Chris Pickel, under MIT License",
+  "fileVersion": "2.0",
+  "height": 3,
+  "isScrambled": false,
+  "markup": Object {
+    "grid": Array [
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+    ],
+  },
+  "misc": Object {
+    "preamble": undefined,
+    "scrambledChecksum": 0,
+    "unknown1": 0,
+    "unknown2": Object {
+      "data": Array [],
+      "type": "Buffer",
+    },
+    "unknown3": 1,
+  },
+  "notepad": undefined,
+  "numberOfClues": 6,
+  "rebus": Object {
+    "state": Array [
+      ,
+      ,
+      "ABC",
+      ,
+      ,
+      ,
+      ,
+      ,
+      ,
+    ],
+  },
+  "solution": "SPAOHMLIT",
+  "state": "spaohmlit",
+  "title": "⚔️",
+  "width": 3,
+}
+`;
+
 exports[`puz parseBinaryFile extracts expected Puzzle object from "washpost.puz" 1`] = `
 Object {
   "author": "By Raymond Hamel",

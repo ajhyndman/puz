@@ -5,13 +5,13 @@
  * the functional equivalents to "getter" methods from object-oriented software
  * patterns.
  */
-import { Puzzle } from '.';
+import { Puzzle } from './';
 import { checksum } from './util/checksum';
 import { ENCODING, HEADER_OFFSET, ICHEATED } from './util/constants';
 import {
   encodeHeaderWithoutChecksums,
-  guessFileEncodingFromVersion,
   getMetaStrings,
+  guessFileEncodingFromVersion,
 } from './util/misc';
 
 export function getFileChecksum(puzzle: Puzzle): number {

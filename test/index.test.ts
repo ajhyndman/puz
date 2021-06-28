@@ -17,6 +17,7 @@ describe('puz', () => {
     'nyt_weekday_with_notes.puz',
     'nyt_with_shape.puz',
     'unicode.puz',
+    'unicode_with_state.puz',
     'washpost.puz',
     'wsj110624.puz',
   ].map(

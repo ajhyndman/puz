@@ -5,12 +5,19 @@ import {
   getHeaderChecksum,
   getICheatedChecksum,
 } from './projections';
-import { FILE_SIGNATURE, HEADER_OFFSET, SQUARE_MARKUP } from './util/constants';
+import { checksum } from './util/checksum';
+import {
+  EXTENSION,
+  FILE_SIGNATURE,
+  HEADER_OFFSET,
+  SQUARE_MARKUP,
+} from './util/constants';
 import {
   encodeHeaderWithoutChecksums,
   guessFileEncodingFromVersion,
+  parseRebusTable,
 } from './util/misc';
-import { StringReader } from './util/StringReader';
+import { PuzzleReader } from './util/PuzzleReader';
 
 export type Puzzle = {
   // meta
@@ -33,9 +40,9 @@ export type Puzzle = {
 
   // rebus data
   rebus?: {
-    grid: number[];
-    solution: { [key: number]: string };
-    state?: { [key: number]: string };
+    grid?: (number | undefined)[];
+    solution?: { [key: number]: string };
+    state?: (string | undefined)[];
   };
 
   markup?: {
@@ -120,12 +127,12 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
   const encoding = guessFileEncodingFromVersion(fileVersion);
 
   // Use a cursor-based reader to traverse the rest of the binary data.
-  const reader = new StringReader(buffer, encoding, HEADER_OFFSET.HEADER_END);
+  const reader = new PuzzleReader(buffer, encoding, HEADER_OFFSET.HEADER_END);
 
   // read solution and state
   const gridSize = width * height;
-  const solution = reader.read(gridSize);
-  const state = reader.read(gridSize);
+  const solution = reader.readString(gridSize);
+  const state = reader.readString(gridSize);
 
   // read meta strings
   const title = reader.readNullTerminatedString();
@@ -142,10 +149,7 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
   // read notepad
   const notepad = reader.readNullTerminatedString();
 
-  // extra sections?
-  // TODO: support extra data
-
-  const puzzle = {
+  const puzzle: Puzzle = {
     author,
     copyright,
     fileVersion,
@@ -169,6 +173,74 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
       scrambledChecksum,
     },
   };
+
+  // READ EXTRA SECTIONS
+  while (reader.hasBytesToRead()) {
+    const title = reader.readString(0x04);
+    const length = reader.readBytes(0x02).readUInt16LE();
+    const checksum_e = reader.readBytes(0x02).readUInt16LE();
+    const data = reader.readBytes(length);
+    const sectionTerminator = reader.readBytes(0x01);
+
+    invariant(
+      data.length === length,
+      `"${title}" section expected data with length ${length} but got ${data.length}`,
+    );
+
+    invariant(
+      checksum(data) === checksum_e,
+      `"${title}" section data does not match checksum"`,
+    );
+
+    invariant(
+      Buffer.from([0x00]).equals(sectionTerminator),
+      `"${title}" section is missing terminating null byte`,
+    );
+
+    switch (title) {
+      case EXTENSION.MARKUP_GRID: {
+        const grid = Array.from(data);
+        grid.forEach((entry, i) => {
+          if (entry <= 0) delete grid[i];
+        });
+        puzzle.markup = {
+          grid,
+        };
+        break;
+      }
+      case EXTENSION.REBUS_GRID: {
+        const grid = Array.from(data).map((entry) => entry - 1);
+        grid.forEach((entry, i) => {
+          if (entry < 0) delete grid[i];
+        });
+        puzzle.rebus = {
+          ...(puzzle.rebus ?? {}),
+          grid,
+        };
+        break;
+      }
+      case EXTENSION.REBUS_SOLUTION: {
+        const solutionString = data.toString(encoding);
+        const rebusSolution = parseRebusTable(solutionString);
+        puzzle.rebus = {
+          ...(puzzle.rebus ?? {}),
+          solution: rebusSolution,
+        };
+        break;
+      }
+      case EXTENSION.REBUS_STATE: {
+        const rebusStateString = data.toString('ascii');
+        let rebusState = rebusStateString.slice(0, -1).split('\x00');
+        rebusState.forEach((entry, i) => {
+          if (entry === '') delete rebusState[i];
+        });
+        puzzle.rebus = {
+          ...(puzzle.rebus ?? {}),
+          state: rebusState,
+        };
+      }
+    }
+  }
 
   // VALIDATE CHECKSUMS
 
