@@ -4,6 +4,7 @@ import {
   getFileChecksum,
   getHeaderChecksum,
   getICheatedChecksum,
+  validate,
 } from './projections';
 import { checksum } from './util/checksum';
 import {
@@ -64,10 +65,6 @@ export type Puzzle = {
     scrambledChecksum: number;
   };
 };
-
-export function validatePuzzle(puzzle: Puzzle) {
-  // TODO: Throw if puzzle file isn't valid in any way.
-}
 
 export function parseBinaryFile(data: Uint8Array): Puzzle {
   // Transform to Buffer class for easier binary manipulation.
@@ -268,7 +265,7 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
 }
 
 export function printBinaryFile(puzzle: Puzzle): Uint8Array {
-  validatePuzzle(puzzle);
+  validate(puzzle);
 
   // Guess string encoding from file version.
   const encoding = guessFileEncodingFromVersion(puzzle.fileVersion);

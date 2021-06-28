@@ -74,3 +74,7 @@ export function getICheatedChecksum(puzzle: Puzzle): Uint8Array {
 export function getFileEncoding(puzzle: Puzzle): ENCODING {
   return guessFileEncodingFromVersion(puzzle.fileVersion);
 }
+
+export function validate(puzzle: Puzzle) {
+  // TODO: Throw if puzzle file isn't valid in any way.
+}
