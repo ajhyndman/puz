@@ -1,10 +1,11 @@
 import { checksum } from '../src/util/checksum';
+import { EMPTY_BUFFER } from '../src/util/constants';
 
 describe('checksum', () => {
   it('returns initialValue for empty data array', () => {
-    expect(checksum(Uint8Array.from([]))).toBe(0x0000);
-    expect(checksum(Uint8Array.from([]), 0x1111)).toBe(0x1111);
-    expect(checksum(Uint8Array.from([]), 0xffff)).toBe(0xffff);
+    expect(checksum(EMPTY_BUFFER)).toBe(0x0000);
+    expect(checksum(EMPTY_BUFFER, 0x1111)).toBe(0x1111);
+    expect(checksum(EMPTY_BUFFER, 0xffff)).toBe(0xffff);
   });
 
   // test against a few real-world header checksums

@@ -1,22 +1,27 @@
 import invariant from 'ts-invariant';
 
 import { Puzzle } from '../';
+import { checksum } from './checksum';
 import {
   ENCODING,
+  EXTENSION,
   FILE_SIGNATURE,
   HEADER_OFFSET,
+  NULL_BYTE,
   VERSION_REGEX,
 } from './constants';
 
-export function parseVersion(version: string): [number, number] {
+export function parseVersion(
+  version: string,
+): [number, number, string | undefined] {
   invariant(
     VERSION_REGEX.test(version),
     'file version data did not match expected format',
   );
   version;
 
-  const [, majorVersion, minorVersion] = VERSION_REGEX.exec(version);
-  return [Number.parseInt(majorVersion), Number.parseInt(minorVersion)];
+  const [, majorVersion, minorVersion, patch] = VERSION_REGEX.exec(version);
+  return [Number.parseInt(majorVersion), Number.parseInt(minorVersion), patch];
 }
 
 /**
@@ -27,7 +32,9 @@ export function parseVersion(version: string): [number, number] {
  *   => {0: "CAT", 10: "DOG", 4: "MOUSE"}
  * @param tableString String should be semicolon terminated.
  */
-export function parseRebusTable(tableString) {
+export function parseRebusTable(tableString: string): {
+  [key: number]: string;
+} {
   invariant(
     /^([ 0-9]\d:[^:;]*?;)*$/.test(tableString),
     `Rebus table text doesn't match expected format.`,
@@ -41,6 +48,20 @@ export function parseRebusTable(tableString) {
       (acc, [key, value]) => ({ ...acc, [Number.parseInt(key)]: value }),
       {},
     );
+}
+
+/**
+ *
+ * @param tableObject
+ * @returns
+ */
+export function printRebusTable(tableObject: {
+  [key: number]: string | undefined;
+}): string {
+  return Object.entries(tableObject).reduce(
+    (acc, [key, value]) => `${acc}${key}:${value};`,
+    '',
+  );
 }
 
 /**
@@ -80,30 +101,19 @@ export function getMetaStrings({
   );
 }
 
-export function encodeHeaderWithoutChecksums(puzzle): Buffer {
+export function encodeHeaderWithoutChecksums(puzzle: Puzzle): Buffer {
   const header = Buffer.alloc(HEADER_OFFSET.HEADER_END);
 
-  header.fill(
-    FILE_SIGNATURE,
-    HEADER_OFFSET.FILE_SIGNATURE_START,
-    HEADER_OFFSET.FILE_SIGNATURE_END,
-    'ascii',
-  );
-  header.fill(
-    puzzle.fileVersion,
-    HEADER_OFFSET.VERSION_START,
-    HEADER_OFFSET.VERSION_END,
-    'ascii',
-  );
+  header.write(FILE_SIGNATURE, HEADER_OFFSET.FILE_SIGNATURE_START, 'ascii');
+  header.write(puzzle.fileVersion, HEADER_OFFSET.VERSION_START, 'ascii');
   header.writeUInt16LE(puzzle.misc.unknown1, HEADER_OFFSET.RESERVED_1C_START);
   header.writeUInt16LE(
     puzzle.misc.scrambledChecksum,
     HEADER_OFFSET.SCRAMBLED_CHECKSUM_START,
   );
-  header.fill(
-    puzzle.misc.unknown2,
+  Buffer.from(puzzle.misc.unknown2).copy(
+    header,
     HEADER_OFFSET.RESERVED_20_START,
-    HEADER_OFFSET.RESERVED_20_END,
   );
   header.writeUInt8(puzzle.width, HEADER_OFFSET.WIDTH_START);
   header.writeUInt8(puzzle.height, HEADER_OFFSET.HEIGHT_START);
@@ -121,4 +131,25 @@ export function encodeHeaderWithoutChecksums(puzzle): Buffer {
   );
 
   return header;
+}
+
+/**
+ * Encode an extension section to binary.
+ *
+ * @param title The four-letter section title.
+ * @param data A byte array containing the extension data.
+ * @returns The extension data encoded in a null-terminated byte array.
+ */
+export function encodeExtensionSection(
+  title: EXTENSION,
+  data: Uint8Array,
+): Buffer {
+  const header = Buffer.alloc(0x08);
+  const dataChecksum = checksum(data);
+
+  header.write(title, 0x00, 'ascii');
+  header.writeUInt16LE(data.length, 0x04);
+  header.writeUInt16LE(dataChecksum, 0x06);
+
+  return Buffer.concat([header, data, NULL_BYTE]);
 }

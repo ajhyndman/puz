@@ -8,15 +8,19 @@ import {
 } from './projections';
 import { checksum } from './util/checksum';
 import {
+  EMPTY_BUFFER,
   EXTENSION,
   FILE_SIGNATURE,
   HEADER_OFFSET,
+  NULL_BYTE,
   SQUARE_MARKUP,
 } from './util/constants';
 import {
+  encodeExtensionSection,
   encodeHeaderWithoutChecksums,
   guessFileEncodingFromVersion,
   parseRebusTable,
+  printRebusTable,
 } from './util/misc';
 import { PuzzleReader } from './util/PuzzleReader';
 
@@ -93,11 +97,9 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
     HEADER_OFFSET.ICHEATED_CHECKSUM_START,
     HEADER_OFFSET.ICHEATED_CHECKSUM_END,
   );
-  const fileVersion = buffer.toString(
-    'ascii',
-    HEADER_OFFSET.VERSION_START,
-    HEADER_OFFSET.VERSION_END,
-  );
+  const fileVersion = buffer
+    .toString('ascii', HEADER_OFFSET.VERSION_START, HEADER_OFFSET.VERSION_END)
+    .replace(/\x00/g, '');
   const unknown1 = buffer.readUInt16LE(HEADER_OFFSET.RESERVED_1C_START);
   const scrambledChecksum = buffer.readUInt16LE(
     HEADER_OFFSET.SCRAMBLED_CHECKSUM_START,
@@ -188,7 +190,7 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
     );
 
     invariant(
-      Buffer.from([0x00]).equals(sectionTerminator),
+      NULL_BYTE.equals(sectionTerminator),
       `"${title}" section is missing terminating null byte`,
     );
 
@@ -231,7 +233,24 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
           ...(puzzle.rebus ?? {}),
           state: rebusState,
         };
+        break;
       }
+      case EXTENSION.TIMER: {
+        const TIMER_REGEX = /(\d+),(\d+)/;
+        const timerString = data.toString('ascii');
+        invariant(
+          TIMER_REGEX.test(timerString),
+          "Timer data doesn't match expected format.",
+        );
+        const [, secondsElapsed, isPaused] = TIMER_REGEX.exec(timerString);
+        puzzle.timer = {
+          secondsElapsed: Number.parseInt(secondsElapsed),
+          isPaused: isPaused === '1',
+        };
+        break;
+      }
+      default:
+        console.warn('Unrecognized extension section:', title);
     }
   }
 
@@ -300,17 +319,61 @@ export function printBinaryFile(puzzle: Puzzle): Uint8Array {
   // write checksums
   header.writeUInt16LE(checksum_f, HEADER_OFFSET.FILE_CHECKSUM_START);
   header.writeUInt16LE(checksum_h, HEADER_OFFSET.HEADER_CHECKSUM_START);
-  header.fill(
-    checksum_i,
-    HEADER_OFFSET.ICHEATED_CHECKSUM_START,
-    HEADER_OFFSET.ICHEATED_CHECKSUM_END,
-  );
+  Buffer.from(checksum_i).copy(header, HEADER_OFFSET.ICHEATED_CHECKSUM_START);
+
+  // ENCODE EXTRA SECTIONS
+  let rebusGrid = EMPTY_BUFFER;
+  let rebusSolution = EMPTY_BUFFER;
+  let rebusState = EMPTY_BUFFER;
+  if (puzzle.rebus) {
+    if (puzzle.rebus.grid) {
+      const data = Uint8Array.from(puzzle.rebus.grid, (value) =>
+        value == null ? 0x00 : value + 1,
+      );
+      rebusGrid = encodeExtensionSection(EXTENSION.REBUS_GRID, data);
+    }
+    if (puzzle.rebus.solution) {
+      const data = Buffer.from(printRebusTable(puzzle.rebus.solution));
+      rebusSolution = encodeExtensionSection(EXTENSION.REBUS_SOLUTION, data);
+    }
+    if (puzzle.rebus.state) {
+      const stateString =
+        puzzle.rebus.state
+          .map((value) => (value == null ? '' : value))
+          .join('\x00') + '\x00';
+      const data = Buffer.from(stateString, 'ascii');
+      rebusState = encodeExtensionSection(EXTENSION.REBUS_STATE, data);
+    }
+  }
+
+  let timer = EMPTY_BUFFER;
+  if (puzzle.timer != null) {
+    const data = Buffer.from(
+      `${puzzle.timer.secondsElapsed},${puzzle.timer.isPaused ? 1 : 0}`,
+      'ascii',
+    );
+    timer = encodeExtensionSection(EXTENSION.TIMER, data);
+  }
+
+  let markup = EMPTY_BUFFER;
+  if (puzzle.markupGrid != null) {
+    const data = Uint8Array.from(puzzle.markupGrid, (value) =>
+      value === undefined ? 0x00 : value,
+    );
+
+    markup = encodeExtensionSection(EXTENSION.MARKUP_GRID, data);
+  }
 
   // FORMAT FILE
   return Buffer.concat([
-    puzzle.misc.preamble ?? Uint8Array.from([]),
+    puzzle.misc.preamble ?? EMPTY_BUFFER,
     header,
     strings,
+    rebusGrid,
+    rebusSolution,
+    timer,
+    markup,
+    rebusState,
   ]);
 }
 

@@ -13,7 +13,7 @@ export const enum HEADER_OFFSET {
   ICHEATED_CHECKSUM_START = 0x10,
   ICHEATED_CHECKSUM_END = 0x18,
   VERSION_START = 0x18,
-  VERSION_END = 0x1b,
+  VERSION_END = 0x1c,
   RESERVED_1C_START = 0x1c,
   SCRAMBLED_CHECKSUM_START = 0x1e,
   RESERVED_20_START = 0x20,
@@ -43,6 +43,6 @@ export const enum EXTENSION {
 
 export const ICHEATED = Buffer.from('ICHEATED', 'ascii');
 export const FILE_SIGNATURE = 'ACROSS&DOWN\x00';
-export const VERSION_REGEX = /^(\d+)\.(\d+)$/;
+export const VERSION_REGEX = /^(\d+)\.(\d+)([a-z])?$/;
 export const EMPTY_BUFFER = Buffer.from([]);
 export const NULL_BYTE = Buffer.from([0x00]);
