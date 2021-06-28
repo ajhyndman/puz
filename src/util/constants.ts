@@ -17,7 +17,7 @@ export const enum HEADER_OFFSET {
   RESERVED_1C_START = 0x1c,
   SCRAMBLED_CHECKSUM_START = 0x1e,
   RESERVED_20_START = 0x20,
-  RESERVED_20_END = 0x1e,
+  RESERVED_20_END = 0x2c,
   WIDTH_START = 0x2c,
   HEIGHT_START = 0x2d,
   NUMBER_OF_CLUES_START = 0x2e,
@@ -34,12 +34,15 @@ export enum SQUARE_MARKUP {
 }
 
 export const enum EXTENSION {
+  MARKUP_GRID = 'GEXT',
   REBUS_GRID = 'GRBS',
   REBUS_SOLUTION = 'RTBL',
   REBUS_STATE = 'RUSR',
-  MARKUP_GRID = 'GEXT',
+  TIMER = 'LTIM',
 }
 
 export const ICHEATED = Buffer.from('ICHEATED', 'ascii');
 export const FILE_SIGNATURE = 'ACROSS&DOWN\x00';
 export const VERSION_REGEX = /^(\d+)\.(\d+)$/;
+export const EMPTY_BUFFER = Buffer.from([]);
+export const NULL_BYTE = Buffer.from([0x00]);
