@@ -90,6 +90,13 @@ export function guessFileEncodingFromVersion(fileVersion: string): ENCODING {
   return majorVersion >= 2 ? ENCODING.UTF_8 : ENCODING.ISO_8859_1;
 }
 
+/**
+ * Collect metadata text from a puzzle object as a single string. This is
+ * useful for generating some PUZ file checksums.
+ *
+ * @param puzzle Puzzle object to collect strings from.
+ * @returns A string with the text metadata fields concatenated.
+ */
 export function getMetaStrings({
   title,
   author,
@@ -110,6 +117,13 @@ export function getMetaStrings({
   );
 }
 
+/**
+ * Allocate a buffer of 52 bytes and populate it with all expected data other
+ * than checksums.
+ *
+ * @param puzzle Puzzle object to derive header for.
+ * @returns Buffer of with encoded puzzle metadata.
+ */
 export function encodeHeaderWithoutChecksums(puzzle: Puzzle): Buffer {
   const header = Buffer.alloc(HEADER_OFFSET.HEADER_END);
 
