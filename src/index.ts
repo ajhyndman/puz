@@ -19,16 +19,13 @@ export type Puzzle = {
   // clues
   clues: string[];
 
-  // rebus data
+  // extension data
   rebus?: {
     grid?: (number | undefined)[];
     solution?: { [key: number]: string };
     state?: (string | undefined)[];
   };
-
   markupGrid?: SQUARE_MARKUP[];
-
-  // solution timer
   timer?: {
     secondsElapsed: number;
     isPaused: boolean;
