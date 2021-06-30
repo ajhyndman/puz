@@ -1,0 +1,186 @@
+<ACROSS PUZZLE V2>
+<TITLE>
+	NY Times, Sun, Sep 14, 2008  YEAR-ROUND
+<AUTHOR>
+	Jeremy Newton / Will Shortz
+<COPYRIGHT>
+	2008, The New York Times
+<SIZE>
+	21x21
+<GRID>
+	.STUART.ROSIE...OMEGA
+	.PASTOR.ERASE.CAROLER
+	YOKOONO.LI2AN.AUGMENT
+	ETE.BA1.OBEY.S3TY.COB
+	ATTS..AWAIT.POOR.ATMO
+	SEEINGRED..GUTSY.TRIO
+	TRA$OMMISSIONS..R4OCK
+	...ADAY..TOIT.GATO...
+	CADRE..SWANN.BENEFITS
+	OTO.AUSTIN.GIANT.ITOO
+	MA#ERBOARD.ANCIENT5AN
+	BRAY.OATES.LIKESO.BIG
+	SINEWAVE.FELTS..BAERS
+	...DATE.NIKI..MOLD...
+	DEC0S..ADRENALINE6KIE
+	IMHO.ABRAM..BONESCANS
+	SUER.HACK.DWELT..TROT
+	CLE.JO9H.ARAT.7ES.ARE
+	MASCARA.FR8HT.EPISODE
+	ATEAWAY.ACHOO.PERUKE.
+	NESTS...MOTOR.SEEDER.
+<REBUS>
+	1:JAN:J
+	2:FEB:F
+	3:MAR:M
+	4:APR:A
+	5:MAY:M
+	6:JUN:J
+	7:JUL:J
+	8:AUG:A
+	9:SEP:S
+	0:OCT:O
+	#:NOV:N
+	$:DEC:D
+<ACROSS>
+	Portraitist of George Washington
+	Robot maid on "The Jetsons"
+	Sorority chapter
+	Leader of a flock
+	Do away with
+	Spreader of holiday cheer
+	Singer who said "At least I had that, one guy understood me"
+	Possible punishment for steroid use
+	Enhance
+	When Cannes heats up
+	Native tongue of R&B singer Rihanna
+	Bow to
+	Wise guy
+	Ear part
+	"Esq." titleholders
+	Keep an eye out for
+	Meager
+	Prefix with sphere
+	Fuming
+	Daring
+	Alvin and the Chipmunks, e.g.
+	Experts at exports
+	Genre explored by Run-D.M.C. and Aerosmith
+	Diurnally
+	"Hop ___!"
+	Mexican mouse chaser
+	Inner circle
+	Proust title character
+	Job interview topic
+	Sioux tribe member
+	State capital on the Colorado River
+	Economy-size
+	Langston Hughes poem
+	Cry at sea
+	Cancún resident, once
+	Farm call
+	Hall's partner in pop
+	"This is how it's done"
+	Worth mentioning
+	Pattern for light or sound
+	Soft hat materials
+	Actors Max and Max Jr.
+	See
+	___ Taylor, co-host of "Make Me a Supermodel"
+	It appears when things go bad
+	Boils down
+	Thrill seeker
+	"If you ask me," online
+	The "A" of James A. Garfield
+	Some exams for joint pain sufferers
+	Litigant
+	Symptom of catarrh
+	Focused (on)
+	Brisk pace
+	Cavs, on a scoreboard
+	Nativity figure
+	"Was it ___ I saw?" (classic palindrome)
+	Samuel L. Jackson's character in "Pulp Fiction"
+	Were present?
+	It might run in the rain
+	Filled (with)
+	Part of a serial
+	Eroded
+	It's usually said with the eyes closed
+	Wig
+	Egg holders
+	Kind of skill
+	Farm machine
+<DOWN>
+	Weightlifter's helper
+	Have a break at 4:00, say
+	Troop troupe: Abbr.
+	Basic travel path
+	First name in gossip
+	Paris was part of it
+	Equips with new clips
+	Small African antelope
+	It's darn likely
+	"My, my, old chap!"
+	Dusk, to Donne
+	Unlikely event for puritans
+	MADD member
+	Foe of Spider-Man
+	Like some modern maps
+	Coffee table item
+	Mustang rivals
+	Gene who sang "Back in the Saddle Again"
+	Cause of many uprisings
+	Members of the bar?
+	Biker's add-on
+	Early Chinese dynasty
+	Admit defeat, in a way
+	Lucratively
+	Polite disclaimer
+	ABC a.m. show, briefly
+	Last resort in poker, often
+	Doesn't waver
+	Euripides drama
+	G.P.S. suggestion
+	Bottle opener's surprise
+	Vegas openings?
+	Untangles, in a way
+	Cyberball maker
+	Pop singer who appeared in the movie "Sgt. Pepper's Lonely Hearts Club Band"
+	It's called in a political convention roll call
+	Undercover device
+	Campaigns for
+	"Quite possibly"
+	Surface-___
+	Singles and jingles
+	Sub with sauerkraut?
+	White wine from Verona
+	W., e.g.: Abbr.
+	Professional with many contacts?
+	Lords and ladies
+	Is past?
+	Scrape (out)
+	Like some professors
+	Sask. neighbor
+	Drinks in frosted glasses
+	Married
+	Hit Sony product introduced in 1984
+	Model after
+	American, Swiss, etc.
+	Design feature of many a viaduct
+	Lookout, maybe
+	"OMG, that's sooo funny!"
+	Kind of bar
+	Squared away
+	First name in cosmetics
+	Now, in Nogales
+	Wages, before overtime
+	Beer serving in a pub
+	"Yippee!"
+	Jabbers
+	U.S. gas chain
+	Triple-edged sword
+	Part of a horse's genealogy
+	Cool ___
+	Genealogical grp.
+	S, on a French compass
