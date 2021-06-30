@@ -14,7 +14,11 @@ import {
   NULL_BYTE,
   REGEX_TIMER_STRING,
 } from '../util/constants';
-import { guessFileEncodingFromVersion, parseRebusTable } from '../util/misc';
+import {
+  guessFileEncodingFromVersion,
+  parseExtensionSection,
+  parseRebusTable,
+} from '../util/misc';
 import { PuzzleReader } from '../util/PuzzleReader';
 
 export function parseBinaryFile(data: Uint8Array): Puzzle {
@@ -108,24 +112,8 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
   let rebus: Puzzle['rebus'];
   let timer: Puzzle['timer'];
 
-  // see extension section format documentation:
-  // https://github.com/ajhyndman/puz/blob/main/PUZ%20File%20Format.md#extra-sections
   while (reader.hasBytesToRead()) {
-    const title = reader.readString(0x04);
-    const length = reader.readBytes(0x02).readUInt16LE();
-    const checksum_e = reader.readBytes(0x02).readUInt16LE();
-    const data = reader.readBytes(length);
-    const sectionTerminator = reader.readBytes(0x01);
-
-    invariant(
-      checksum(data) === checksum_e,
-      `"${title}" section data does not match checksum"`,
-    );
-
-    invariant(
-      NULL_BYTE.equals(sectionTerminator),
-      `"${title}" section is missing terminating null byte`,
-    );
+    const { title, data } = parseExtensionSection(reader);
 
     switch (title) {
       case EXTENSION.MARKUP_GRID: {

@@ -11,6 +11,7 @@ import {
   REGEX_REBUS_TABLE_STRING,
   REGEX_VERSION_STRING,
 } from './constants';
+import { PuzzleReader } from './PuzzleReader';
 
 export function parseVersion(
   version: string,
@@ -176,4 +177,38 @@ export function encodeExtensionSection(
   header.writeUInt16LE(dataChecksum, 0x06);
 
   return Buffer.concat([header, data, NULL_BYTE]);
+}
+
+/**
+ * Given a PuzzleReader, attempts to read an extension block from the reader's
+ * currect cursor position.
+ *
+ * Validates the format, checksum and data length of the section, then returns
+ * the section title and associated data buffer.
+ *
+ * see extension section format documentation:
+ * https://github.com/ajhyndman/puz/blob/main/PUZ%20File%20Format.md#extra-sections
+ *
+ * @param reader
+ * A PuzzleReader instance to attempt to read an extension section from.
+ * @returns An object containing the section's 'title' and 'data'.
+ */
+export function parseExtensionSection(reader: PuzzleReader) {
+  const title = reader.readString(0x04);
+  const length = reader.readBytes(0x02).readUInt16LE();
+  const checksum_e = reader.readBytes(0x02).readUInt16LE();
+  const data = reader.readBytes(length);
+  const sectionTerminator = reader.readBytes(0x01);
+
+  invariant(
+    checksum(data) === checksum_e,
+    `"${title}" section data does not match checksum"`,
+  );
+
+  invariant(
+    NULL_BYTE.equals(sectionTerminator),
+    `"${title}" section is missing terminating null byte`,
+  );
+
+  return { title, data };
 }
