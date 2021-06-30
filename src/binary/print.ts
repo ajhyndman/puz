@@ -71,7 +71,7 @@ export function printBinaryFile(puzzle: Puzzle): Uint8Array {
       rebusGrid = encodeExtensionSection(EXTENSION.REBUS_GRID, data);
     }
     if (puzzle.rebus.solution) {
-      const data = Buffer.from(printRebusTable(puzzle.rebus.solution));
+      const data = Buffer.from(printRebusTable(puzzle.rebus.solution), 'ascii');
       rebusSolution = encodeExtensionSection(EXTENSION.REBUS_SOLUTION, data);
     }
     if (puzzle.rebus.state) {

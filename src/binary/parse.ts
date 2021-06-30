@@ -145,7 +145,7 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
         break;
       }
       case EXTENSION.REBUS_SOLUTION: {
-        const solutionString = data.toString(encoding);
+        const solutionString = data.toString('ascii');
         const rebusSolution = parseRebusTable(solutionString);
         rebus = { ...(rebus ?? {}), solution: rebusSolution };
         break;
