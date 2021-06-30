@@ -5,21 +5,43 @@ import { parseBinaryFile, printBinaryFile } from '../src/index';
 
 describe('puz', () => {
   const puzzleFiles = [
-    './puzzles/av110622.puz',
-    './puzzles/cs080904.puz',
-    './puzzles/washpost.puz',
-  ].map((path) => readFileSync(join(__dirname, path)));
+    'av110622.puz',
+    'cs080904.puz',
+    'Feb0308_oddnumbering.puz',
+    'nyt_diagramless.puz',
+    'nyt_locked.puz',
+    'nyt_partlyfilled.puz',
+    'nyt_rebus_with_notes_and_shape.puz',
+    'nyt_sun_rebus.puz',
+    'nyt_v1_4.puz',
+    'nyt_weekday_with_notes.puz',
+    'nyt_with_shape.puz',
+    'unicode.puz',
+    'unicode_with_state.puz',
+    'washpost.puz',
+    'wsj110624.puz',
+  ].map(
+    (path) => [path, readFileSync(join(__dirname, 'puzzles', path))] as const,
+  );
 
-  it('parses binary puzzles without crashing', () => {
-    puzzleFiles.forEach((buffer) => {
+  describe('parseBinaryFile', () => {
+    it.each(puzzleFiles)('parses "%s" without crashing', (path, buffer) => {
       parseBinaryFile(buffer);
     });
+
+    it.each(puzzleFiles)(
+      'extracts expected Puzzle object from "%s"',
+      (path, buffer) => {
+        expect(parseBinaryFile(buffer)).toMatchSnapshot();
+      },
+    );
   });
 
-  it('parses and prints binary files preserving exact bytes', () => {
-    puzzleFiles.forEach((buffer) => {
+  it.each(puzzleFiles)(
+    'parses and prints "%s" preserving exact bytes',
+    (path, buffer) => {
       const puzzle = parseBinaryFile(buffer);
       expect(printBinaryFile(puzzle)).toEqual(buffer);
-    });
-  });
+    },
+  );
 });
