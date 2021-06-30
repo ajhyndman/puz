@@ -48,4 +48,4 @@ export const ICHEATED = Buffer.from('ICHEATED', 'ascii');
 export const FILE_SIGNATURE = 'ACROSS&DOWN\x00';
 
 export const REGEX_VERSION_STRING = /^(\d+)\.(\d+)([a-z])?$/;
-export const REGEX_TIMER_STRING = /(\d+),([01]+)/;
+export const REGEX_TIMER_STRING = /^(\d+),([01])$/;
