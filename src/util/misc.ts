@@ -8,6 +8,7 @@ import {
   FILE_SIGNATURE,
   HEADER_OFFSET,
   NULL_BYTE,
+  REGEX_REBUS_TABLE_STRING,
   REGEX_VERSION_STRING,
 } from './constants';
 
@@ -37,7 +38,7 @@ export function parseRebusTable(tableString: string): {
   [key: number]: string;
 } {
   invariant(
-    /^([ 0-9]\d:[^:;]*?;)*$/.test(tableString),
+    REGEX_REBUS_TABLE_STRING.test(tableString),
     `Rebus table text doesn't match expected format.`,
   );
 
