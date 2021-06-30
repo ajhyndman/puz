@@ -137,7 +137,11 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
         break;
       }
       case EXTENSION.REBUS_GRID: {
+        // In the rebus data, null bytes are used to indicate squares with no
+        // rebus.  All values are shifted up by one when encoded to avoid
+        // collisions with the null empty byte.
         const grid = Array.from(data).map((entry) => entry - 1);
+        // Improve clarity for library consumers by deleting "empty" null markers
         grid.forEach((entry, i) => {
           if (entry < 0) delete grid[i];
         });
@@ -152,7 +156,9 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
       }
       case EXTENSION.REBUS_STATE: {
         const rebusStateString = data.toString('ascii');
+        // encoded rebus state is null-delimited with a trailing null byte
         let rebusState = rebusStateString.slice(0, -1).split('\x00');
+        // Improve clarity for library consumers by deleting "empty" null markers
         rebusState.forEach((entry, i) => {
           if (entry === '') delete rebusState[i];
         });
