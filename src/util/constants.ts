@@ -41,8 +41,11 @@ export const enum EXTENSION {
   TIMER = 'LTIM',
 }
 
-export const ICHEATED = Buffer.from('ICHEATED', 'ascii');
-export const FILE_SIGNATURE = 'ACROSS&DOWN\x00';
-export const VERSION_REGEX = /^(\d+)\.(\d+)([a-z])?$/;
 export const EMPTY_BUFFER = Buffer.from([]);
 export const NULL_BYTE = Buffer.from([0x00]);
+export const ICHEATED = Buffer.from('ICHEATED', 'ascii');
+
+export const FILE_SIGNATURE = 'ACROSS&DOWN\x00';
+
+export const REGEX_VERSION_STRING = /^(\d+)\.(\d+)([a-z])?$/;
+export const REGEX_TIMER_STRING = /(\d+),([01]+)/;

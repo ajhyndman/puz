@@ -8,19 +8,20 @@ import {
   FILE_SIGNATURE,
   HEADER_OFFSET,
   NULL_BYTE,
-  VERSION_REGEX,
+  REGEX_VERSION_STRING,
 } from './constants';
 
 export function parseVersion(
   version: string,
 ): [number, number, string | undefined] {
   invariant(
-    VERSION_REGEX.test(version),
+    REGEX_VERSION_STRING.test(version),
     'file version data did not match expected format',
   );
   version;
 
-  const [, majorVersion, minorVersion, patch] = VERSION_REGEX.exec(version);
+  const [, majorVersion, minorVersion, patch] =
+    REGEX_VERSION_STRING.exec(version);
   return [Number.parseInt(majorVersion), Number.parseInt(minorVersion), patch];
 }
 
