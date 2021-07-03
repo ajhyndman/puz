@@ -44,6 +44,6 @@ export type Puzzle = {
 export { parseBinaryFile } from './binary/parse';
 export { printBinaryFile } from './binary/print';
 
-export declare function parseTextFile(file: string): Puzzle;
+export { parseTextFile } from './text/parse';
 
 export declare function printTextFile(puzzle: Puzzle): string;

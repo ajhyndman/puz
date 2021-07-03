@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`puz parseTextFile extracts expected Puzzle object from "v1_text_format.txt" 1`] = `Object {}`;
+
+exports[`puz parseTextFile extracts expected Puzzle object from "v2_text_format_mark.txt" 1`] = `Object {}`;
+
+exports[`puz parseTextFile extracts expected Puzzle object from "v2_text_format_rebus.txt" 1`] = `Object {}`;
