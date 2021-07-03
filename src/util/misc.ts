@@ -8,19 +8,22 @@ import {
   FILE_SIGNATURE,
   HEADER_OFFSET,
   NULL_BYTE,
-  VERSION_REGEX,
+  REGEX_REBUS_TABLE_STRING,
+  REGEX_VERSION_STRING,
 } from './constants';
+import { PuzzleReader } from './PuzzleReader';
 
 export function parseVersion(
   version: string,
 ): [number, number, string | undefined] {
   invariant(
-    VERSION_REGEX.test(version),
+    REGEX_VERSION_STRING.test(version),
     'file version data did not match expected format',
   );
   version;
 
-  const [, majorVersion, minorVersion, patch] = VERSION_REGEX.exec(version);
+  const [, majorVersion, minorVersion, patch] =
+    REGEX_VERSION_STRING.exec(version);
   return [Number.parseInt(majorVersion), Number.parseInt(minorVersion), patch];
 }
 
@@ -36,7 +39,7 @@ export function parseRebusTable(tableString: string): {
   [key: number]: string;
 } {
   invariant(
-    /^([ 0-9]\d:[^:;]*?;)*$/.test(tableString),
+    REGEX_REBUS_TABLE_STRING.test(tableString),
     `Rebus table text doesn't match expected format.`,
   );
 
@@ -89,6 +92,13 @@ export function guessFileEncodingFromVersion(fileVersion: string): ENCODING {
   return majorVersion >= 2 ? ENCODING.UTF_8 : ENCODING.ISO_8859_1;
 }
 
+/**
+ * Collect metadata text from a puzzle object as a single string. This is
+ * useful for generating some PUZ file checksums.
+ *
+ * @param puzzle Puzzle object to collect strings from.
+ * @returns A string with the text metadata fields concatenated.
+ */
 export function getMetaStrings({
   title,
   author,
@@ -109,6 +119,13 @@ export function getMetaStrings({
   );
 }
 
+/**
+ * Allocate a buffer of 52 bytes and populate it with all expected data other
+ * than checksums.
+ *
+ * @param puzzle Puzzle object to derive header for.
+ * @returns Buffer of with encoded puzzle metadata.
+ */
 export function encodeHeaderWithoutChecksums(puzzle: Puzzle): Buffer {
   const header = Buffer.alloc(HEADER_OFFSET.HEADER_END);
 
@@ -160,4 +177,38 @@ export function encodeExtensionSection(
   header.writeUInt16LE(dataChecksum, 0x06);
 
   return Buffer.concat([header, data, NULL_BYTE]);
+}
+
+/**
+ * Given a PuzzleReader, attempts to read an extension block from the reader's
+ * currect cursor position.
+ *
+ * Validates the format, checksum and data length of the section, then returns
+ * the section title and associated data buffer.
+ *
+ * see extension section format documentation:
+ * https://github.com/ajhyndman/puz/blob/main/PUZ%20File%20Format.md#extra-sections
+ *
+ * @param reader
+ * A PuzzleReader instance to attempt to read an extension section from.
+ * @returns An object containing the section's 'title' and 'data'.
+ */
+export function parseExtensionSection(reader: PuzzleReader) {
+  const title = reader.readString(0x04);
+  const length = reader.readBytes(0x02).readUInt16LE();
+  const checksum_e = reader.readBytes(0x02).readUInt16LE();
+  const data = reader.readBytes(length);
+  const sectionTerminator = reader.readBytes(0x01);
+
+  invariant(
+    checksum(data) === checksum_e,
+    `"${title}" section data does not match checksum"`,
+  );
+
+  invariant(
+    NULL_BYTE.equals(sectionTerminator),
+    `"${title}" section is missing terminating null byte`,
+  );
+
+  return { title, data };
 }

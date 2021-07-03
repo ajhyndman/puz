@@ -37,11 +37,13 @@ describe('puz', () => {
     );
   });
 
-  it.each(puzzleFiles)(
-    'parses and prints "%s" preserving exact bytes',
-    (path, buffer) => {
-      const puzzle = parseBinaryFile(buffer);
-      expect(printBinaryFile(puzzle)).toEqual(buffer);
-    },
-  );
+  describe('printBinaryFile', () => {
+    it.each(puzzleFiles)(
+      'prints "%s" preserving exact bytes',
+      (path, buffer) => {
+        const puzzle = parseBinaryFile(buffer);
+        expect(printBinaryFile(puzzle)).toEqual(buffer);
+      },
+    );
+  });
 });

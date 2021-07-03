@@ -149,6 +149,7 @@ Object {
   "fileVersion": "1.3",
   "height": 21,
   "isScrambled": false,
+  "markupGrid": undefined,
   "misc": Object {
     "preamble": undefined,
     "scrambledChecksum": 1213,
@@ -174,8 +175,10 @@ Object {
   },
   "notepad": undefined,
   "numberOfClues": 140,
+  "rebus": undefined,
   "solution": ".LOFT.DEADON..UPSIDECHELLO.ERNEST.ELEONORATOMEI.ERESTU.HARDLOOKTIECLIPS.POPGUN.AANDEPICKEDS.MISLED.PAYEES...STE.ROSIER.TIS....ACC.SALINES..TWOHEADSLOOS.SLAT..SWOON.XMENLOUTS.OLEO.TEEF.STALEALREADY.SUPRAS.CARRIE..TRIAD.STEAK.AILEY..SMELLY.JOININ.GREMLINOASIS.FERN.NEMO.SELMACLAN.DLEIF..SAGE.WINGKINGLEAR..EASEONT.SOS....AUK.SPATES.OHM...SPAWNS.PEARLS.CLEANSEPALEO.MOESHA.LIARLIARONEFLESH.HANSOM.OASTSSETTINGS.ARTURO.AWAITEDASNER..STANDC.DINE.",
   "state": ".----.------..------------.------.-------------.------.----------------.------.------------.------.------...---.------.---....---.-------..------------.----..-----.---------.----.----.------------.------.------..-----.-----.-----..------.------.------------.----.----.---------.-----..----.------------..-------.---....---.------.---...------.------.------------.------.----------------.------.-------------.------.------------..------.----.",
+  "timer": undefined,
   "title": "NY Times, Sun, Feb 03, 2008  JUST FOLLOW DIRECTIONS",
   "width": 21,
 }
@@ -268,6 +271,7 @@ Object {
   "fileVersion": "1.2c",
   "height": 15,
   "isScrambled": false,
+  "markupGrid": undefined,
   "misc": Object {
     "preamble": undefined,
     "scrambledChecksum": 0,
@@ -293,8 +297,10 @@ Object {
   },
   "notepad": undefined,
   "numberOfClues": 78,
+  "rebus": undefined,
   "solution": "SATAN.TROI.LAMETRINA.RUNS.IHOPEMMET.ESCAPEHATTHEWICKEDWIT...TOM.OHS...KOTEXELAINE.MLLE.HEXDECCA.PLEA.VINO..HELLSKITTEN..QUIT.BAJA.RIGGSBAN.USSR.DENALISWEAT...EON.MUG...PITTINGCOACHBITPLEASE.HOJOSORAL.TRAM.ELISASKYE.SONY.SAGET",
   "state": "-----.----.---------.----.---------.---------------------...---.---...-----------.----.--------.----.----..-----------..----.----.--------.----.-----------...---.---...---------------------.---------.----.---------.----.-----",
+  "timer": undefined,
   "title": "AV Club xword, 6 22 11",
   "width": 15,
 }
@@ -387,6 +393,7 @@ Object {
   "fileVersion": "1.2c",
   "height": 15,
   "isScrambled": false,
+  "markupGrid": undefined,
   "misc": Object {
     "preamble": undefined,
     "scrambledChecksum": 0,
@@ -412,8 +419,10 @@ Object {
   },
   "notepad": undefined,
   "numberOfClues": 78,
+  "rebus": undefined,
   "solution": "TAPIR.LOOK.ACEDAMEBA.APSE.MARECOSMICDUST.PRIMICK.LYES.CREPESTOYCAR...HERE.....ITASCA.BEDIMACCT.NEAL.ASIDECUR.CORNDOG.ELILLAMA.IDES.AMENUPSET.FORMAL.....HDTV...ONEOFFDADDYO.BANK.NRAEVIL.CLOGDANCERLOVE.AIDE.ROUTEEWER.LIED.AMESS",
   "state": "-----.----.---------.----.--------------.-------.----.------------...----.....------.---------.----.--------.-------.--------.----.---------.------.....----...------------.----.-------.--------------.----.---------.----.-----",
+  "timer": undefined,
   "title": "September 4, 2008 - \\"CD Collection\\"",
   "width": 15,
 }
@@ -510,6 +519,7 @@ Object {
   "fileVersion": "1.3",
   "height": 17,
   "isScrambled": true,
+  "markupGrid": undefined,
   "misc": Object {
     "preamble": undefined,
     "scrambledChecksum": 16930,
@@ -536,6 +546,7 @@ Object {
   "notepad": "This diagramless is 17 squares wide by 17 squares deep and has an asymmetrical pattern suggested by the puzzles theme. The first square across is the seventh square in the first row.
 ",
   "numberOfClues": 82,
+  "rebus": undefined,
   "solution": "::::::YRIGY:::::::::::OYILSAM::::::LYVWBSYCNZUZIRL:MNBNMKF:::QIGVZKRSDATV::LZK::LRPNYAUBL:PQUKJJD:CVRXRPR:UALSSWCST:ZNZBPYGSMZ::BLKFKLUW:::CCCY:::QUUS:::FIMQRXQ:::HCVDDFCGOZ:CYVCTGBXI:HNCYFEJ:FWJZSAO:CHDLSSZGG::WYB::TOBKZUITEANV:::VZEDFJE:CGNQHNPOVAHFTJT::::::ZCAPCAJ:::::::::::KMIVZ::::::",
   "state": "::::::-----:::::::::::-------::::::---------------:-------:::------------::---::---------:-------:-------:---------:----------::--------:::----:::----:::-------:::----------:---------:-------:-------:---------::---::------------:::-------:---------------::::::-------:::::::::::-----::::::",
   "timer": Object {
@@ -626,6 +637,7 @@ Object {
   "fileVersion": "1.3",
   "height": 15,
   "isScrambled": true,
+  "markupGrid": undefined,
   "misc": Object {
     "preamble": undefined,
     "scrambledChecksum": 40861,
@@ -651,8 +663,10 @@ Object {
   },
   "notepad": undefined,
   "numberOfClues": 70,
+  "rebus": undefined,
   "solution": "BDIBWGUECUC.SNYDLFXAILCOLU.WTXTOYBGUXTSJQ.IKNUSXUX..DOU.XYPNXRFS.PVLI.IUOIELMW.FTMSB.TRZHB...SFKLA.RSNKFDCQUUSMBUCOOABHTKMJKJL.MBWUZ...ZEELL.PNRRO.CKGAQJLC.SUQN.IJUNLOON.PGY..ZLPFRAXQ.FBJJSPCDKMMRMG.QKPCUZYBJBVCVG.DQKDRBLBFNN",
   "state": "-----------.--------------.--------------.--------..---.--------.----.--------.-----.-----...-----.---------------------------.-----...-----.-----.--------.----.--------.---..--------.--------------.--------------.-----------",
+  "timer": undefined,
   "title": "NY Times, Fri, Sep 19, 2008",
   "width": 15,
 }
@@ -745,6 +759,7 @@ Object {
   "fileVersion": "1.3",
   "height": 15,
   "isScrambled": false,
+  "markupGrid": undefined,
   "misc": Object {
     "preamble": undefined,
     "scrambledChecksum": 0,
@@ -770,6 +785,7 @@ Object {
   },
   "notepad": undefined,
   "numberOfClues": 78,
+  "rebus": undefined,
   "solution": "FLAG.FOCI.SALUTEARL.RAIN.ALONESPEAKOFTHEDEVILSPADE..YAPS.ETE...TEAS.LEO.LEXSITONTHEFENCE..ASH.SOAP..GOTONGLIB.PHOTO.OTTOAESOP..CIRC.EIN..STAYTHECOURSEEPI.ROW.RAMP...COD.TREE..ISLIPOBEDIENCESCHOOLLOUIE.THEE.OCTOEXPOS.YOGA.THAW",
   "state": "FLAG.----.-----EARL.----.-----S--------------S----..----.---...----.---.----------------..---.----..---------.-----.---------..----.---..----------------.---.----...---.----..-------------------------.----.---------.----.----",
   "timer": Object {
@@ -1512,6 +1528,7 @@ Object {
   "fileVersion": "1.3",
   "height": 21,
   "isScrambled": true,
+  "markupGrid": undefined,
   "misc": Object {
     "preamble": undefined,
     "scrambledChecksum": 23056,
@@ -3072,6 +3089,7 @@ Object {
   },
   "solution": "MAUDE.ONICE.CHITS.OARELSOL.KASHA.HANOI.BROSLUNK.SNEER.ASPIRATESMEATSAUCE.GOSPEL.TUNEELLS.PRY.TAPE.RESTSONRESHAPE.CASTROSTREET....ORO.LOOM..HOBOS...SCRUBSUITS.KRONA.TADATOAT.IVES.TIA..GRETELIMP.STUD.CONVOY.ADLAILPS.TELEVANGELISM.ALELOTTA.ARENAS.DEPP.NINUTAHNS..EEL.OILY.UTNEPERI.AWARD.FREDSAVAGE...SACHS..RAGS.TUB....PAIDRESPECTS.FOGLAMPLETSDIE.ALAS.ERR.ORELELHI.FLYROD.GRAYSCALEPORTWINES.ONLAY.AKRONESO.ACUTE.MOOSE.LEANTRIB.FETID.EBBED.ARTSY",
   "state": "-----.-----.-----.--------.-----.-----.--------.-----.------------------.------.--------.---.----.--------------.------------....---.----..-----...----------.-----.--------.----.---..---------.----.------.--------.-------------.--------.------.----.---------..---.----.--------.-----.----------...-----..----.---....------------.--------------.----.---.--------.------.------------------.-----.--------.-----.-----.--------.-----.-----.-----",
+  "timer": undefined,
   "title": "NY Times, Sun, Mar 31, 2019 TAKE ONE FOR THE TEAM",
   "width": 21,
 }
@@ -3156,6 +3174,7 @@ Object {
   "fileVersion": "1.3",
   "height": 15,
   "isScrambled": true,
+  "markupGrid": undefined,
   "misc": Object {
     "preamble": undefined,
     "scrambledChecksum": 49648,
@@ -3183,6 +3202,7 @@ Object {
 All the daily crosswords this week, Monday through Saturday, have been contributed by puzzlemakers under the age of 20. Today's crossword is by Natan Last, 17, of Brooklyn. He is a first-year student at Brown University. This is his sixth puzzle for The Times.
 ",
   "numberOfClues": 70,
+  "rebus": undefined,
   "solution": "HRWLEXCZD..FZQPINPAIBASDK.IMRJLLQEVHDQAA.XUNTUJEP.UGFTXHHHEQ...HLJK.GUIG....KZJOR.XNPDGJOHIMFJQN.YDIV.ILBHTCNB.MMK.VEMEBAAC.WKEV.KZPXJBGFOPIOFJ.NHQVP....FIRU.EPOK...TCHMMSEZCD.XICCESWK.PFSGGDFUXUYYWO.MYKHIEUTCNDMEG..YXGDXMXEM",
   "state": "---------..--------------.--------------.--------.----------...----.----....-----.--------------.----.--------.---.--------.----.--------------.-----....----.----...----------.--------.--------------.--------------..---------",
   "timer": Object {
@@ -4252,6 +4272,7 @@ Object {
   },
   "solution": "SAIDSO..LAMBDA.PRUDESACCEPT.RAWDEAL.REPENTGUYFAWKESNIGHT.ONSITE...ARAIL...GLOOM..MIR.ROCKYMOUNTAINBIGHORNJAPES...LAURA.TSETSESUTE..OSCARS..SAILS...SIRANTHONYHOPKINS.MOBTOETOTOE...BLING.DAME...MNOP..SPOOR..BOXERPROFESSIONALWRESTLINGRIVET..SMEWS..DUEL...EPEE.DOONE...LIMAOHIOZEN.PUBLISHINGCOMPANY...BRAVA..ATESTS..ITESTYRENE.PASHA...SAFERQUARTERMASTERGENERAL.URN..ETATS...ALONE...INKIND.CHINESEMUSTARDREEDED.ROSEOIL.SOONYITREATY.OSTEND..ERODED",
   "state": "------..------.------------.-------.--------------------.------...-----...-----..---.-------------------------...-----.----------..------..-----...-----------------.-----------...-----.----...----..-----..-------------------------------..-----..----...----.-----...-----------.-----------------...-----..------..----------.-----...-------------------------.---..-----...-----...------.--------------------.-------.------------.------..------",
+  "timer": undefined,
   "title": "NY Times, Sun, Jul 20, 2008  ACROSS THE BOARD",
   "width": 21,
 }
@@ -4494,6 +4515,7 @@ Object {
   "fileVersion": "1.2c",
   "height": 15,
   "isScrambled": false,
+  "markupGrid": undefined,
   "misc": Object {
     "preamble": Object {
       "data": Array [
@@ -4536,8 +4558,10 @@ Object {
   },
   "notepad": undefined,
   "numberOfClues": 78,
+  "rebus": undefined,
   "solution": "LAMB.SPAT.CARVEORAL.ALEE.OBIESFIRESTORM.QUOTETAKEASWIPEAT......PIC.ETTU.SPFPHD.DOS..AVATARRUES.ROOK.IRANIESCAPEATTENTIONSHAKE.POEM.SNUGTUNERS..LBJ.STEOPT.FOAM.EEL......HOPEANDFAITHMAJOR.GUIDEPOSTAXIOM.IDLE.SWATTEMPS.SEED.EARP",
   "state": "----.----.---------.----.--------------.-----------------......---.----.------.---..----------.----.-------------------------.----.----------..---.------.----.---......-----------------.--------------.----.---------.----.----",
+  "timer": undefined,
   "title": "December 6, 2005 - \\"Split Pea Soup\\"",
   "width": 15,
 }
@@ -4690,6 +4714,7 @@ Object {
   "fileVersion": "1.3",
   "height": 21,
   "isScrambled": false,
+  "markupGrid": undefined,
   "misc": Object {
     "preamble": undefined,
     "scrambledChecksum": 0,
@@ -4715,8 +4740,10 @@ Object {
   },
   "notepad": undefined,
   "numberOfClues": 138,
+  "rebus": undefined,
   "solution": "DOGSLED.AGUILERA.AGOGABALONE.VAMPIRES.MERELOSINGAFEWPOUNDS.ITSAMESMER.ARK....INASTIRAPTER.SIS.ASIAN.SHINETAOS.THREESTRIKES.NODIRV.PROS.USUAL.LEOG..ATECROW.TRUCE.SITBACK...HOUSEWORK.BOASTFULSILENT.GAPE.GINS.ALOEAHOME.BRIE.COPY.MIAMINOWI.SEEN.RENE.WONTONEPICPOET.LONGDRIVE...RENAULT.COPTS.USEDCAR..FLEA.SORER.PEER.ONESEL.BROKENRECORD.AVIVTRAIL.NINES.ASS.CLASEENTROPY....RRS.JAILERVAIO.EXPENSIVETICKETSINON.NEXTCASE.ENTENTEEINS.ASSORTED.EXISTED",
   "state": "-------.--------.-----------.--------.--------------------.----------.---....------------.---.-----.---------.------------.------.----.-----.----..-------.-----.-------...---------.--------------.----.----.---------.----.----.---------.----.----.--------------.---------...-------.-----.-------..----.-----.----.------.------------.---------.-----.---.------------....---.----------.--------------------.--------.-----------.--------.-------",
+  "timer": undefined,
   "title": "June 24, 2011 - Good News, Bad News",
   "width": 21,
 }
