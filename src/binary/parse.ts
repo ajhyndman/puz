@@ -6,12 +6,10 @@ import {
   getHeaderChecksum,
   getICheatedChecksum,
 } from '../projections';
-import { checksum } from '../util/checksum';
 import {
   EXTENSION,
   FILE_SIGNATURE,
   HEADER_OFFSET,
-  NULL_BYTE,
   REGEX_TIMER_STRING,
 } from '../util/constants';
 import {
