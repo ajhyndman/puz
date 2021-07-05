@@ -1,5 +1,1806 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`puz parseBinaryFile and printTextFile together print "Feb0308_oddnumbering.puz" to expected text 1`] = `
+"<ACROSS PUZZLE V2>
+<TITLE>
+	NY Times, Sun, Feb 03, 2008  JUST FOLLOW DIRECTIONS
+<AUTHOR>
+	Matt Ginsberg / Will Shortz
+<COPYRIGHT>
+	© 2008, The New York Times
+<SIZE>
+	21x21
+<GRID>
+	.LOFT.DEADON..UPSIDEC
+	HELLO.ERNEST.ELEONORA
+	TOMEI.ERESTU.HARDLOOK
+	TIECLIPS.POPGUN.AANDE
+	PICKEDS.MISLED.PAYEES
+	...STE.ROSIER.TIS....
+	ACC.SALINES..TWOHEADS
+	LOOS.SLAT..SWOON.XMEN
+	LOUTS.OLEO.TEEF.STALE
+	ALREADY.SUPRAS.CARRIE
+	..TRIAD.STEAK.AILEY..
+	SMELLY.JOININ.GREMLIN
+	OASIS.FERN.NEMO.SELMA
+	CLAN.DLEIF..SAGE.WING
+	KINGLEAR..EASEONT.SOS
+	....AUK.SPATES.OHM...
+	SPAWNS.PEARLS.CLEANSE
+	PALEO.MOESHA.LIARLIAR
+	ONEFLESH.HANSOM.OASTS
+	SETTINGS.ARTURO.AWAIT
+	EDASNER..STANDC.DINE.
+<ACROSS>
+	Artist's digs, maybe
+	Totally accurate
+	Pineapple desserts
+	\\"___, gorgeous!\\" (Fanny Brice's comment to herself when looking in the mirror)
+	One of wine's Gallo brothers
+	Autobiographical short story by Edgar Allan Poe
+	Marisa of \\"What Women Want\\"
+	1974 Mocedades hit
+	Careful consideration
+	Men's fashion accessories
+	Cork shooter
+	\\"Biography\\" network
+	Accelerated
+	Threw off the scent
+	Check list?
+	Canonized mlle.
+	More encouraging
+	Third word of \\"America\\"
+	Blue Devils' and Tigers' org.
+	Contact lens solutions
+	They're better than one
+	Elton's johns
+	Blind element
+	Stereotypical reaction to Elvis
+	Magneto's adversaries, in comic books
+	Lugs
+	Spread in a spread
+	-
+	Passé
+	-
+	Classic Toyota sports cars
+	___ Bradshaw, \\"Sex and the City\\" role
+	Wynken, Blynken and Nod, e.g.
+	Turf, as opposed to surf
+	Dancer Alvin
+	Malodorous
+	Become part of
+	Imp
+	Place to get dates?
+	Fronded plant
+	Fictional submariner
+	Civil rights march site, 1965
+	Family
+	-
+	Wise
+	-
+	Repeated John Gielgud role
+	Popular song from Broadway's \\"The Wiz\\"
+	Titanic message
+	Arctic diver
+	Runs
+	Eponymous German electrophysicist
+	Begets
+	Things on strings
+	Deterge
+	Prefix with -zoic
+	Sitcom title role for Brandy Norwood
+	1997 Jim Carrey film
+	What a man and a woman become in marriage
+	Two-wheeled covered carriage
+	Hops-drying kilns
+	Establishing a business
+	Hero of Bellini's \\"I Puritani\\"
+	Anticipate
+	Mary Tyler Moore co-star
+	Seinfeld, for one
+	Feast
+<DOWN>
+	Sainted pope of A.D. 683
+	Ancient Mexican people
+	Evidence of dandruff
+	Facilities
+	-
+	Slips
+	Hydrocarbon suffix
+	Execrate
+	Bone formation
+	Mathematical sequence of unknown length
+	___ Bator
+	A pop
+	Na2CO3
+	Dental filling
+	Literature's Lorna
+	Lose little by little
+	-
+	U.R.L. lead-in
+	Israeli P.M. Olmert
+	They may be funny or bright
+	Neighbor of Switz.
+	Educator Maria
+	Subatomic particle that is a nuclear binder
+	Mideast money
+	Bad dancer's handicap
+	\\"Enough!\\"
+	Collected
+	Mistress
+	Bridges in Hollywood
+	The \\"ten\\" in \\"hang ten\\"
+	Reactionary
+	Flower also called a naked lady
+	Hero maker
+	Old dirk
+	Unblemished
+	Lineage
+	Failings
+	Breezes (through)
+	Quite wrong
+	Business position
+	Word before and after \\"after\\"
+	Cross product
+	Geom. figure
+	Disco term meaning \\"galore\\"
+	Punch
+	French Sudan, today
+	Raspberry
+	\\"___ Angel,\\" 1933 film
+	Scratch sheet listings
+	Slams
+	Fannie ___ (securities)
+	Jupiter or Mars
+	___ Gay, W.W. II bomber
+	Ointment ingredient
+	Subject of the book \\"Last Flight\\"
+	Setting for \\"Driving Miss Daisy\\"
+	-
+	Call, or call on
+	Turkish pooh-bahs
+	Lake ___, third-largest lake in Africa
+	Imagine, informally
+	Sectioned, as a window
+	Prince Valiant's wife
+	Tapestry threads
+	-
+	-
+	Month before Iyar
+	\\"Socrate\\" composer
+	First, in Frankfurt
+	Relig. title
+	Lady's man
+	Anchorage-to-Fairbanks dir.
+	Great ball of fire
+"
+`;
+
+exports[`puz parseBinaryFile and printTextFile together print "av110622.puz" to expected text 1`] = `
+"<ACROSS PUZZLE V2>
+<TITLE>
+	AV Club xword, 6 22 11
+<AUTHOR>
+	Ben Tausig
+<COPYRIGHT>
+	
+<SIZE>
+	15x15
+<GRID>
+	SATAN.TROI.LAME
+	TRINA.RUNS.IHOP
+	EMMET.ESCAPEHAT
+	THEWICKEDWIT...
+	TOM.OHS...KOTEX
+	ELAINE.MLLE.HEX
+	DECCA.PLEA.VINO
+	..HELLSKITTEN..
+	QUIT.BAJA.RIGGS
+	BAN.USSR.DENALI
+	SWEAT...EON.MUG
+	...PITTINGCOACH
+	BITPLEASE.HOJOS
+	ORAL.TRAM.ELISA
+	SKYE.SONY.SAGET
+<ACROSS>
+	Fallen angel
+	Commander Deanna on \\"Star Trek: The Next Generation\\"
+	Palinesque prefix before \\"stream\\"
+	MC with \\"Still da Baddest\\"
+	Some charity events
+	Chain with sausage links
+	Irish revolutionary Robert
+	What a fugitive uses to hide his head?
+	Nickname for a demon doing comedy?
+	Batshit Cruise
+	Some cereal units
+	Big name in pads
+	Jerry's fictional ex
+	Srta. in France
+	Bad spell
+	Patsy Cline's record label
+	Result of some court bargaining
+	Trattoria beverage
+	Cute animal fawned over by murderers, whoremongers, idolaters, and liars?
+	\\"That's really annoying!\\"
+	Peninsula with delicious avocados
+	Gibson's \\"Lethal Weapon\\" role
+	Pass a law about, maybe
+	Cold War letters
+	Mount McKinley's national park
+	Cool off naturally
+	A billion years
+	Face
+	Mentor to fruit salad chefs?
+	Polite request to an assistant on a home improvement project?
+	Erstwhile roadside eateries, familiarly
+	Adult subcategory
+	Theme park transportation
+	Actress Donovan of \\"Clueless\\"
+	___ terrier
+	Maker of robots
+	Foul-mouthed comedian Bob
+<DOWN>
+	Let stand, in editing
+	Top opening
+	Conveyance for Marty McFly
+	From the top
+	Like some holidays
+	Cannondale alternatives
+	It's a trick
+	One way to store data
+	\\"___ the best minds of my generation ...\\"
+	Deceive
+	\\"That feels amazing ...\\"
+	Minnesota shopping mecca, for short
+	Brand with blue and pink test results
+	Seattle's ___ Place Market
+	T-Shirt revolutionary
+	Whatever-it's-called
+	Day's end, to a poet
+	Tic-tac-toe loser
+	\\"Fin\\" Tutuola portrayer on \\"Law & Order: SVU\\"
+	First president of the SCLC
+	'70s-'80s princess
+	Delt neighbor
+	Non-commercial TV spots
+	User's entry point
+	Mass units: Abbr.
+	Foxholes
+	Valuable fantasy football picks, for short
+	Org. in 2008 negotiations with GM
+	Blood sugar
+	Shows exasperation with
+	Monopoly purchase: Abbr.
+	Precinct animal
+	iCloud company
+	The FBI, to the mob
+	Cold holidays in Vietnam
+	Root in some fake meat
+	\\"This ___ outrage!\\"
+	Slave dancer in Jabba the Hutt's palace
+	NYY rival
+	Piss off
+	One-time YouTube sensation Zonday
+"
+`;
+
+exports[`puz parseBinaryFile and printTextFile together print "cs080904.puz" to expected text 1`] = `
+"<ACROSS PUZZLE V2>
+<TITLE>
+	September 4, 2008 - \\"CD Collection\\"
+<AUTHOR>
+	By Mel Rosen
+<COPYRIGHT>
+	© 2008 Mel Rosen. Distributed by CrosSynergy(TM) Syndicate
+<SIZE>
+	15x15
+<GRID>
+	TAPIR.LOOK.ACED
+	AMEBA.APSE.MARE
+	COSMICDUST.PRIM
+	ICK.LYES.CREPES
+	TOYCAR...HERE..
+	...ITASCA.BEDIM
+	ACCT.NEAL.ASIDE
+	CUR.CORNDOG.ELI
+	LLAMA.IDES.AMEN
+	UPSET.FORMAL...
+	..HDTV...ONEOFF
+	DADDYO.BANK.NRA
+	EVIL.CLOGDANCER
+	LOVE.AIDE.ROUTE
+	EWER.LIED.AMESS
+<ACROSS>
+	Nocturnal ungulate with a long snout
+	\\"Check this out!\\"
+	Passed easily
+	Microscope slide creature
+	Semicircular church section
+	Mule's mother
+	Nebula composition
+	Prissy
+	\\"Bleah!\\"
+	Soapmaking solutions
+	Blini cousins
+	Matchbox item
+	\\"Present\\"
+	Source of the Mississippi
+	Make shadowy
+	Money in the bank (abbr.)
+	Patricia of \\"The Fountainhead\\"
+	Tangential observation
+	Four-footed lowlife
+	Frank on a stick
+	Samuel's teacher
+	Andean wool source
+	Mid-month day
+	Cry from the pews
+	Win unexpectedly
+	Starchy
+	Den luxury, briefly
+	Happening only a single time
+	Title used by hepcats
+	The buck stops here
+	Gp. on the range?
+	Satan's doing
+	Lively rhythmic entertainer
+	Torch song topic
+	Office assistant
+	Mail carrier's beat
+	Ornamental pitcher
+	Was inventive, and then some
+	\\"Don't make ___\\" (Mom's admonition)
+<DOWN>
+	Unspoken, as an approval
+	British Petroleum acquisition of 1998
+	Annoying
+	Co. known as \\"Big Blue\\"
+	Chew out
+	Fill with cargo
+	Numbered musical work
+	C.I.A. predecessor
+	Two-masted vessel
+	Electrical units
+	Philosophy for doers
+	Northernmost Pennsylvania county
+	2008 Denver conventioneers, informally
+	Rostand's long-nosed lover
+	Switch from plastic to paper?
+	Op. ___ (footnote abbr.)
+	Calligraphy line
+	Enthusiastic, as an attitude
+	Birch kin
+	Unfounded, as gossip
+	\\"Don't Fence ___\\"
+	Censorship-fighting org.
+	\\"PT 109\\" actor Robert
+	Submarine's evasive maneuver
+	Slyly malicious
+	Donny or Marie
+	Yenta
+	Bath suds?
+	Capital due north of Cyprus
+	Apt to opine
+	As expected
+	Bars on necks
+	Orbitz.com info
+	Stet's opposite
+	Affirm as true
+	Signify
+	___ to perfection
+	Nero's 52
+	René, par exemple
+"
+`;
+
+exports[`puz parseBinaryFile and printTextFile together print "nyt_diagramless.puz" to expected text 1`] = `
+"<ACROSS PUZZLE V2>
+<TITLE>
+	NY Times, Sun, Feb 24, 2008  DIAGRAMLESS
+<AUTHOR>
+	  Patrick Blindauer / Will Shortz  
+<COPYRIGHT>
+	© 2008, The New York Times
+<SIZE>
+	17x17
+<GRID>
+	::::::YRIGY::::::
+	:::::OYILSAM:::::
+	:LYVWBSYCNZUZIRL:
+	MNBNMKF:::QIGVZKR
+	SDATV::LZK::LRPNY
+	AUBL:PQUKJJD:CVRX
+	RPR:UALSSWCST:ZNZ
+	BPYGSMZ::BLKFKLUW
+	:::CCCY:::QUUS:::
+	FIMQRXQ:::HCVDDFC
+	GOZ:CYVCTGBXI:HNC
+	YFEJ:FWJZSAO:CHDL
+	SSZGG::WYB::TOBKZ
+	UITEANV:::VZEDFJE
+	:CGNQHNPOVAHFTJT:
+	:::::ZCAPCAJ:::::
+	::::::KMIVZ::::::
+<ACROSS>
+	Panorama
+	A caddy may hold them
+	Frozen treat first made by hand in 1866
+	Poor Richard's Almanack item
+	Smooth operator
+	Adds punch to, as punch
+	Flue residue
+	John known as the Teflon Don
+	Squids' squirts
+	Certain marsupials, briefly
+	Table scraps
+	Name in a brand that rivals 8-Across
+	Banal
+	Sierra Nevada, for one
+	St.-Tropez locale
+	Buff runner?
+	Online newsgroup features
+	Sitarist Shankar
+	Regular
+	Quintessence
+	A Gershwin
+	Thor who wrote \\"Kon-Tiki\\"
+	Setting for many a joke
+	Hurdler's assignment
+	Simple tops
+	Astronomically large distance: Abbr.
+	Sporty Ford
+	Dangerous job
+	\\"Nifty!\\"
+	The Pleiades, e.g.
+	Nugatory
+	The Magic City of the Plains
+	Rigging rope
+	Actress Davis
+<DOWN>
+	Action word
+	___ and outs
+	Biol. or chem.
+	The first X in X-X-X
+	Baldwin of \\"30 Rock\\"
+	According to
+	P.T.A. place: Abbr.
+	Women's soccer star Chastain
+	1990 Stallone sequel
+	Late times, in ads
+	Da or ja
+	Piano piece
+	Ending with switch
+	Ground transportation option
+	Gumption
+	___ set (hardware store offering)
+	Stair part
+	Set, as a price
+	Nine-digit ID
+	Tones
+	Floor of wooden strips
+	Dramatist Sean and others
+	\\"I'll get this one\\"
+	Celestial beings
+	Shrubland
+	Prince of Darkness
+	\\"___ Ruled the World\\" (1996 hip-hop hit)
+	River isle
+	Sword handles
+	Like some numerals
+	Cast out
+	Procure
+	Appliance giant
+	Actor Flynn
+	Sounds of doubt
+	Spot to mend
+	Dehydrated
+	Folies-Bergère designer
+	___ Strauss
+	Susan of \\"L.A. Law\\"
+	Game with matchsticks
+	Islam, e.g.: Abbr.
+	Holdup cause
+	Banks of \\"America's Next Top Model\\"
+	Cone's counterpart
+	Wichita-to-Minneapolis dir.
+	Observer that's found in 8-, 31-, 48- and 66-Across
+	Not ruddy
+<NOTEPAD>
+This diagramless is 17 squares wide by 17 squares deep and has an asymmetrical pattern suggested by the puzzles theme. The first square across is the seventh square in the first row.
+
+"
+`;
+
+exports[`puz parseBinaryFile and printTextFile together print "nyt_locked.puz" to expected text 1`] = `
+"<ACROSS PUZZLE V2>
+<TITLE>
+	NY Times, Fri, Sep 19, 2008
+<AUTHOR>
+	Alex Boisvert / Will Shortz
+<COPYRIGHT>
+	© 2008, The New York Times
+<SIZE>
+	15x15
+<GRID>
+	BDIBWGUECUC.SNY
+	DLFXAILCOLU.WTX
+	TOYBGUXTSJQ.IKN
+	USXUX..DOU.XYPN
+	XRFS.PVLI.IUOIE
+	LMW.FTMSB.TRZHB
+	...SFKLA.RSNKFD
+	CQUUSMBUCOOABHT
+	KMJKJL.MBWUZ...
+	ZEELL.PNRRO.CKG
+	AQJLC.SUQN.IJUN
+	LOON.PGY..ZLPFR
+	AXQ.FBJJSPCDKMM
+	RMG.QKPCUZYBJBV
+	CVG.DQKDRBLBFNN
+<ACROSS>
+	Source of troubles
+	___ of God
+	\\"Later!\\"
+	What the 1939 50,000-word novel \\"Gadsby\\" completely lacks
+	Bank offerings
+	\\"Uh-huh\\"
+	Turns down
+	Spirit
+	___ leaf
+	Irritation suffix
+	Irritated, after \\"in\\"
+	Like most music
+	Persian, e.g.
+	Not yet delivered, after \\"in\\"
+	W.W. II air ace who lent his name to an airport
+	Wee hour
+	Meyerbeer output
+	___ Day (September 19)
+	How some dares are done
+	Outline
+	Bar tenders?: Abbr.
+	Places for dust to collect
+	Assn.
+	Apparently is
+	Insurance providers, for short
+	\\"Super Trouper\\" group, 1980
+	Kind of delay
+	Poke
+	Packers QB whose #15 jersey is retired
+	LAX datum
+	One end of the Welland Canal
+	Hi-___
+	At someone's mercy
+	Ones needing career counseling, maybe: Abbr.
+	Shell locations
+<DOWN>
+	Eat out?
+	Hindu drink of the gods
+	Play with the line \\"Hell is other people\\"
+	Guys
+	Revolutionary patriot James
+	Start to smell, maybe
+	Union inits. starting in 1886
+	\\"Well, I'll be!,\\" as it might be said on September 19
+	___ Santiago, 1987 N.L. Rookie of the Year
+	City near Provo
+	Scratches, with \\"out\\"
+	\\"Later!\\"
+	200 milligrams
+	Like soldiers known as Gurkhas
+	Stick
+	Wiped out, slangily
+	Top
+	What debaters debate
+	Hedge word
+	\\"That's fine\\"
+	Pendant adornments
+	Some diner equipment
+	It has a long tongue
+	Student excuser
+	Live folk album of 1968
+	D.T.'s
+	Italian restaurant chain
+	TV newswoman Soledad
+	Doorstep numbers?
+	___ 2600 (hit product of the 1970s-'80s)
+	Joe
+	\\"This instant!\\"
+	Record
+	Bit of chicken feed
+	Org. with the annual Eddie Gottlieb Trophy
+"
+`;
+
+exports[`puz parseBinaryFile and printTextFile together print "nyt_partlyfilled.puz" to expected text 1`] = `
+"<ACROSS PUZZLE V2>
+<TITLE>
+	NY Times, Mon, Mar 10, 2008
+<AUTHOR>
+	Ken Bessette / Will Shortz
+<COPYRIGHT>
+	© 2008, The New York Times
+<SIZE>
+	15x15
+<GRID>
+	FLAG.FOCI.SALUT
+	EARL.RAIN.ALONE
+	SPEAKOFTHEDEVIL
+	SPADE..YAPS.ETE
+	...TEAS.LEO.LEX
+	SITONTHEFENCE..
+	ASH.SOAP..GOTON
+	GLIB.PHOTO.OTTO
+	AESOP..CIRC.EIN
+	..STAYTHECOURSE
+	EPI.ROW.RAMP...
+	COD.TREE..ISLIP
+	OBEDIENCESCHOOL
+	LOUIE.THEE.OCTO
+	EXPOS.YOGA.THAW
+<ACROSS>
+	Stars and Stripes, e.g.
+	Places where lines meet
+	French greeting
+	___ of Sandwich
+	Cause of a game cancellation
+	Unaccompanied
+	\\"Here he is now!\\"
+	Black card
+	Talks one's head off
+	French summer
+	Twinings selections
+	Sign before Virgo
+	Big Apple ave.
+	Be undecided
+	___ Wednesday
+	Suds maker
+	Mounted, as a horse
+	Talking maybe a little too fast
+	Snapshot
+	Sgt. Snorkel's dog
+	Fable writer
+	No. on which a magazine's ad rates are based
+	Freudian one
+	Persist to completion
+	Prefix with center
+	Column's counterpart
+	Interstate entrance or exit
+	Fish after which a cape is named
+	Logic diagram
+	Long Island airfield town
+	Command center? ... or where you might hear the starts of 17-, 28- and 49-Across
+	Nephew of Donald Duck
+	For whom the bell tolls, in a John Donne poem
+	Numerical prefix with -ber
+	Bygone Montreal ball club
+	Quiet exercise
+	Remove from the freezer
+<DOWN>
+	Admit (to), with \\"up\\"
+	Reindeer herder
+	Geometry calculation
+	\\"My pleasure\\"
+	Black power hairdo, for short
+	Dunderpate
+	The \\"C\\" in N.Y.C.
+	Divided 50/50
+	Dirge
+	Schooner fill
+	Billet-doux
+	Join
+	Old message system
+	Wails
+	Dueling sword
+	Perched on
+	Deposed Iranian
+	\\"Roots,\\" for one
+	___ of Wight
+	Message on a shipping crate
+	Geologic time unit
+	Pigeon's sound
+	Big elevator manufacturer
+	___ too soon
+	Droid
+	Wedding cake feature
+	Killer whale
+	Republican, Democratic, Green, etc.
+	\\"Luann\\" or \\"Blondie\\"
+	Knight time?
+	A score
+	End result
+	French place of learning
+	Mail receiver, in brief
+	Repeat
+	___ Ness monster
+	Itsy-bitsy bit
+	Winter truck attachment
+	God, in Italy
+	Brain scan, for short
+	Bounding main
+"
+`;
+
+exports[`puz parseBinaryFile and printTextFile together print "nyt_rebus_with_notes_and_shape.puz" to expected text 1`] = `
+"<ACROSS PUZZLE V2>
+<TITLE>
+	NY Times, Thu, Sep 11, 2008  When this puzzle is done, connect the circled letters in alphabetical order, and then back to the start, to reveal something seen on the 32-Down 4-Down.
+<AUTHOR>
+	  Caleb Madison / Will Shortz  
+<COPYRIGHT>
+	© 2008, The New York Times
+<SIZE>
+	15x15
+<GRID>
+	GREW.ANAIS.LABS
+	LARA.NOSCH.EBON
+	ANIL.ESTEE.ADUE
+	RACKETEERS.DOLE
+	ETHOS.......MER
+	...FAM.RAP.LIV.
+	CHEF.IRENE.ONAN
+	COLA.LOSTS.SARS
+	SLAM.ATEST.ALDA
+	.LIE.NEA.OWN...
+	AYN.......AGATE
+	TWEE.VAMPIREBAT
+	TOMA.EDUCT.LASH
+	HOAR.RESTS.ETTA
+	EDYS.ANDSO.SEEN
+<ACROSS>
+	Waxed
+	First name in erotica
+	They might be chocolate
+	___ Flynn Boyle of \\"Twin Peaks\\"
+	Request at a laundry
+	Like some keys
+	Dye plant
+	Popular women's fragrance
+	Together, in music
+	Makes people offers they can't refuse?
+	Apportionment
+	Set of values
+	View from Marseille
+	Relatives, slangily
+	You might end up with a bum one
+	Actress Tyler
+	Child, for one
+	Adler who outwitted Sherlock Holmes
+	___ impulse
+	___ + grenadine + maraschino cherry = Roy Rogers cocktail
+	Illumination of manuscripts, and others
+	Headline-making illness of 2002-03
+	Dis
+	Mushroom maker, for short
+	Tony nominee for \\"Glengarry Glen Ross\\"
+	Interrogator's discovery
+	Cultural org.
+	Retain
+	Rand who created Dagny Taggart
+	Striped quartz
+	___ pop, music genre since the 1980s
+	Nocturnal bloodsucker
+	Tony Musante TV series
+	Extracted chemical
+	Punishment unit
+	Frost
+	Options during computer woes
+	James of jazz
+	Competitor of Ben & Jerry's
+	\\"Thus ...\\"
+	Spotted
+<DOWN>
+	Ruiner of many a photo
+	Charged
+	Filmmaker Von Stroheim
+	Theme of this puzzle
+	Without ___ (riskily)
+	It may be wrinkled
+	Ancient Semitic fertility goddess
+	Bakery employee
+	Elvis Presley's \\"___ Not You\\"
+	Detective's need
+	Like some six-packs
+	See 32-Down
+	Vile smile
+	That, to Tomás
+	Home of \\"The Last Supper\\"
+	Place for picnicking and dog-walking
+	Hill dwellers
+	___ alla genovese (sauce)
+	City where 32- and 12-Down is found
+	Also sends to, as an e-mail
+	With 12-Down, locale of the 4-Down
+	\\"Ishtar\\" director
+	You might give a speech by this
+	Ultrasecret org.
+	\\"That mad game the world so loves to play,\\" to Jonathan Swift
+	___ ready
+	Peter out
+	It's often unaccounted for
+	Allen in American history
+	All ___
+	Lynn who sang \\"We'll Meet Again\\"
+	Port near the Red Sea
+	Yellow squirt?
+	Pie chart figs.
+	\\"Wishing won't make ___\\"
+<NOTEPAD>
+TEEN PUZZLEMAKER WEEK
+All the daily crosswords this week, Monday through Saturday, have been contributed by puzzlemakers under the age of 20. Today's crossword is by Caleb Madison, 15, of New York City. He is a sophomore at Bard High School in Manhattan. This is his fourth puzzle for The Times.
+
+"
+`;
+
+exports[`puz parseBinaryFile and printTextFile together print "nyt_sun_rebus.puz" to expected text 1`] = `
+"<ACROSS PUZZLE V2>
+<TITLE>
+	NY Times, Sun, Sep 14, 2008  YEAR-ROUND
+<AUTHOR>
+	  Jeremy Newton / Will Shortz  
+<COPYRIGHT>
+	© 2008, The New York Times
+<SIZE>
+	21x21
+<GRID>
+	.IJIHZY.LRFGZ...CWZVJ
+	.YYWDDO.OEZRC.FLZPCYT
+	QPNFDLK.DQINR.BBNOENW
+	XPH.LIM.WCNE.BWNZ.KNB
+	OIKX..KTCEC.EMPE.RGCA
+	JBSLGZQKH..PYZXY.XZCP
+	IUWQUANMEHHPWR..NTYLJ
+	...VYHG..ACND.JESO...
+	YNYHA..ZVFIS.DWVTVSVU
+	END.ICRSWC.DYKSL.UUFS
+	NFFCMGFPMA.NGCDTNVTWW
+	ZNXG.ZQJZW.MRKKAA.PYK
+	KWHZBGOR.RGXNE..XMFWO
+	...YLNZ.TZRR..EOFX...
+	PPXUY..XIGUCKIXLELDWC
+	PEOF.LDCCW..TXLBCWWZE
+	SKPG.TWQR.JLUJW..LCQH
+	OBH.AGGM.JPOW.VZJ.RRP
+	HDJIIZV.YJHZH.CAGAFHZ
+	SJUVQRR.MYQGX.PEVCGC.
+	RYICV...BZTRK.AZQAGX.
+<ACROSS>
+	Portraitist of George Washington
+	Robot maid on \\"The Jetsons\\"
+	Sorority chapter
+	Leader of a flock
+	Do away with
+	Spreader of holiday cheer
+	Singer who said \\"At least I had that, one guy understood me\\"
+	Possible punishment for steroid use
+	Enhance
+	When Cannes heats up
+	Native tongue of R&B singer Rihanna
+	Bow to
+	Wise guy
+	Ear part
+	\\"Esq.\\" titleholders
+	Keep an eye out for
+	Meager
+	Prefix with sphere
+	Fuming
+	Daring
+	Alvin and the Chipmunks, e.g.
+	Experts at exports
+	Genre explored by Run-D.M.C. and Aerosmith
+	Diurnally
+	\\"Hop ___!\\"
+	Mexican mouse chaser
+	Inner circle
+	Proust title character
+	Job interview topic
+	Sioux tribe member
+	State capital on the Colorado River
+	Economy-size
+	Langston Hughes poem
+	Cry at sea
+	Cancún resident, once
+	Farm call
+	Hall's partner in pop
+	\\"This is how it's done\\"
+	Worth mentioning
+	Pattern for light or sound
+	Soft hat materials
+	Actors Max and Max Jr.
+	See
+	___ Taylor, co-host of \\"Make Me a Supermodel\\"
+	It appears when things go bad
+	Boils down
+	Thrill seeker
+	\\"If you ask me,\\" online
+	The \\"A\\" of James A. Garfield
+	Some exams for joint pain sufferers
+	Litigant
+	Symptom of catarrh
+	Focused (on)
+	Brisk pace
+	Cavs, on a scoreboard
+	Nativity figure
+	\\"Was it ___ I saw?\\" (classic palindrome)
+	Samuel L. Jackson's character in \\"Pulp Fiction\\"
+	Were present?
+	It might run in the rain
+	Filled (with)
+	Part of a serial
+	Eroded
+	It's usually said with the eyes closed
+	Wig
+	Egg holders
+	Kind of skill
+	Farm machine
+<DOWN>
+	Weightlifter's helper
+	Have a break at 4:00, say
+	Troop troupe: Abbr.
+	Basic travel path
+	First name in gossip
+	Paris was part of it
+	Equips with new clips
+	Small African antelope
+	It's darn likely
+	\\"My, my, old chap!\\"
+	Dusk, to Donne
+	Unlikely event for puritans
+	MADD member
+	Foe of Spider-Man
+	Like some modern maps
+	Coffee table item
+	Mustang rivals
+	Gene who sang \\"Back in the Saddle Again\\"
+	Cause of many uprisings
+	Members of the bar?
+	Biker's add-on
+	Early Chinese dynasty
+	Admit defeat, in a way
+	Lucratively
+	Polite disclaimer
+	ABC a.m. show, briefly
+	Last resort in poker, often
+	Doesn't waver
+	Euripides drama
+	G.P.S. suggestion
+	Bottle opener's surprise
+	Vegas openings?
+	Untangles, in a way
+	Cyberball maker
+	Pop singer who appeared in the movie \\"Sgt. Pepper's Lonely Hearts Club Band\\"
+	It's called in a political convention roll call
+	Undercover device
+	Campaigns for
+	\\"Quite possibly\\"
+	Surface-___
+	Singles and jingles
+	Sub with sauerkraut?
+	White wine from Verona
+	W., e.g.: Abbr.
+	Professional with many contacts?
+	Lords and ladies
+	Is past?
+	Scrape (out)
+	Like some professors
+	Sask. neighbor
+	Drinks in frosted glasses
+	Married
+	Hit Sony product introduced in 1984
+	Model after
+	American, Swiss, etc.
+	Design feature of many a viaduct
+	Lookout, maybe
+	\\"OMG, that's sooo funny!\\"
+	Kind of bar
+	Squared away
+	First name in cosmetics
+	Now, in Nogales
+	Wages, before overtime
+	Beer serving in a pub
+	\\"Yippee!\\"
+	Jabbers
+	U.S. gas chain
+	Triple-edged sword
+	Part of a horse's genealogy
+	Cool ___
+	Genealogical grp.
+	S, on a French compass
+"
+`;
+
+exports[`puz parseBinaryFile and printTextFile together print "nyt_v1_4.puz" to expected text 1`] = `
+"<ACROSS PUZZLE V2>
+<TITLE>
+	NY Times, Sun, Mar 31, 2019 TAKE ONE FOR THE TEAM
+<AUTHOR>
+	Andrew J. Ries / Will Shortz
+<COPYRIGHT>
+	© 2019, The New York Times (Published via Across Lite)
+<SIZE>
+	21x21
+<GRID>
+	MAUDE.ONICE.CHITS.OAR
+	ELSOL.KASHA.HANOI.BRO
+	SLUNK.SNEER.ASPIRATES
+	MEATSAUCE.GOSPEL.TUNE
+	ELLS.PRY.TAPE.RESTSON
+	RESHAPE.CASTROSTREET.
+	...ORO.LOOM..HOBOS...
+	SCRUBSUITS.KRONA.TADA
+	TOAT.IVES.TIA..GRETEL
+	IMP.STUD.CONVOY.ADLAI
+	LPS.TELEVANGELISM.ALE
+	LOTTA.ARENAS.DEPP.NIN
+	UTAHNS..EEL.OILY.UTNE
+	PERI.AWARD.FREDSAVAGE
+	...SACHS..RAGS.TUB...
+	.PAIDRESPECTS.FOGLAMP
+	LETSDIE.ALAS.ERR.OREL
+	ELHI.FLYROD.GRAYSCALE
+	PORTWINES.ONLAY.AKRON
+	ESO.ACUTE.MOOSE.LEANT
+	RIB.FETID.EBBED.ARTSY
+<ACROSS>
+	Top 10-rated sitcom each season from 1972 to 1976
+	Chilling
+	Payment vouchers
+	Dugout propeller
+	Mexico City daily
+	Dish of cooked buckwheat
+	Site of a 2019 Trump/Kim meeting
+	___ hug
+	Moved stealthily, colloquially
+	Not a nice look
+	Pronounces breathily
+	Hearty pasta topping
+	Absolute truth
+	A singer can carry one
+	Some plumbing joints
+	Ask too-personal questions
+	Tailor's tool
+	Uses as a perch
+	Mold into something new
+	Historic San Francisco thoroughfare
+	___ y Plata (Montana's motto)
+	Aid in tapestry-making
+	Itinerant sorts
+	Outfits in the operating room
+	Stockholm stock unit
+	\\"Look at me - I did it!\\"
+	Precisely
+	Saint in a children's rhyme
+	___ Maria (coffee liqueur)
+	Sister in a children's story
+	Small pain
+	Upright building support
+	Travel group
+	Big name in 1950s politics
+	\\"Flowers\\" and \\"Sticky Fingers\\" for the Stones
+	Some Sunday broadcasting
+	Cakes and ___ (simple material pleasures)
+	Buncha
+	Hockey venues
+	Wonka portrayer
+	Rock band with the 1994 4x platinum album \\"The Downward Spiral,\\" for short
+	Many Jazz fans
+	Elusive sort
+	Smooth-talking
+	___ Reader (quarterly magazine)
+	Prefix with scope
+	Bestow
+	\\"The Wonder Years\\" star
+	Goldman's partner in banking
+	Symbol of poverty
+	Unwieldy boat
+	Visited out of deference (to)
+	Bright light in inclement conditions
+	Doesn't bring up again, say
+	\\"Sad to say ...\\"
+	Go off
+	Dodgers broadcaster Hershiser
+	K-12
+	Casting choice
+	Colorless mode at a copy shop
+	Strong servings with dessert
+	Bit of dental work
+	Where the Firestone tire company was founded
+	\\"___ Beso\\" (Paul Anka hit)
+	Sharp
+	Bull ___
+	Tilted, in Stilton
+	Barbecue bone
+	Awful-smelling
+	Went back, as a tide
+	Like the Chelsea neighborhood in Manhattan
+<DOWN>
+	Physician Franz who coined the term \\"animal magnetism\\"
+	Variant of a gene
+	Unsurprising people to show up
+	\\"Inside voices, please\\"
+	___ Lodge
+	\\"All right, why not\\"
+	With 90-Down, first woman to lead a major party in Congress
+	\\"Mm-hmm\\"
+	Narrator of \\"Evita\\"
+	Tremendous auditory pleasure, in slang
+	Drink after drink?
+	Trunk fastener
+	Not remotely
+	Traveler's holder of bathroom supplies
+	\\"Kind ___\\" (term of politeness)
+	Thickheaded
+	Playground comeback
+	Nevada senator Jacky
+	Sworn (to)
+	Fitting
+	Make a decision
+	New Mexico county or its seat
+	Hit sign
+	Wall St. professional
+	Hotel rollouts
+	\\"Look what I found!\\"
+	Schubert compositions
+	Burning the midnight oil
+	Dessert with a sugary syrup
+	Drake, for one
+	Something seen with a tiny flashlight
+	What cowboys are, in poker lingo
+	High praise
+	Home of Spelman College
+	Business transaction
+	Property recipient, legally
+	Related to pitches
+	Intensify, with \\"up\\"
+	Hall-of-Famer Musial
+	Like some porch chairs
+	Popular radio format
+	Farmer's concern
+	Turn sharply
+	John le Carré specialty
+	\\"No turning back now\\"
+	[See note]
+	List for charitable givers, for short
+	Sunscreen ingredient
+	Something removed when changing a tire
+	Pompous sort
+	Domino, familiarly
+	8/
+	Throw in
+	Former Indianapolis sports venue
+	See 7-Down
+	Pulsating
+	Analyzed
+	\\"Xanadu\\" band, briefly
+	Loose around the edges
+	Peak in Genesis
+	They have thick skins
+	Good supply
+	Outcast
+	Make blank
+	Legendary humanoid
+	Shapeless mass
+	Hacienda room
+	Mil. program discontinued in 1976
+	Head, in slang
+<NOTEPAD>
+Drop one letter from each set of circled letters in the grid to name a major-league baseball team. The letters thus removed, in order from top to bottom, will spell an appropriate answer at 76-Down.
+
+"
+`;
+
+exports[`puz parseBinaryFile and printTextFile together print "nyt_weekday_with_notes.puz" to expected text 1`] = `
+"<ACROSS PUZZLE V2>
+<TITLE>
+	NY Times, Fri, Sep 12, 2008
+<AUTHOR>
+	  Natan Last / Will Shortz  
+<COPYRIGHT>
+	© 2008, The New York Times
+<SIZE>
+	15x15
+<GRID>
+	HRWLEXCZD..FZQP
+	INPAIBASDK.IMRJ
+	LLQEVHDQAA.XUNT
+	UJEP.UGFTXHHHEQ
+	...HLJK.GUIG...
+	.KZJOR.XNPDGJOH
+	IMFJQN.YDIV.ILB
+	HTCNB.MMK.VEMEB
+	AAC.WKEV.KZPXJB
+	GFOPIOFJ.NHQVP.
+	...FIRU.EPOK...
+	TCHMMSEZCD.XICC
+	ESWK.PFSGGDFUXU
+	YYWO.MYKHIEUTCN
+	DMEG..YXGDXMXEM
+<ACROSS>
+	Dance that simulates the drama of a bullfight
+	Chuck wagon fare
+	1978 Bob Marley hit whose title words are sung four times before \\"... that I'm feelin'\\"
+	Faux Japanese reply
+	One needing kisses, say
+	Jazz duo?
+	Nooks for books, maybe
+	Furry folivores
+	It may be set with music
+	Cudgel
+	Believers' comments
+	Escaped
+	Sound at an auto race
+	It holds the line
+	Foot of the Appian Way?
+	Trouble, in a way
+	Locale of some mirrors
+	Letter-shaped girder
+	Lord John Boyd ___, winner of the 1949 Nobel Peace Prize
+	Study, say
+	Winston Churchill's Rufus, for one
+	They know the drill
+	Turned up
+	Child's play, perhaps
+	Snitch
+	Company that makes Aunt Jemima syrup
+	Area next to an ambulatory
+	Letter-shaped fastener
+	Daydreaming
+	Days of old
+	Worked the docks
+	Waste of Congress?
+	\\"You got it!\\"
+<DOWN>
+	Early Inverness resident
+	Cadaverous
+	Ticklee's cry
+	\\"You have got to be kidding!\\"
+	The Divine, to da Vinci
+	City at the mouth of the Fox River
+	Shade of red
+	\\"She was ___ in slacks\\" (part of an opening soliloquy by Humbert Humbert)
+	Baddie
+	Shady spot in a 52-Down
+	Cousin of a cassowary
+	___ fee
+	One with fire power?
+	Trick-taking game
+	March instrument?
+	Out
+	Au courant
+	Keen
+	Nutrition units
+	Some essays
+	\\"A Lonely Rage\\" autobiographer Bobby
+	The farmer's wife in \\"Babe\\"
+	Did a farrier's work
+	Start to like
+	Energetic 1960s dance with swiveling and shuffling
+	God of life, death and fertility who underwent resurrection
+	Pattern sometimes called \\"Persian pickles\\"
+	\\"I'm very disappointed in you\\"
+	Song verse
+	Canal cleaner
+	Menu option
+	Teacher of Heifetz
+	Fashion model Wek
+	See 10-Down
+	Ko-Ko's dagger in \\"The Mikado\\"
+	Current happening?
+	Kick in
+<NOTEPAD>
+TEEN PUZZLEMAKER WEEK
+All the daily crosswords this week, Monday through Saturday, have been contributed by puzzlemakers under the age of 20. Today's crossword is by Natan Last, 17, of Brooklyn. He is a first-year student at Brown University. This is his sixth puzzle for The Times.
+
+"
+`;
+
+exports[`puz parseBinaryFile and printTextFile together print "nyt_with_shape.puz" to expected text 1`] = `
+"<ACROSS PUZZLE V2>
+<TITLE>
+	NY Times, Sun, Jul 20, 2008  ACROSS THE BOARD
+<AUTHOR>
+	Barry C. Silk / Will Shortz
+<COPYRIGHT>
+	© 2008, The New York Times
+<SIZE>
+	21x21
+<GRID>
+	SAIDSO..LAMBDA.PRUDES
+	ACCEPT.RAWDEAL.REPENT
+	GUYFAWKESNIGHT.ONSITE
+	...ARAIL...GLOOM..MIR
+	.ROCKYMOUNTAINBIGHORN
+	JAPES...LAURA.TSETSES
+	UTE..OSCARS..SAILS...
+	SIRANTHONYHOPKINS.MOB
+	TOETOTOE...BLING.DAME
+	...MNOP..SPOOR..BOXER
+	PROFESSIONALWRESTLING
+	RIVET..SMEWS..DUEL...
+	EPEE.DOONE...LIMAOHIO
+	ZEN.PUBLISHINGCOMPANY
+	...BRAVA..ATESTS..ITE
+	STYRENE.PASHA...SAFER
+	QUARTERMASTERGENERAL.
+	URN..ETATS...ALONE...
+	INKIND.CHINESEMUSTARD
+	REEDED.ROSEOIL.SOONYI
+	TREATY.OSTEND..ERODED
+<ACROSS>
+	Demanded without reason
+	Leader of Lesbos?
+	Unlikely attenders of R-rated films
+	Honor
+	Injustice
+	Feel remorse for
+	November 5, in Britain
+	Not remote
+	Thin as ___
+	Depression
+	Humans last lived there in 2000
+	Wild sheep of the western United States
+	Mocks
+	\\"La Gioconda\\" mezzo-soprano
+	Flies over the Equator
+	Salt Lake City player
+	Annual Sunday event, with \\"the\\"
+	Breezes (through)
+	Best Actor of 1991
+	Treat like a hero, maybe
+	In direct opposition
+	Gaudy jewelry, in slang
+	Broad
+	Alphabet quartet
+	Trail to follow
+	Ring figure
+	It's quite different from the high-school variety
+	Transfix
+	Eurasian ducks
+	Climactic scene in \\"Hamlet\\"
+	Parrying weapon
+	Blackmore's Lorna
+	City 70 miles SSW of Toledo
+	___ state
+	Viking, for one
+	La Scala cheer
+	Events registered by seismometers, in brief
+	Resident: Suffix
+	Foamcore component
+	\\"Doctor Zhivago\\" role
+	Deserving a lower insurance premium
+	Army supply officer
+	Spigoted vessel
+	Italie et Allemagne
+	Single-handedly
+	Equitable way to return a favor
+	Egg roll topping, perhaps
+	Thatched
+	Perfume ingredient
+	Mrs. Woody Allen
+	It may be bilateral
+	Belgian city with an 1854 manifesto
+	Like shorelines, often
+<DOWN>
+	Lose strength
+	Prefix with pressure
+	Standoffish
+	Give bad marks
+	Signs of a bad outlet
+	\\"Venice Preserved\\" dramatist Thomas
+	Part of U.N.L.V.
+	Natural bristle
+	Year that Michelangelo began work on \\"David\\"
+	One desiring change
+	National flower of Mexico
+	Illinois city, site of the last Lincoln-Douglas debate
+	Favorable
+	TV pooch
+	FedEx rival
+	Moon of Mars
+	Unabridged
+	Rudder locations
+	Move, to a real-estate broker
+	Kipling novel
+	Procure
+	Batting average, e.g.
+	___ citato
+	___ Bator
+	Quaint \\"not\\"
+	Caboose
+	Some deodorants
+	Abbr. after Cleveland or Brooklyn
+	Fair
+	Four Holy Roman emperors
+	Bazaar units
+	Iowa college
+	Go rapidly
+	Charge for cash
+	Large chamber group
+	Ancient Greek coins
+	Pickup attachment
+	Start of something big?
+	Shooting star, maybe
+	Mad magazine cartoonist Dave
+	Spoonful, say
+	Bygone blades
+	Kitten \\"mitten\\"
+	Second string
+	Bossman or bosswoman
+	Stinky, as gym clothes
+	Pizza place
+	Capri, e.g., to a Capriote
+	Magazine founded by Bob Guccione
+	___ of Nantes, 1598
+	\\"Super Duper ___\\" (anime series)
+	\\"Forty Miles of Bad Road\\" guitarist
+	Flip over
+	Some offensive linemen: Abbr.
+	Port near Nazareth
+	Purveyor of chips
+	Open court hearing
+	___-à-porter
+	\\"And ___ thou slain the Jabberwock?\\": Carroll
+	Spillane's \\"___ Jury\\"
+	Within striking distance
+	\\"It's c-c-c-cold!\\"
+	Pipsqueak
+	Word with page or wood
+	___ Stadium, opened in 1923
+	Feeling evoked in drama
+	Basketball datum
+	Security system component
+	Playground retort
+	Prefix with economics
+	Celtic speaker
+	___ beetle
+	\\"Don't even bother\\"
+	Sun Valley locale: Abbr.
+	Invoice amount
+	Once known as
+	Untold millennia
+	Half brother of Tom Sawyer
+	Moreover
+	Manhattan part
+	Impersonated
+"
+`;
+
+exports[`puz parseBinaryFile and printTextFile together print "unicode.puz" to expected text 1`] = `
+"<ACROSS PUZZLE V2>
+<TITLE>
+	⚔️
+<AUTHOR>
+	Chris Pickel
+<COPYRIGHT>
+	2018, Chris Pickel, under MIT License
+<SIZE>
+	3x3
+<GRID>
+	SPA
+	OHM
+	LIT
+<ACROSS>
+	💆🏻‍♂️
+	Ω
+	🔥🔥🔥
+<DOWN>
+	☀️
+	φ
+	量
+"
+`;
+
+exports[`puz parseBinaryFile and printTextFile together print "unicode_with_state.puz" to expected text 1`] = `
+"<ACROSS PUZZLE V2>
+<TITLE>
+	⚔️
+<AUTHOR>
+	Chris Pickel
+<COPYRIGHT>
+	2018, Chris Pickel, under MIT License
+<SIZE>
+	3x3
+<GRID>
+	SPA
+	OHM
+	LIT
+<ACROSS>
+	💆🏻‍♂️
+	Ω
+	🔥🔥🔥
+<DOWN>
+	☀️
+	φ
+	量
+"
+`;
+
+exports[`puz parseBinaryFile and printTextFile together print "washpost.puz" to expected text 1`] = `
+"<ACROSS PUZZLE V2>
+<TITLE>
+	December 6, 2005 - \\"Split Pea Soup\\"
+<AUTHOR>
+	By Raymond Hamel
+<COPYRIGHT>
+	© 2005 Raymond Hamel.  Distributed by CrosSynergy(TM) Syndicate
+<SIZE>
+	15x15
+<GRID>
+	LAMB.SPAT.CARVE
+	ORAL.ALEE.OBIES
+	FIRESTORM.QUOTE
+	TAKEASWIPEAT...
+	...PIC.ETTU.SPF
+	PHD.DOS..AVATAR
+	RUES.ROOK.IRANI
+	ESCAPEATTENTION
+	SHAKE.POEM.SNUG
+	TUNERS..LBJ.STE
+	OPT.FOAM.EEL...
+	...HOPEANDFAITH
+	MAJOR.GUIDEPOST
+	AXIOM.IDLE.SWAT
+	TEMPS.SEED.EARP
+<ACROSS>
+	Mary's pet
+	Disagreement
+	Cut, as a turkey
+	Kind of history
+	On the sheltered side
+	Theater awards
+	Outburst of controversy
+	Cite
+	Aim for
+	JPEG file, often
+	Rebuke to a backstabber
+	Tanning lotion tube letters
+	Graduate prog. award
+	Old Microsoft product
+	On-line game character
+	Regrets
+	Chess corner piece
+	Shiraz citizen
+	Go unnoticed
+	Get rid of
+	Haiku, for one
+	Warm and cozy
+	Signal receivers
+	\\"All the way with ___\\" (political slogan)
+	___ Anne de Beaupré
+	Choose
+	Insulation material
+	Shocking swimmer
+	Current sitcom set in Cleveland
+	Very important
+	Direction giver
+	\\"There's no such thing as a free lunch,\\" e.g.
+	On strike
+	Police team
+	Office aides
+	Bit of bird chow
+	Holliday's marshal friend
+<DOWN>
+	Hit high in the air
+	Caruso solo
+	Simplified signature
+	Censor
+	College admission factor
+	Tractor attachment
+	Eagle's nest
+	Entice
+	French chicken dish
+	Touch
+	1983 Duran Duran hit
+	Doggy doc
+	Jargon suffix
+	Spoken
+	LAX listing
+	Soiled spots
+	Succeed
+	Green edge
+	Magic word
+	Keep quiet
+	Draw off sherry
+	Word before bubble or opera
+	Part of NEA
+	Drink with sushi
+	Ally of the Missouri
+	Record company name now licensed to an on-line pharmaceutical company
+	Sings and dances
+	Like some wartime journalists
+	Make soaking wet
+	Boss, usually following \\"El\\"
+	Protection
+	Bea Arthur sitcom
+	Fall into disuse
+	NBA target
+	West ___ virus
+	Big Ten school
+	Lenin foe
+	URL starter
+	Exercise accessory
+	Paul Bunyan's tool
+	Former NFL quarterback Kelly or Harbaugh
+"
+`;
+
+exports[`puz parseBinaryFile and printTextFile together print "wsj110624.puz" to expected text 1`] = `
+"<ACROSS PUZZLE V2>
+<TITLE>
+	June 24, 2011 - Good News, Bad News
+<AUTHOR>
+	  by Randolph Ross / Edited by Mike Shenk  
+<COPYRIGHT>
+	© 2011 Wall Street Journal
+<SIZE>
+	21x21
+<GRID>
+	DOGSLED.AGUILERA.AGOG
+	ABALONE.VAMPIRES.MERE
+	LOSINGAFEWPOUNDS.ITSA
+	MESMER.ARK....INASTIR
+	APTER.SIS.ASIAN.SHINE
+	TAOS.THREESTRIKES.NOD
+	IRV.PROS.USUAL.LEOG..
+	ATECROW.TRUCE.SITBACK
+	...HOUSEWORK.BOASTFUL
+	SILENT.GAPE.GINS.ALOE
+	AHOME.BRIE.COPY.MIAMI
+	NOWI.SEEN.RENE.WONTON
+	EPICPOET.LONGDRIVE...
+	RENAULT.COPTS.USEDCAR
+	..FLEA.SORER.PEER.ONE
+	SEL.BROKENRECORD.AVIV
+	TRAIL.NINES.ASS.CLASE
+	ENTROPY....RRS.JAILER
+	VAIO.EXPENSIVETICKETS
+	INON.NEXTCASE.ENTENTE
+	EINS.ASSORTED.EXISTED
+<ACROSS>
+	Iditarod sight
+	Christina of \\"The Voice\\"
+	Waiting with bated breath
+	Conch cousin
+	They go for a bite at night
+	Insignificant
+	Good news for a dieter, bad news for a London gambler
+	Start of a baby announcement
+	Hypnotism pioneer Franz
+	Gopher wood craft
+	Agitated
+	More fitting
+	Spanish ayes
+	Like three out of five people
+	Stand out
+	New Mexico art colony
+	Good news for a pitcher, bad news for labor management
+	Silent say-so
+	Hip-hop producer Gotti
+	Supporting arguments
+	Everyday
+	\\"Topper\\" star Carroll
+	Had a helping of humble pie
+	It's called between combatants
+	Take no action
+	Good news for a real estate developer, bad news for a mom
+	Full of oneself
+	Like some partners
+	Stare
+	Cotton contraptions
+	Soap additive
+	\\"Oh, give me ___...\\"
+	Camembert cousin
+	Text
+	Heat home
+	Start of a bedtime prayer
+	On display
+	Lacoste of tennis
+	Cantonese kreplach
+	Virgil, for one
+	Good news for a golfer, bad news for a commuter
+	Maker of Clios and Kangoos
+	Egyptian Christians
+	Lemon, possibly
+	Little biter
+	Twice as annoyed
+	Equal
+	Half and half
+	Pinch for le chef
+	Good news for an Olympic athlete, bad news for a disc jockey
+	Tel ___
+	Have some catching up to do
+	Baseball teams
+	Jerk
+	Spanish teacher's group
+	Tendency toward disorder
+	Monopoly quartet: Abbr.
+	Bar tender?
+	Personal computer brand
+	Good news for concert producers, bad news for speeders
+	Advised about
+	Night court call
+	International accord
+	German count start
+	Like chocolates in a sampler
+	Had a life
+<DOWN>
+	Croatian area known for a breed of dog
+	The duck, in \\"Peter and the Wolf\\"
+	Pilot's place
+	Attacks a la \\"Ghostbusters\\"
+	Hardly the gregarious sort
+	Many an RPI grad
+	Justice Dept. division
+	Resistant
+	Stare stupidly
+	Expert on plays
+	Wall St. event
+	Lucy of \\"Kill Bill\\"
+	East ender
+	Shortfall indicator
+	Org.
+	\\"Witness\\" group
+	Good news for a British apartment seeker, bad news for a motorist
+	He says \\"If music be the food of love, play on\\"
+	Outfitted
+	State expos
+	Some are liquid
+	Broadway fare
+	Guarantee
+	Immobile
+	\\"Dies ___\\"
+	Have something
+	Lake dweller
+	Iron Curtain setting
+	Literature Nobelist Canetti
+	Liable
+	Got
+	Dow product
+	Mark with a mustache
+	99-Across maker
+	New York governor
+	Designer Calvin
+	Snowy bird
+	Man, for one
+	Having more marbles
+	Wishful words
+	Good news for those on fixed incomes, bad news for bike tires
+	They're hit with hammers
+	Borscht bit
+	Middle of Manchester
+	He'll help you get carried away
+	Like some panels
+	Cowboys, at times
+	Smartened (up)
+	Colorado city
+	Michaels of \\"SNL\\"
+	Sorry folks
+	Name in the \\"True Grit\\" credits
+	Like some bonds
+	Ouzo relative
+	Overturned on appeal
+	Go downhill
+	Oater chasers
+	Wonder who's in the Rock and Roll Hall of Fame
+	Verdi title bandit
+	Banded stones
+	Did the honors on Thanksgiving
+	Look-___ (twins)
+	\\"The Borgias\\" star
+	Desert flora
+	Clinton cabinet member Federico
+	Escalation
+	Hex
+	Base stores, in brief
+	DDE's bailiwick
+	ATM-making co.
+	Looked after Junior
+	Ball point?
+"
+`;
+
 exports[`puz parseBinaryFile extracts expected Puzzle object from "Feb0308_oddnumbering.puz" 1`] = `
 Object {
   "author": "Matt Ginsberg / Will Shortz",

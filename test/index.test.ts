@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-import { parseBinaryFile, printBinaryFile } from '../src/index';
+import { parseBinaryFile, printBinaryFile, printTextFile } from '../src/index';
 
 describe('puz', () => {
   const puzzleFiles = [
@@ -43,6 +43,16 @@ describe('puz', () => {
       (path, buffer) => {
         const puzzle = parseBinaryFile(buffer);
         expect(printBinaryFile(puzzle)).toEqual(buffer);
+      },
+    );
+  });
+
+  describe('parseBinaryFile and printTextFile', () => {
+    it.each(puzzleFiles)(
+      'together print "%s" to expected text',
+      (path, buffer) => {
+        const puzzle = parseBinaryFile(buffer);
+        expect(printTextFile(puzzle)).toMatchSnapshot();
       },
     );
   });
