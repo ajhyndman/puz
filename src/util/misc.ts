@@ -272,3 +272,27 @@ export function divideClues(
     down,
   };
 }
+
+export function mergeClues(
+  { solution, width }: Pick<Puzzle, 'solution' | 'width'>,
+  across: string[],
+  down: string[],
+): string[] {
+  // copy inputs into new arrays to use as queue
+  const acrossQueue = across.slice();
+  const downQueue = down.slice();
+
+  // collect clues in array to return
+  const clues = [];
+
+  [...solution].forEach((square, i) => {
+    if (squareNeedsAcrossClue({ solution, width }, i)) {
+      clues.push(acrossQueue.shift());
+    }
+    if (squareNeedsDownClue({ solution, width }, i)) {
+      clues.push(downQueue.shift());
+    }
+  });
+
+  return clues;
+}
