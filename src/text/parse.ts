@@ -1,7 +1,7 @@
 import invariant from 'ts-invariant';
 import { Puzzle } from '..';
-import { validate } from '../projections';
 import { mergeClues } from '../util/misc';
+import { validate } from '../validate';
 
 enum SECTION {
   TITLE = 'TITLE',
@@ -167,5 +167,5 @@ export function parseTextFile(file: string): Puzzle {
 
   validate(puzzle);
 
-  return puzzle as Puzzle;
+  return puzzle;
 }

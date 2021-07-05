@@ -4,7 +4,6 @@ import {
   getHeaderChecksum,
   getICheatedChecksum,
   getState,
-  validate,
 } from '../projections';
 import { EMPTY_BUFFER, EXTENSION, HEADER_OFFSET } from '../util/constants';
 import {
@@ -13,6 +12,7 @@ import {
   guessFileEncodingFromVersion,
   printRebusTable,
 } from '../util/misc';
+import { validate } from '../validate';
 
 export function printBinaryFile(puzzle: Puzzle): Uint8Array {
   validate(puzzle);

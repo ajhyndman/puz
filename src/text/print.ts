@@ -1,6 +1,6 @@
 import { Puzzle } from '..';
-import { validate } from '../projections';
 import { divideClues } from '../util/misc';
+import { validate } from '../validate';
 
 type LineEndingStyle = 'Windows' | 'Unix';
 type Indentation = '' | '  ' | '    ' | '\t';
