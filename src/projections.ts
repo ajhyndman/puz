@@ -116,12 +116,42 @@ export function getState(puzzle: Pick<Puzzle, 'solution' | 'state'>): string {
 
 export function validate(puzzle: Partial<Puzzle>): puzzle is Puzzle | never {
   // TODO: Throw if puzzle file isn't valid in any way.
+  const { fileVersion, height, isScrambled, width, solution, state, clues } =
+    puzzle;
 
   // VALIDATE REQUIRED FIELDS
+  invariant(height != null, 'Puzzle is missing required field: "height"');
+  invariant(width != null, 'Puzzle is missing required field: "width"');
+  invariant(solution != null, 'Puzzle is missing required field: "solution"');
+  invariant(clues != null, 'Puzzle is missing required field: "clues"');
+
+  // VALIDATE FILE VERSION STRING
 
   // VALIDATE SOLUTION SIZE
+  invariant(
+    solution.length === width * height,
+    `Puzzle width & height suggest solution should be ${
+      width * height
+    } characters long. Found ${solution.length} characters instead.`,
+  );
 
-  // VALIDATE CLUE COMPLETENESS
+  // VALIDATE SOLUTION CONTENT
+
+  // VALIDATE STATE SIZE
+  if (state != null) {
+    invariant(
+      state.length === width * height,
+      `Puzzle width & height suggest state should be ${
+        width * height
+      } characters long. Found ${state.length} characters instead.`,
+    );
+  }
+
+  // VALIDATE STATE MATCHES SOLUTION
+
+  // VALIDATE STATE CONTENT
+
+  // VALIDATE CLUE COUNT
 
   // VALIDATE REBUS
 
