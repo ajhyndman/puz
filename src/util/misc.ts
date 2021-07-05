@@ -244,3 +244,31 @@ export function squareNeedsDownClue(
     )
   );
 }
+
+export function divideClues(
+  puzzle: Pick<Puzzle, 'clues' | 'solution' | 'width'>,
+): {
+  across: string[];
+  down: string[];
+} {
+  const { clues, solution } = puzzle;
+  const clueQueue = clues.slice();
+  const across = [];
+  const down = [];
+
+  [...solution].forEach((square, i) => {
+    if (squareNeedsAcrossClue(puzzle, i)) {
+      // assign across clue to square
+      across.push(clueQueue.shift());
+    }
+    if (squareNeedsDownClue(puzzle, i)) {
+      // assign down clue to square
+      down.push(clueQueue.shift());
+    }
+  });
+
+  return {
+    across,
+    down,
+  };
+}
