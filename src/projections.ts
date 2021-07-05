@@ -92,7 +92,7 @@ export function gridNumbering(
   });
 }
 
-export function enumerateClues(
+export function divideClues(
   puzzle: Pick<Puzzle, 'clues' | 'solution' | 'width'>,
 ): {
   across: string[];

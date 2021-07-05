@@ -1,4 +1,4 @@
-import { gridNumbering, enumerateClues } from '../src/projections';
+import { gridNumbering, divideClues } from '../src/projections';
 
 describe('projections', () => {
   describe('gridNumbering', () => {
@@ -50,7 +50,7 @@ describe('projections', () => {
     });
   });
 
-  describe('enumerateClues', () => {
+  describe('divideClues', () => {
     it('assigns clues to across and down roles', () => {
       const puzzle = {
         width: 3,
@@ -65,7 +65,7 @@ describe('projections', () => {
         ],
       };
 
-      expect(enumerateClues(puzzle)).toEqual({
+      expect(divideClues(puzzle)).toEqual({
         across: ['1 across', '4 across', '5 across'],
         down: ['1 down', '2 down', '3 down'],
       });
@@ -78,7 +78,7 @@ describe('projections', () => {
         clues: ['1 down', '2 down', '3 across', '4 down', '5 across'],
       };
 
-      expect(enumerateClues(puzzle)).toEqual({
+      expect(divideClues(puzzle)).toEqual({
         across: ['3 across', '5 across'],
         down: ['1 down', '2 down', '4 down'],
       });
