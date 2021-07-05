@@ -51,5 +51,7 @@ export const REGEX_BLACK_SQUARE = /[.:]/;
 export const REGEX_REBUS_TABLE_STRING = /^([ 0-9]\d:[a-zA-Z0-9@#$%&+?]*?;)*$/;
 export const REGEX_TIMER_STRING = /^(\d+),([01])$/;
 export const REGEX_VERSION_STRING = /^(\d+)\.(\d+)([a-z])?$/;
+export const REGEX_SOLUTION = /^[.:A-Za-z0-9@#$%&+?]+$/;
+export const REGEX_STATE = /^[-.:A-Za-z0-9@#$%&+?]+$/;
 
 export const DEFAULT_FILE_VERSION = '1.4';
