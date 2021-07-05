@@ -45,5 +45,4 @@ export { parseBinaryFile } from './binary/parse';
 export { printBinaryFile } from './binary/print';
 
 export { parseTextFile } from './text/parse';
-
-export declare function printTextFile(puzzle: Puzzle): string;
+export { printTextFile } from './text/print';

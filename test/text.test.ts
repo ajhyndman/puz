@@ -52,4 +52,14 @@ describe('puz', () => {
       },
     );
   });
+
+  describe('printTextFiles', () => {
+    it.each(puzzleFiles)(
+      'prints "%s" back to expected V2 file',
+      (path, buffer) => {
+        const puzzle = parseTextFile(buffer.toString('utf-8'));
+        expect(printTextFile(puzzle)).toMatchSnapshot();
+      },
+    );
+  });
 });

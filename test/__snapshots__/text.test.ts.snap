@@ -338,3 +338,404 @@ Object {
   "width": 21,
 }
 `;
+
+exports[`puz printTextFiles prints "v1_text_format.txt" back to expected V2 file 1`] = `
+"<ACROSS PUZZLE V2>
+<TITLE>
+	Politics: Who, what, where and why
+<AUTHOR>
+	Created by Avalonian
+<COPYRIGHT>
+	1995 Literate Software Systems
+<SIZE>
+	15x15
+<GRID>
+	FATE.AWASH.AWOL
+	LIES.CURIO.SHOE
+	ELECTORATE.SIZE
+	ASS.ERST.DIETED
+	...CENT.HOSTESS
+	REFITS.JEWISH..
+	ARITH.KERNS.OAF
+	NILE.ANNES.DUPE
+	DEI.OVENS.LOSER
+	..BODILY.RACERS
+	GLUTEAL.PEPS...
+	RESIST.SLUE.SKI
+	OTTO.REPUBLICAN
+	OMES.IRATE.RAMS
+	MERE.XENON.ABET
+<ACROSS>
+	Destiny
+	Above water, barely
+	Deserter
+	True ____ : Arnold S. movie
+	Novel or rare item
+	If the ____ fits, ...
+	Favorite group of 53 across
+	EEE with 16 across
+	Midsummer's Night Dream character
+	Formerly
+	Ate sparingly
+	Monetary unit
+	She entertains guests
+	Make ready for use again
+	Yiddish, informally
+	Math. subject
+	Parts of typeset characters
+	Clod
+	Egyptian river
+	Bancroft and Archer
+	Fool
+	God in latin
+	Pizza place fixtures
+	Sometimes a dieter is one
+	Physical
+	Some kinds of snakes
+	Of posterior muscles
+	Raises one's spirits
+	Block
+	Swing about
+	____ slopes
+	A dog's name
+	GOP member
+	Of masses
+	Angry
+	Strikes violently
+	Just
+	Inert gas
+	Encourage
+<DOWN>
+	Biting insect
+	Troubles
+	Golf equipments
+	Computer keyboard key
+	Oak seed or fruit
+	Sausage
+	I smell ____
+	Squat
+	Community dances
+	Owned property
+	House on Pennsylvania Ave.
+	Seeps
+	City NE of Manchester
+	Subject of dentistry
+	Wife of Asiris
+	Use reference
+	\\"____, Johnny!\\"
+	South African currency unit
+	Canal or Lake
+	Delaying tactic of 53 across
+	Spinning ____
+	Toll
+	One who mimics
+	Bearers : comb. form
+	Female pilot
+	Medics
+	Homages
+	Coat part
+	Idle
+	Type of sandwich
+	Clean and care for
+	\\"____ through!\\"
+	Smallest planet of the Sun
+	Cover
+	One who works despite a strike
+	Glacial ridge
+	Org.
+	Before
+	Tax break savings account
+<NOTEPAD>
+This is an example notepad entry with
+two lines in it.
+"
+`;
+
+exports[`puz printTextFiles prints "v2_text_format_mark.txt" back to expected V2 file 1`] = `
+"<ACROSS PUZZLE V2>
+<TITLE>
+	Politics: Who, what, where and why
+<AUTHOR>
+	Created by Avalonian
+<COPYRIGHT>
+	1995 Literate Software Systems
+<SIZE>
+	15x15
+<GRID>
+	fATE.AWASH.AWOl
+	LIES.CURIO.SHOE
+	ELECTORATE.SIZE
+	ASS.ERST.DIETED
+	...CENT.HOSTESS
+	REFITS.JEWISH..
+	ARITH.KERNS.OAF
+	NILE.ANNES.DUPE
+	DEI.OVENS.LOSER
+	..BODILY.RACERS
+	GLUTEAL.PEPS...
+	RESIST.SLUE.SKI
+	OTTO.REPUBLICAN
+	OMES.IRATE.RAMS
+	mERE.XENON.ABEt
+<ACROSS>
+	Destiny
+	Above water, barely
+	Deserter
+	True ____ : Arnold S. movie
+	Novel or rare item
+	If the ____ fits, ...
+	Favorite group of 53 across
+	EEE with 16 across
+	Midsummer's Night Dream character
+	Formerly
+	Ate sparingly
+	Monetary unit
+	She entertains guests
+	Make ready for use again
+	Yiddish, informally
+	Math. subject
+	Parts of typeset characters
+	Clod
+	Egyptian river
+	Bancroft and Archer
+	Fool
+	God in latin
+	Pizza place fixtures
+	Sometimes a dieter is one
+	Physical
+	Some kinds of snakes
+	Of posterior muscles
+	Raises one's spirits
+	Block
+	Swing about
+	____ slopes
+	A dog's name
+	GOP member
+	Of masses
+	Angry
+	Strikes violently
+	Just
+	Inert gas
+	Encourage
+<DOWN>
+	Biting insect
+	Troubles
+	Golf equipments
+	Computer keyboard key
+	Oak seed or fruit
+	Sausage
+	I smell ____
+	Squat
+	Community dances
+	Owned property
+	House on Pennsylvania Ave.
+	Seeps
+	City NE of Manchester
+	Subject of dentistry
+	Wife of Asiris
+	Use reference
+	\\"____, Johnny!\\"
+	South African currency unit
+	Canal or Lake
+	Delaying tactic of 53 across
+	Spinning ____
+	Toll
+	One who mimics
+	Bearers : comb. form
+	Female pilot
+	Medics
+	Homages
+	Coat part
+	Idle
+	Type of sandwich
+	Clean and care for
+	\\"____ through!\\"
+	Smallest planet of the Sun
+	Cover
+	One who works despite a strike
+	Glacial ridge
+	Org.
+	Before
+	Tax break savings account
+<NOTEPAD>
+This is an example notepad entry with
+two lines in it.
+"
+`;
+
+exports[`puz printTextFiles prints "v2_text_format_rebus.txt" back to expected V2 file 1`] = `
+"<ACROSS PUZZLE V2>
+<TITLE>
+	NY Times, Sun, Sep 14, 2008  YEAR-ROUND
+<AUTHOR>
+	Jeremy Newton / Will Shortz
+<COPYRIGHT>
+	2008, The New York Times
+<SIZE>
+	21x21
+<GRID>
+	.STUART.ROSIE...OMEGA
+	.PASTOR.ERASE.CAROLER
+	YOKOONO.LI2AN.AUGMENT
+	ETE.BA1.OBEY.S3TY.COB
+	ATTS..AWAIT.POOR.ATMO
+	SEEINGRED..GUTSY.TRIO
+	TRA$OMMISSIONS..R4OCK
+	...ADAY..TOIT.GATO...
+	CADRE..SWANN.BENEFITS
+	OTO.AUSTIN.GIANT.ITOO
+	MA#ERBOARD.ANCIENT5AN
+	BRAY.OATES.LIKESO.BIG
+	SINEWAVE.FELTS..BAERS
+	...DATE.NIKI..MOLD...
+	DEC0S..ADRENALINE6KIE
+	IMHO.ABRAM..BONESCANS
+	SUER.HACK.DWELT..TROT
+	CLE.JO9H.ARAT.7ES.ARE
+	MASCARA.FR8HT.EPISODE
+	ATEAWAY.ACHOO.PERUKE.
+	NESTS...MOTOR.SEEDER.
+<ACROSS>
+	Portraitist of George Washington
+	Robot maid on \\"The Jetsons\\"
+	Sorority chapter
+	Leader of a flock
+	Do away with
+	Spreader of holiday cheer
+	Singer who said \\"At least I had that, one guy understood me\\"
+	Possible punishment for steroid use
+	Enhance
+	When Cannes heats up
+	Native tongue of R&B singer Rihanna
+	Bow to
+	Wise guy
+	Ear part
+	\\"Esq.\\" titleholders
+	Keep an eye out for
+	Meager
+	Prefix with sphere
+	Fuming
+	Daring
+	Alvin and the Chipmunks, e.g.
+	Experts at exports
+	Genre explored by Run-D.M.C. and Aerosmith
+	Diurnally
+	\\"Hop ___!\\"
+	Mexican mouse chaser
+	Inner circle
+	Proust title character
+	Job interview topic
+	Sioux tribe member
+	State capital on the Colorado River
+	Economy-size
+	Langston Hughes poem
+	Cry at sea
+	Cancún resident, once
+	Farm call
+	Hall's partner in pop
+	\\"This is how it's done\\"
+	Worth mentioning
+	Pattern for light or sound
+	Soft hat materials
+	Actors Max and Max Jr.
+	See
+	___ Taylor, co-host of \\"Make Me a Supermodel\\"
+	It appears when things go bad
+	Boils down
+	Thrill seeker
+	\\"If you ask me,\\" online
+	The \\"A\\" of James A. Garfield
+	Some exams for joint pain sufferers
+	Litigant
+	Symptom of catarrh
+	Focused (on)
+	Brisk pace
+	Cavs, on a scoreboard
+	Nativity figure
+	\\"Was it ___ I saw?\\" (classic palindrome)
+	Samuel L. Jackson's character in \\"Pulp Fiction\\"
+	Were present?
+	It might run in the rain
+	Filled (with)
+	Part of a serial
+	Eroded
+	It's usually said with the eyes closed
+	Wig
+	Egg holders
+	Kind of skill
+	Farm machine
+<DOWN>
+	Weightlifter's helper
+	Have a break at 4:00, say
+	Troop troupe: Abbr.
+	Basic travel path
+	First name in gossip
+	Paris was part of it
+	Equips with new clips
+	Small African antelope
+	It's darn likely
+	\\"My, my, old chap!\\"
+	Dusk, to Donne
+	Unlikely event for puritans
+	MADD member
+	Foe of Spider-Man
+	Like some modern maps
+	Coffee table item
+	Mustang rivals
+	Gene who sang \\"Back in the Saddle Again\\"
+	Cause of many uprisings
+	Members of the bar?
+	Biker's add-on
+	Early Chinese dynasty
+	Admit defeat, in a way
+	Lucratively
+	Polite disclaimer
+	ABC a.m. show, briefly
+	Last resort in poker, often
+	Doesn't waver
+	Euripides drama
+	G.P.S. suggestion
+	Bottle opener's surprise
+	Vegas openings?
+	Untangles, in a way
+	Cyberball maker
+	Pop singer who appeared in the movie \\"Sgt. Pepper's Lonely Hearts Club Band\\"
+	It's called in a political convention roll call
+	Undercover device
+	Campaigns for
+	\\"Quite possibly\\"
+	Surface-___
+	Singles and jingles
+	Sub with sauerkraut?
+	White wine from Verona
+	W., e.g.: Abbr.
+	Professional with many contacts?
+	Lords and ladies
+	Is past?
+	Scrape (out)
+	Like some professors
+	Sask. neighbor
+	Drinks in frosted glasses
+	Married
+	Hit Sony product introduced in 1984
+	Model after
+	American, Swiss, etc.
+	Design feature of many a viaduct
+	Lookout, maybe
+	\\"OMG, that's sooo funny!\\"
+	Kind of bar
+	Squared away
+	First name in cosmetics
+	Now, in Nogales
+	Wages, before overtime
+	Beer serving in a pub
+	\\"Yippee!\\"
+	Jabbers
+	U.S. gas chain
+	Triple-edged sword
+	Part of a horse's genealogy
+	Cool ___
+	Genealogical grp.
+	S, on a French compass
+"
+`;
