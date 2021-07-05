@@ -92,6 +92,7 @@ export function gridNumbering(
   });
 }
 
-export function validate(puzzle: Puzzle) {
+export function validate(puzzle: Partial<Puzzle>): puzzle is Puzzle | never {
   // TODO: Throw if puzzle file isn't valid in any way.
+  return true;
 }

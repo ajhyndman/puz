@@ -13,6 +13,34 @@ describe('puz', () => {
   );
 
   describe('parseTextFile', () => {
+    it('throws if file signature is not present', () => {
+      expect(() => parseTextFile('')).toThrowError(
+        'File does not appear to be an Across Lite puzzle description',
+      );
+    });
+
+    it('throws if not all required tags are present', () => {
+      expect(() => parseTextFile('<ACROSS PUZZLE>')).toThrowError(
+        'File is missing required tag: <TITLE>',
+      );
+      expect(() => parseTextFile('<ACROSS PUZZLE V2>')).toThrowError(
+        'File is missing required tag: <TITLE>',
+      );
+      expect(() =>
+        parseTextFile(`<ACROSS PUZZLE>
+        <TITLE>
+        <AUTHOR>
+        <COPYRIGHT>
+        <SIZE>
+        <GRID>
+        <DOWN>
+      `),
+      ).toThrowError('File is missing required tag: <ACROSS>');
+      expect(() => parseTextFile('<ACROSS PUZZLE V2>')).toThrowError(
+        'File is missing required tag: <TITLE>',
+      );
+    });
+
     it.each(puzzleFiles)('parses "%s" without crashing', (path, buffer) => {
       parseTextFile(buffer.toString('utf-8'));
     });
