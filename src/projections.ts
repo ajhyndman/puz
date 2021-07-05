@@ -94,5 +94,14 @@ export function gridNumbering(
 
 export function validate(puzzle: Partial<Puzzle>): puzzle is Puzzle | never {
   // TODO: Throw if puzzle file isn't valid in any way.
+
+  // VALIDATE REQUIRED FIELDS
+
+  // VALIDATE SOLUTION SIZE
+
+  // VALIDATE CLUE COMPLETENESS
+
+  // VALIDATE REBUS
+
   return true;
 }
