@@ -3,6 +3,7 @@ import {
   getFileChecksum,
   getHeaderChecksum,
   getICheatedChecksum,
+  getState,
   validate,
 } from '../projections';
 import { EMPTY_BUFFER, EXTENSION, HEADER_OFFSET } from '../util/constants';
@@ -23,7 +24,7 @@ export function printBinaryFile(puzzle: Puzzle): Uint8Array {
   // ==============
 
   // format solution and state
-  const boardText = puzzle.solution + puzzle.state;
+  const boardText = puzzle.solution + getState(puzzle);
 
   // format meta strings
   const metaText = `${puzzle.title ?? ''}\x00${puzzle.author ?? ''}\x00${
@@ -107,7 +108,7 @@ export function printBinaryFile(puzzle: Puzzle): Uint8Array {
 
   return Buffer.concat([
     // preserve preamble when round-tripping data
-    puzzle.misc.preamble ?? EMPTY_BUFFER,
+    puzzle?.misc?.preamble ?? EMPTY_BUFFER,
 
     // rquired puzzle definition
     header,

@@ -85,8 +85,8 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
 
   // read solution and state
   const gridSize = width * height;
-  const solution = reader.readString(gridSize);
-  const state = reader.readString(gridSize);
+  const solution = reader.readString(gridSize)!;
+  const state = reader.readString(gridSize)!;
 
   // read meta strings
   const title = reader.readNullTerminatedString();
@@ -94,9 +94,10 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
   const copyright = reader.readNullTerminatedString();
 
   // read clues
-  let clues = [];
+  let clues: string[] = [];
   for (let i = 0; i < numberOfClues; i += 1) {
     const clue = reader.readNullTerminatedString();
+    invariant(clue != null, `Failed to read clue from puzzle file`);
     clues.push(clue);
   }
 
@@ -158,7 +159,7 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
           "Timer data doesn't match expected format.",
         );
         const [, secondsElapsed, isPaused] =
-          REGEX_TIMER_STRING.exec(timerString);
+          REGEX_TIMER_STRING.exec(timerString)!;
         timer = {
           secondsElapsed: Number.parseInt(secondsElapsed),
           isPaused: isPaused === '1',
@@ -177,12 +178,11 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
     height,
     isScrambled: Boolean(scrambledTag),
     notepad,
-    numberOfClues,
     title,
     width,
 
-    solution,
-    state,
+    solution: solution,
+    state: state,
 
     clues,
 

@@ -4,17 +4,16 @@ export type Puzzle = {
   // meta
   author?: string;
   copyright?: string;
-  fileVersion: string;
+  fileVersion?: string;
   height: number;
-  isScrambled: boolean;
+  isScrambled?: boolean;
   notepad?: string;
-  numberOfClues: number;
   title?: string;
   width: number;
 
   // grid data
   solution: string;
-  state: string;
+  state?: string;
 
   // clues
   clues: string[];

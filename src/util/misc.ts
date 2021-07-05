@@ -3,6 +3,7 @@ import invariant from 'ts-invariant';
 import { Puzzle } from '../';
 import { checksum } from './checksum';
 import {
+  DEFAULT_FILE_VERSION,
   ENCODING,
   EXTENSION,
   FILE_SIGNATURE,
@@ -15,7 +16,7 @@ import {
 import { PuzzleReader } from './PuzzleReader';
 
 export function parseVersion(
-  version: string,
+  version: string = DEFAULT_FILE_VERSION,
 ): [number, number, string | undefined] {
   invariant(
     REGEX_VERSION_STRING.test(version),
@@ -87,7 +88,9 @@ export function zstring(input?: string): string {
   return input != null ? input + '\x00' : '';
 }
 
-export function guessFileEncodingFromVersion(fileVersion: string): ENCODING {
+export function guessFileEncodingFromVersion(
+  fileVersion: string = DEFAULT_FILE_VERSION,
+): ENCODING {
   const [majorVersion] = parseVersion(fileVersion);
 
   return majorVersion >= 2 ? ENCODING.UTF_8 : ENCODING.ISO_8859_1;
@@ -131,7 +134,11 @@ export function encodeHeaderWithoutChecksums(puzzle: Puzzle): Buffer {
   const header = Buffer.alloc(HEADER_OFFSET.HEADER_END);
 
   header.write(FILE_SIGNATURE, HEADER_OFFSET.FILE_SIGNATURE_START, 'ascii');
-  header.write(puzzle.fileVersion, HEADER_OFFSET.VERSION_START, 'ascii');
+  header.write(
+    puzzle.fileVersion ?? DEFAULT_FILE_VERSION,
+    HEADER_OFFSET.VERSION_START,
+    'ascii',
+  );
   header.writeUInt16LE(
     puzzle?.misc?.unknown1 ?? 0x00,
     HEADER_OFFSET.RESERVED_1C_START,
@@ -147,7 +154,7 @@ export function encodeHeaderWithoutChecksums(puzzle: Puzzle): Buffer {
   header.writeUInt8(puzzle.width, HEADER_OFFSET.WIDTH_START);
   header.writeUInt8(puzzle.height, HEADER_OFFSET.HEIGHT_START);
   header.writeUInt16LE(
-    puzzle.numberOfClues,
+    puzzle.clues.length,
     HEADER_OFFSET.NUMBER_OF_CLUES_START,
   );
   header.writeUInt16LE(
@@ -201,7 +208,7 @@ export function parseExtensionSection(reader: PuzzleReader) {
   const title = reader.readString(0x04);
   const length = reader.readBytes(0x02)!.readUInt16LE();
   const checksum_e = reader.readBytes(0x02)!.readUInt16LE();
-  const data = reader.readBytes(length);
+  const data = reader.readBytes(length)!;
   const sectionTerminator = reader.readBytes(0x01);
 
   invariant(

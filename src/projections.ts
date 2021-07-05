@@ -5,6 +5,7 @@
  * the functional equivalents to "getter" methods from object-oriented software
  * patterns.
  */
+import invariant from 'ts-invariant';
 import { Puzzle } from './';
 import { checksum } from './util/checksum';
 import { ENCODING, HEADER_OFFSET, ICHEATED } from './util/constants';
@@ -17,7 +18,8 @@ import {
 } from './util/misc';
 
 export function getFileChecksum(puzzle: Puzzle): number {
-  const { fileVersion, solution, state } = puzzle;
+  const { fileVersion, solution } = puzzle;
+  const state = getState(puzzle);
   const encoding = guessFileEncodingFromVersion(fileVersion);
   const metaStrings = getMetaStrings(puzzle);
 
@@ -53,7 +55,7 @@ export function getICheatedChecksum(puzzle: Puzzle): Uint8Array {
   const metaStrings = getMetaStrings(puzzle);
   const checksum_i1 = checksum_h;
   const checksum_i2 = checksum(Buffer.from(puzzle.solution, encoding));
-  const checksum_i3 = checksum(Buffer.from(puzzle.state, encoding));
+  const checksum_i3 = checksum(Buffer.from(getState(puzzle), encoding));
   const checksum_i4 = checksum(Buffer.from(metaStrings, encoding));
   const checksum_i = Uint8Array.from(
     [
@@ -90,6 +92,26 @@ export function gridNumbering(
     }
     return undefined;
   });
+}
+
+/**
+ * Get a blank working state for a given puzzle.
+ *
+ * @param puzzle
+ * @returns Puzzle state as a single, unbroken string.
+ */
+export function getBlankState(puzzle: Pick<Puzzle, 'solution'>): string {
+  return puzzle.solution.replace(/[^.:]/g, '-');
+}
+
+/**
+ * Get the current working state for a given puzzle.
+ *
+ * @param puzzle
+ * @returns Puzzle state as a single, unbroken string.  Returns the equivalent blank state if state is not supplied.
+ */
+export function getState(puzzle: Pick<Puzzle, 'solution' | 'state'>): string {
+  return puzzle.state ?? getBlankState(puzzle);
 }
 
 export function validate(puzzle: Partial<Puzzle>): puzzle is Puzzle | never {
