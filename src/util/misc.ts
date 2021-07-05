@@ -8,6 +8,7 @@ import {
   FILE_SIGNATURE,
   HEADER_OFFSET,
   NULL_BYTE,
+  REGEX_BLACK_SQUARE,
   REGEX_REBUS_TABLE_STRING,
   REGEX_VERSION_STRING,
 } from './constants';
@@ -211,4 +212,87 @@ export function parseExtensionSection(reader: PuzzleReader) {
   );
 
   return { title, data };
+}
+
+export function squareNeedsAcrossClue(
+  { solution, width }: Pick<Puzzle, 'solution' | 'width'>,
+  i: number,
+): boolean {
+  return (
+    // square is not black square
+    !REGEX_BLACK_SQUARE.test(solution[i]) &&
+    // square is left edge or has black square to left
+    (i % width === 0 || REGEX_BLACK_SQUARE.test(solution[i - 1])) &&
+    // square is not right edge or has black square to right
+    !(i % width === width - 1 || REGEX_BLACK_SQUARE.test(solution[i + 1]))
+  );
+}
+
+export function squareNeedsDownClue(
+  { solution, width }: Pick<Puzzle, 'solution' | 'width'>,
+  i: number,
+): boolean {
+  return (
+    // square is not black square
+    !REGEX_BLACK_SQUARE.test(solution[i]) &&
+    // square is top edge or has black square above
+    (i < width || REGEX_BLACK_SQUARE.test(solution[i - width])) &&
+    // square is bottom edge or has black square below
+    !(
+      i >= solution.length - width ||
+      REGEX_BLACK_SQUARE.test(solution[i + width])
+    )
+  );
+}
+
+export function divideClues(
+  puzzle: Pick<Puzzle, 'clues' | 'solution' | 'width'>,
+): {
+  across: string[];
+  down: string[];
+} {
+  const { clues, solution } = puzzle;
+  const clueQueue = clues.slice();
+  const across = [];
+  const down = [];
+
+  [...solution].forEach((square, i) => {
+    if (squareNeedsAcrossClue(puzzle, i)) {
+      // assign across clue to square
+      across.push(clueQueue.shift());
+    }
+    if (squareNeedsDownClue(puzzle, i)) {
+      // assign down clue to square
+      down.push(clueQueue.shift());
+    }
+  });
+
+  return {
+    across,
+    down,
+  };
+}
+
+export function mergeClues(
+  { solution, width }: Pick<Puzzle, 'solution' | 'width'>,
+  across: string[],
+  down: string[],
+): string[] {
+  // copy inputs into new arrays to use as queue
+  const acrossQueue = across.slice();
+  const downQueue = down.slice();
+
+  // collect clues in array to return
+  const clues = [];
+
+  [...solution].forEach((square, i) => {
+    if (squareNeedsAcrossClue({ solution, width }, i)) {
+      clues.push(acrossQueue.shift());
+    }
+    if (squareNeedsDownClue({ solution, width }, i)) {
+      clues.push(downQueue.shift());
+    }
+  });
+
+  return clues;
 }

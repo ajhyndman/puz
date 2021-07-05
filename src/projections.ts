@@ -12,6 +12,8 @@ import {
   encodeHeaderWithoutChecksums,
   getMetaStrings,
   guessFileEncodingFromVersion,
+  squareNeedsAcrossClue,
+  squareNeedsDownClue,
 } from './util/misc';
 
 export function getFileChecksum(puzzle: Puzzle): number {
@@ -73,6 +75,21 @@ export function getICheatedChecksum(puzzle: Puzzle): Uint8Array {
 
 export function getFileEncoding(puzzle: Puzzle): ENCODING {
   return guessFileEncodingFromVersion(puzzle.fileVersion);
+}
+
+export function gridNumbering(
+  puzzle: Pick<Puzzle, 'solution' | 'width'>,
+): (number | undefined)[] {
+  const { solution } = puzzle;
+  let clueNumber = 0;
+
+  return [...solution].map((square, i) => {
+    if (squareNeedsAcrossClue(puzzle, i) || squareNeedsDownClue(puzzle, i)) {
+      clueNumber += 1;
+      return clueNumber;
+    }
+    return undefined;
+  });
 }
 
 export function validate(puzzle: Puzzle) {
