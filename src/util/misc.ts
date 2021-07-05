@@ -8,6 +8,7 @@ import {
   FILE_SIGNATURE,
   HEADER_OFFSET,
   NULL_BYTE,
+  REGEX_BLACK_SQUARE,
   REGEX_REBUS_TABLE_STRING,
   REGEX_VERSION_STRING,
 } from './constants';
@@ -211,4 +212,35 @@ export function parseExtensionSection(reader: PuzzleReader) {
   );
 
   return { title, data };
+}
+
+export function squareNeedsAcrossClue(
+  { solution, width }: Pick<Puzzle, 'solution' | 'width'>,
+  i: number,
+): boolean {
+  return (
+    // square is not black square
+    !REGEX_BLACK_SQUARE.test(solution[i]) &&
+    // square is left edge or has black square to left
+    (i % width === 0 || REGEX_BLACK_SQUARE.test(solution[i - 1])) &&
+    // square is not right edge or has black square to right
+    !(i % width === width - 1 || REGEX_BLACK_SQUARE.test(solution[i + 1]))
+  );
+}
+
+export function squareNeedsDownClue(
+  { solution, width }: Pick<Puzzle, 'solution' | 'width'>,
+  i: number,
+): boolean {
+  return (
+    // square is not black square
+    !REGEX_BLACK_SQUARE.test(solution[i]) &&
+    // square is top edge or has black square above
+    (i < width || REGEX_BLACK_SQUARE.test(solution[i - width])) &&
+    // square is bottom edge or has black square below
+    !(
+      i >= solution.length - width ||
+      REGEX_BLACK_SQUARE.test(solution[i + width])
+    )
+  );
 }

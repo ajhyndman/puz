@@ -7,16 +7,13 @@
  */
 import { Puzzle } from './';
 import { checksum } from './util/checksum';
-import {
-  ENCODING,
-  HEADER_OFFSET,
-  ICHEATED,
-  REGEX_BLACK_SQUARE,
-} from './util/constants';
+import { ENCODING, HEADER_OFFSET, ICHEATED } from './util/constants';
 import {
   encodeHeaderWithoutChecksums,
   getMetaStrings,
   guessFileEncodingFromVersion,
+  squareNeedsAcrossClue,
+  squareNeedsDownClue,
 } from './util/misc';
 
 export function getFileChecksum(puzzle: Puzzle): number {
@@ -80,37 +77,6 @@ export function getFileEncoding(puzzle: Puzzle): ENCODING {
   return guessFileEncodingFromVersion(puzzle.fileVersion);
 }
 
-function squareNeedsAcrossNumber(
-  { solution, width }: Pick<Puzzle, 'solution' | 'width'>,
-  i: number,
-): boolean {
-  return (
-    // square is not black square
-    !REGEX_BLACK_SQUARE.test(solution[i]) &&
-    // square is left edge or has black square to left
-    (i % width === 0 || REGEX_BLACK_SQUARE.test(solution[i - 1])) &&
-    // square is not right edge or has black square to right
-    !(i % width === width - 1 || REGEX_BLACK_SQUARE.test(solution[i + 1]))
-  );
-}
-
-function squareNeedsDownNumber(
-  { solution, width }: Pick<Puzzle, 'solution' | 'width'>,
-  i: number,
-): boolean {
-  return (
-    // square is not black square
-    !REGEX_BLACK_SQUARE.test(solution[i]) &&
-    // square is top edge or has black square above
-    (i < width || REGEX_BLACK_SQUARE.test(solution[i - width])) &&
-    // square is bottom edge or has black square below
-    !(
-      i >= solution.length - width ||
-      REGEX_BLACK_SQUARE.test(solution[i + width])
-    )
-  );
-}
-
 export function gridNumbering(
   puzzle: Pick<Puzzle, 'solution' | 'width'>,
 ): (number | undefined)[] {
@@ -118,10 +84,7 @@ export function gridNumbering(
   let clueNumber = 0;
 
   return [...solution].map((square, i) => {
-    if (
-      squareNeedsAcrossNumber(puzzle, i) ||
-      squareNeedsDownNumber(puzzle, i)
-    ) {
+    if (squareNeedsAcrossClue(puzzle, i) || squareNeedsDownClue(puzzle, i)) {
       clueNumber += 1;
       return clueNumber;
     }
@@ -141,11 +104,11 @@ export function enumerateClues(
   const down = [];
 
   [...solution].forEach((square, i) => {
-    if (squareNeedsAcrossNumber(puzzle, i)) {
+    if (squareNeedsAcrossClue(puzzle, i)) {
       // assign across clue to square
       across.push(clueQueue.shift());
     }
-    if (squareNeedsDownNumber(puzzle, i)) {
+    if (squareNeedsDownClue(puzzle, i)) {
       // assign down clue to square
       down.push(clueQueue.shift());
     }
