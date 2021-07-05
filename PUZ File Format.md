@@ -291,6 +291,7 @@ sscanf((char*) ltim, "%d,%d", &elapsed, &stopped);
 
 The GEXT data section is another "board" of one byte per square. Each byte is a bitmask indicating that some style attributes are set. The meanings of four bits are known:
 
+- 0x08 means that the square is currently marked correct
 - 0x10 means that the square was previously marked incorrect
 - 0x20 means that the square is currently marked incorrect
 - 0x40 means that the contents were given
