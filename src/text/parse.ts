@@ -21,7 +21,7 @@ const enum FILE_VERSION {
 }
 
 const SIGNATURE_V1 = /^\s*\<ACROSS PUZZLE\>\s*$/;
-// const SIGNATURE_V2 = /^\s*\<ACROSS PUZZLE V2\>\s*$/;
+const SIGNATURE_V2 = /^\s*\<ACROSS PUZZLE V2\>\s*$/;
 
 const SECTION_TAG =
   /^\s*\<(TITLE|AUTHOR|COPYRIGHT|SIZE|GRID|ACROSS|DOWN|NOTEPAD|REBUS)\>\s*$/;
@@ -42,9 +42,9 @@ export function parseTextFile(file: string): Puzzle {
 
   // VALIDATE THAT FILE SIGNATURE IS PRESENT
   const hasV1Signature = SIGNATURE_V1.test(lines[0]);
-  // const hasV2Signature = SIGNATURE_V2.test(lines[0]);
+  const hasV2Signature = SIGNATURE_V2.test(lines[0]);
   invariant(
-    hasV1Signature,
+    hasV1Signature || hasV2Signature,
     'File does not appear to be an Across Lite puzzle description',
   );
 
@@ -147,13 +147,13 @@ export function parseTextFile(file: string): Puzzle {
         puzzle.notepad = sectionLines.join('\n');
         break;
       }
-      // case SECTION.REBUS: {
-      //   invariant(
-      //     fileVersion !== FILE_VERSION.V1,
-      //     'The <REBUS> tag is not supported in V1 text files.  Consider using the <ACROSS PUZZLE V2> file tag',
-      //   );
-      //   break;
-      // }
+      case SECTION.REBUS: {
+        invariant(
+          fileVersion !== FILE_VERSION.V1,
+          'The <REBUS> tag is not supported in V1 text files.  Consider using the <ACROSS PUZZLE V2> file tag',
+        );
+        break;
+      }
       default: {
         throw new Error(`Unhandled section tag: ${sectionTag}`);
       }
