@@ -24,7 +24,7 @@ export function parseVersion(
   version;
 
   const [, majorVersion, minorVersion, patch] =
-    REGEX_VERSION_STRING.exec(version);
+    REGEX_VERSION_STRING.exec(version)!;
   return [Number.parseInt(majorVersion), Number.parseInt(minorVersion), patch];
 }
 
@@ -132,12 +132,15 @@ export function encodeHeaderWithoutChecksums(puzzle: Puzzle): Buffer {
 
   header.write(FILE_SIGNATURE, HEADER_OFFSET.FILE_SIGNATURE_START, 'ascii');
   header.write(puzzle.fileVersion, HEADER_OFFSET.VERSION_START, 'ascii');
-  header.writeUInt16LE(puzzle.misc.unknown1, HEADER_OFFSET.RESERVED_1C_START);
   header.writeUInt16LE(
-    puzzle.misc.scrambledChecksum,
+    puzzle?.misc?.unknown1 ?? 0x00,
+    HEADER_OFFSET.RESERVED_1C_START,
+  );
+  header.writeUInt16LE(
+    puzzle?.misc?.scrambledChecksum ?? 0x00,
     HEADER_OFFSET.SCRAMBLED_CHECKSUM_START,
   );
-  Buffer.from(puzzle.misc.unknown2).copy(
+  Buffer.from(puzzle?.misc?.unknown2 ?? NULL_BYTE).copy(
     header,
     HEADER_OFFSET.RESERVED_20_START,
   );
@@ -148,7 +151,7 @@ export function encodeHeaderWithoutChecksums(puzzle: Puzzle): Buffer {
     HEADER_OFFSET.NUMBER_OF_CLUES_START,
   );
   header.writeUInt16LE(
-    puzzle.misc.unknown3,
+    puzzle?.misc?.unknown3 ?? 0x00,
     HEADER_OFFSET.UNKNOWN_BITMASK_START,
   );
   header.writeUInt16LE(
@@ -196,18 +199,18 @@ export function encodeExtensionSection(
  */
 export function parseExtensionSection(reader: PuzzleReader) {
   const title = reader.readString(0x04);
-  const length = reader.readBytes(0x02).readUInt16LE();
-  const checksum_e = reader.readBytes(0x02).readUInt16LE();
+  const length = reader.readBytes(0x02)!.readUInt16LE();
+  const checksum_e = reader.readBytes(0x02)!.readUInt16LE();
   const data = reader.readBytes(length);
   const sectionTerminator = reader.readBytes(0x01);
 
   invariant(
-    checksum(data) === checksum_e,
+    checksum(data!) === checksum_e,
     `"${title}" section data does not match checksum"`,
   );
 
   invariant(
-    NULL_BYTE.equals(sectionTerminator),
+    NULL_BYTE.equals(sectionTerminator!),
     `"${title}" section is missing terminating null byte`,
   );
 
@@ -253,17 +256,17 @@ export function divideClues(
 } {
   const { clues, solution } = puzzle;
   const clueQueue = clues.slice();
-  const across = [];
-  const down = [];
+  const across: string[] = [];
+  const down: string[] = [];
 
   [...solution].forEach((square, i) => {
     if (squareNeedsAcrossClue(puzzle, i)) {
       // assign across clue to square
-      across.push(clueQueue.shift());
+      across.push(clueQueue.shift()!);
     }
     if (squareNeedsDownClue(puzzle, i)) {
       // assign down clue to square
-      down.push(clueQueue.shift());
+      down.push(clueQueue.shift()!);
     }
   });
 
@@ -283,14 +286,14 @@ export function mergeClues(
   const downQueue = down.slice();
 
   // collect clues in array to return
-  const clues = [];
+  const clues: string[] = [];
 
   [...solution].forEach((square, i) => {
     if (squareNeedsAcrossClue({ solution, width }, i)) {
-      clues.push(acrossQueue.shift());
+      clues.push(acrossQueue.shift()!);
     }
     if (squareNeedsDownClue({ solution, width }, i)) {
-      clues.push(downQueue.shift());
+      clues.push(downQueue.shift()!);
     }
   });
 

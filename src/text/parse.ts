@@ -77,19 +77,19 @@ export function parseTextFile(file: string): Puzzle {
   const unreadLineQueue = lines.slice(1);
   while (unreadLineQueue.length > 0) {
     // read section
-    const sectionTag = unreadLineQueue.shift();
+    const sectionTag = unreadLineQueue.shift()!;
     invariant(
       SECTION_TAG.test(sectionTag),
       `Couldn't parse file.  Expected section tag, but got: "${sectionTag}"`,
     );
-    const [, sectionName] = SECTION_TAG.exec(sectionTag);
+    const [, sectionName] = SECTION_TAG.exec(sectionTag)!;
 
-    const sectionLines = [];
+    const sectionLines: string[] = [];
     while (
       unreadLineQueue.length > 0 &&
       !SECTION_TAG.test(unreadLineQueue[0])
     ) {
-      const line = unreadLineQueue.shift();
+      const line = unreadLineQueue.shift()!;
       sectionLines.push(line);
     }
 
@@ -116,7 +116,7 @@ export function parseTextFile(file: string): Puzzle {
           SIZE_CONTENT.test(sizeString),
           `Puzzle size expected in the format "WIDTHxHEIGHT" (e.g. "15x15"). Received: "${sizeString}"`,
         );
-        const [, width, height] = SIZE_CONTENT.exec(sizeString);
+        const [, width, height] = SIZE_CONTENT.exec(sizeString)!;
         puzzle.width = Number.parseInt(width);
         puzzle.height = Number.parseInt(height);
         break;
@@ -161,7 +161,7 @@ export function parseTextFile(file: string): Puzzle {
   }
 
   const { width, solution } = puzzle;
-  if (width != null && solution != null) {
+  if (width != null && solution != null && across! != null && down! != null) {
     puzzle.clues = mergeClues({ width, solution }, across, down);
   }
 

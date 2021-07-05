@@ -32,12 +32,12 @@ export type Puzzle = {
   };
 
   // misc
-  misc: {
-    unknown1: number;
-    unknown2: Uint8Array;
-    unknown3: number;
+  misc?: {
+    unknown1?: number;
+    unknown2?: Uint8Array;
+    unknown3?: number;
     preamble?: Uint8Array;
-    scrambledChecksum: number;
+    scrambledChecksum?: number;
   };
 };
 
