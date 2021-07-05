@@ -70,7 +70,7 @@ export function validate(puzzle: Partial<Puzzle>): asserts puzzle is Puzzle {
     // VALIDATE STATE CONTENT
     invariant(
       REGEX_STATE.test(state),
-      'Puzzle solution may only contain -, ., :, alphanumeric characters and the following symbols: @, #, $, %, &, +, ?',
+      'Puzzle state may only contain -, ., :, alphanumeric characters and the following symbols: @, #, $, %, &, +, ?',
     );
   }
 
