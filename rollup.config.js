@@ -1,4 +1,5 @@
 import typescript from '@rollup/plugin-typescript';
+import dts from 'rollup-plugin-dts';
 
 // do not bundle external dependencies
 const external = ['ts-invariant'];
@@ -11,7 +12,13 @@ export default [
       format: 'cjs',
     },
     external,
-    plugins: [typescript()],
+    plugins: [
+      typescript({
+        declaration: true,
+        declarationDir: 'dist/.d.ts',
+        declarationMap: true,
+      }),
+    ],
   },
   {
     input: 'src/index.ts',
@@ -21,5 +28,10 @@ export default [
     },
     external,
     plugins: [typescript()],
+  },
+  {
+    input: './dist/.d.ts/src/index.d.ts',
+    output: [{ file: 'dist/index.d.ts', format: 'esm' }],
+    plugins: [dts()],
   },
 ];

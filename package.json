@@ -4,6 +4,7 @@
   "description": "Read and write Across Lite .puz files",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
   "repository": "git@github.com:ajhyndman/puz.git",
   "author": "Andrew Hyndman <ajhyndman@hotmail.com>",
   "license": "MIT",
@@ -23,6 +24,7 @@
     "jest": "27.0.4",
     "prettier": "2.3.2",
     "rollup": "2.52.7",
+    "rollup-plugin-dts": "3.0.2",
     "ts-jest": "27.0.3",
     "typescript": "4.3.4",
     "uglify-js": "3.13.10"
