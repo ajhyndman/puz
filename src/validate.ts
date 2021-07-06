@@ -28,6 +28,7 @@ export function validate(puzzle: Partial<Puzzle>): asserts puzzle is Puzzle {
     state,
     clues,
     markupGrid,
+    rebus,
   } = puzzle;
 
   // VALIDATE REQUIRED FIELDS
@@ -96,7 +97,7 @@ export function validate(puzzle: Partial<Puzzle>): asserts puzzle is Puzzle {
   );
 
   // VALIDATE MARKUP GRID
-  if (markupGrid) {
+  if (markupGrid != null) {
     invariant(
       markupGrid.length === solution.length,
       `markupGrid should match puzzle solution in length. Expected length ${solution.length}, but got ${markupGrid.length}`,
