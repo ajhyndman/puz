@@ -110,7 +110,7 @@ export function validate(puzzle: Partial<Puzzle>): asserts puzzle is Puzzle {
             squareMarkupKeys.includes(key as SquareMarkupKey),
           ),
       ),
-      `markupGrid should not contain values other than 0, 16, 32, 64 and 128`,
+      `markupGrid contains unsupported values`,
     );
   }
 

@@ -139,7 +139,7 @@ describe('validate', () => {
           // @ts-expect-error
           markupGrid: [{}, { other: false }, {}, {}],
         }),
-      ).toThrowError('markupGrid should not contain values other than');
+      ).toThrowError('markupGrid contains unsupported values');
     });
   });
 });
