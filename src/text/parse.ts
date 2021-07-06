@@ -1,6 +1,7 @@
 import invariant from 'ts-invariant';
 import { Puzzle } from '..';
 import { mergeClues } from '../util/misc';
+import { rebusKeyCharToNum } from '../util/rebusKey';
 import { validate } from '../validate';
 
 enum SECTION {
@@ -30,7 +31,7 @@ const SIZE_CONTENT = /^(\d+)x(\d+)$/;
 const LINE_BREAK = /\r\n|\n/; // match Windows or Unix line endings
 const LOWER_ALPHA = /[a-z]/;
 const REBUS_MARK = /^MARK;$/i;
-const REBUS_SUBSTITUTION = /^[A-Za-z0-9@#$%&+?]:(?:[A-Z]+|\[\d+\]):[A-Za-z0-9@#$%&+?]$/;
+const REBUS_SUBSTITUTION = /^([A-Za-z0-9@#$%&+?]):([A-Z]+|\[\d+\]):([A-Za-z0-9@#$%&+?])$/;
 
 function assertSingleLineSection(tagName: string, sectionLines: string[]) {
   invariant(
@@ -148,13 +149,14 @@ export function parseTextFile(file: string): Puzzle {
           'The <REBUS> tag is not supported in V1 text files.  Consider using the <ACROSS PUZZLE V2> file tag',
         );
 
-        const solution = puzzle.solution;
+        let solution = puzzle.solution!;
         invariant(
           solution != null,
           'The <REBUS> tag is expected to come after <GRID> in puzzle descriptions',
         );
 
-        const rebus: Puzzle['rebus'] = {};
+        const rebusGrid: (number | undefined)[] = new Array(solution.length);
+        const rebusSolution: { [key: number]: string } = {};
 
         sectionLines
           .map((line) => line.trim())
@@ -173,12 +175,33 @@ export function parseTextFile(file: string): Puzzle {
               }
             }
 
-            // generate solution tabe
+            // handle substitution annotations (in the format "1:ABC:A")
+            if (REBUS_SUBSTITUTION.test(line)) {
+              const [, charKey, substitution, fallback] = REBUS_SUBSTITUTION.exec(line)!;
+              const numKey = rebusKeyCharToNum(charKey);
 
-            // generate rebus grid
+              // populate rebus grid
+              [...solution].forEach((square, i) => {
+                if (square === charKey) {
+                  rebusGrid[i] = numKey;
+                }
+              });
 
-            // replace solution placeholders with fallback solution
+              // populate solution table
+              rebusSolution[numKey] = substitution;
+
+              // replace solution placeholders with fallback solution
+              solution = solution.replaceAll(charKey, fallback);
+            }
           });
+
+        if (Object.keys(rebusSolution).length > 0) {
+          puzzle.solution = solution;
+          puzzle.rebus = {
+            grid: rebusGrid,
+            solution: rebusSolution,
+          };
+        }
 
         break;
       }
