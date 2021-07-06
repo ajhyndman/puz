@@ -7,6 +7,9 @@
   "author": "Andrew Hyndman <ajhyndman@hotmail.com>",
   "license": "MIT",
   "sideEffects": false,
+  "engines": {
+    "node": ">=15.0"
+  },
   "scripts": {
     "format": "prettier --write src test",
     "test": "jest"
