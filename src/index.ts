@@ -1,4 +1,10 @@
-import { SQUARE_MARKUP } from './util/constants';
+export type SquareMarkup = {
+  circled?: boolean;
+  incorrect?: boolean;
+  previouslyIncorrect?: boolean;
+  revealed?: boolean;
+  unknown?: boolean;
+};
 
 export type Puzzle = {
   // meta
@@ -24,7 +30,7 @@ export type Puzzle = {
     solution?: { [key: number]: string };
     state?: (string | undefined)[];
   };
-  markupGrid?: SQUARE_MARKUP[];
+  markupGrid?: SquareMarkup[];
   timer?: {
     secondsElapsed: number;
     isPaused: boolean;

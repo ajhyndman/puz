@@ -1,6 +1,6 @@
 import invariant from 'ts-invariant';
 
-import { Puzzle } from '../';
+import { Puzzle, SquareMarkup } from '../';
 import { checksum } from './checksum';
 import {
   DEFAULT_FILE_VERSION,
@@ -12,6 +12,7 @@ import {
   REGEX_BLACK_SQUARE,
   REGEX_REBUS_TABLE_STRING,
   REGEX_VERSION_STRING,
+  SQUARE_MARKUP_BITMASK,
 } from './constants';
 import { PuzzleReader } from './PuzzleReader';
 
@@ -305,4 +306,46 @@ export function mergeClues(
   });
 
   return clues;
+}
+
+/**
+ * Decode markup bits from a two-byte integer.
+ *
+ * @param markup Two bute integer with bits to be decoded
+ * @returns An object with boolean keys describing the markup for a square.
+ */
+export function decodeMarkup(bits: number): SquareMarkup {
+  const markupObject: SquareMarkup = {};
+  if ((bits & SQUARE_MARKUP_BITMASK.CIRCLED) !== 0) markupObject.circled = true;
+  if ((bits & SQUARE_MARKUP_BITMASK.INCORRECT) !== 0)
+    markupObject.incorrect = true;
+  if ((bits & SQUARE_MARKUP_BITMASK.PREVIOUSLY_INCORRECT) !== 0)
+    markupObject.previouslyIncorrect = true;
+  if ((bits & SQUARE_MARKUP_BITMASK.REVEALED) !== 0)
+    markupObject.revealed = true;
+  if ((bits & SQUARE_MARKUP_BITMASK.UNKNOWN) !== 0) markupObject.unknown = true;
+  return markupObject;
+}
+
+/**
+ * Encodes a markup object into a two-byte integer suitable for storing in
+ * PUZ files.
+ *
+ * @param markup Object to be encoded
+ * @returns a two byte integer with markup bits encoded
+ */
+export function encodeMarkup({
+  circled,
+  incorrect,
+  previouslyIncorrect,
+  revealed,
+  unknown,
+}: SquareMarkup): number {
+  return (
+    (circled ? SQUARE_MARKUP_BITMASK.CIRCLED : 0) +
+    (incorrect ? SQUARE_MARKUP_BITMASK.INCORRECT : 0) +
+    (previouslyIncorrect ? SQUARE_MARKUP_BITMASK.PREVIOUSLY_INCORRECT : 0) +
+    (revealed ? SQUARE_MARKUP_BITMASK.REVEALED : 0) +
+    (unknown ? SQUARE_MARKUP_BITMASK.UNKNOWN : 0)
+  );
 }

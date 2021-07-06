@@ -9,6 +9,7 @@ import { EMPTY_BUFFER, EXTENSION, HEADER_OFFSET } from '../util/constants';
 import {
   encodeExtensionSection,
   encodeHeaderWithoutChecksums,
+  encodeMarkup,
   guessFileEncodingFromVersion,
   printRebusTable,
 } from '../util/misc';
@@ -97,7 +98,7 @@ export function printBinaryFile(puzzle: Puzzle): Uint8Array {
   let markup = EMPTY_BUFFER;
   if (puzzle.markupGrid != null) {
     const data = Uint8Array.from(puzzle.markupGrid, (value) =>
-      value === undefined ? 0x00 : value,
+      encodeMarkup(value),
     );
 
     markup = encodeExtensionSection(EXTENSION.MARKUP_GRID, data);

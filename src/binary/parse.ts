@@ -13,6 +13,7 @@ import {
   REGEX_TIMER_STRING,
 } from '../util/constants';
 import {
+  decodeMarkup,
   guessFileEncodingFromVersion,
   parseExtensionSection,
   parseRebusTable,
@@ -117,10 +118,10 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
     switch (title) {
       case EXTENSION.MARKUP_GRID: {
         const grid = Array.from(data);
-        grid.forEach((entry, i) => {
-          if (entry <= 0) delete grid[i];
-        });
-        markupGrid = grid;
+        // grid.forEach((entry, i) => {
+        //   if (entry <= 0) delete grid[i];
+        // });
+        markupGrid = grid.map((markup) => decodeMarkup(markup));
         break;
       }
       case EXTENSION.REBUS_GRID: {
