@@ -28,6 +28,9 @@ const SOLUTION_CONTENT_V1 = /^[A-Z.:]+/;
 const SOLUTION_CONTENT_V2 = /^[A-Za-z0-9@#$%&+?.:]+$/;
 const SIZE_CONTENT = /^(\d+)x(\d+)$/;
 const LINE_BREAK = /\r\n|\n/; // match Windows or Unix line endings
+const LOWER_ALPHA = /[a-z]/;
+const REBUS_MARK = /^MARK;$/i;
+const REBUS_SUBSTITUTION = /^[A-Za-z0-9@#$%&+?]:(?:[A-Z]+|\[\d+\]):[A-Za-z0-9@#$%&+?]$/;
 
 function assertSingleLineSection(tagName: string, sectionLines: string[]) {
   invariant(
@@ -144,6 +147,39 @@ export function parseTextFile(file: string): Puzzle {
           fileVersion !== FILE_VERSION.V1,
           'The <REBUS> tag is not supported in V1 text files.  Consider using the <ACROSS PUZZLE V2> file tag',
         );
+
+        const solution = puzzle.solution;
+        invariant(
+          solution != null,
+          'The <REBUS> tag is expected to come after <GRID> in puzzle descriptions',
+        );
+
+        const rebus: Puzzle['rebus'] = {};
+
+        sectionLines
+          .map((line) => line.trim())
+          .forEach((line) => {
+            // handle MARK; annotation
+            if (REBUS_MARK.test(line) && puzzle.markupGrid == null) {
+              const markupGrid = [...solution].map((character) => {
+                if (LOWER_ALPHA.test(character)) {
+                  return { circled: true };
+                }
+                return {};
+              });
+
+              if (markupGrid.some(({ circled }) => circled)) {
+                puzzle.markupGrid = markupGrid;
+              }
+            }
+
+            // generate solution tabe
+
+            // generate rebus grid
+
+            // replace solution placeholders with fallback solution
+          });
+
         break;
       }
       default: {
