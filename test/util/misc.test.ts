@@ -6,14 +6,7 @@ describe('util/misc', () => {
       const puzzle = {
         width: 3,
         solution: 'ABCDEFGHI',
-        clues: [
-          '1 across',
-          '1 down',
-          '2 down',
-          '3 down',
-          '4 across',
-          '5 across',
-        ],
+        clues: ['1 across', '1 down', '2 down', '3 down', '4 across', '5 across'],
       };
 
       expect(divideClues(puzzle)).toEqual({
@@ -59,14 +52,7 @@ describe('util/misc', () => {
       const puzzle = {
         width: 3,
         solution: 'ABCDEFGHI',
-        clues: [
-          '1 across',
-          '1 down',
-          '2 down',
-          '3 down',
-          '4 across',
-          '5 across',
-        ],
+        clues: ['1 across', '1 down', '2 down', '3 down', '4 across', '5 across'],
       };
 
       const { across, down } = divideClues(puzzle);

@@ -1,10 +1,5 @@
 import { Puzzle } from '../';
-import {
-  getFileChecksum,
-  getHeaderChecksum,
-  getICheatedChecksum,
-  getState,
-} from '../projections';
+import { getFileChecksum, getHeaderChecksum, getICheatedChecksum, getState } from '../projections';
 import { EMPTY_BUFFER, EXTENSION, HEADER_OFFSET } from '../util/constants';
 import {
   encodeExtensionSection,
@@ -39,10 +34,7 @@ export function printBinaryFile(puzzle: Puzzle): Uint8Array {
   const notepadText = `${puzzle.notepad ?? ''}\x00`;
 
   // encode formatted strings
-  const strings = Buffer.from(
-    boardText + metaText + cluesText + notepadText,
-    encoding,
-  );
+  const strings = Buffer.from(boardText + metaText + cluesText + notepadText, encoding);
 
   // ENCODE HEADER
   // =============
@@ -78,9 +70,7 @@ export function printBinaryFile(puzzle: Puzzle): Uint8Array {
     }
     if (puzzle.rebus.state) {
       const stateString =
-        puzzle.rebus.state
-          .map((value) => (value == null ? '' : value))
-          .join('\x00') + '\x00';
+        puzzle.rebus.state.map((value) => (value == null ? '' : value)).join('\x00') + '\x00';
       const data = Buffer.from(stateString, 'ascii');
       rebusState = encodeExtensionSection(EXTENSION.REBUS_STATE, data);
     }
@@ -97,9 +87,7 @@ export function printBinaryFile(puzzle: Puzzle): Uint8Array {
 
   let markup = EMPTY_BUFFER;
   if (puzzle.markupGrid != null) {
-    const data = Uint8Array.from(puzzle.markupGrid, (value) =>
-      encodeMarkup(value),
-    );
+    const data = Uint8Array.from(puzzle.markupGrid, (value) => encodeMarkup(value));
 
     markup = encodeExtensionSection(EXTENSION.MARKUP_GRID, data);
   }

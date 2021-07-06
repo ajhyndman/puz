@@ -19,17 +19,8 @@ import { squareNeedsAcrossClue, squareNeedsDownClue } from './util/misc';
  * @throws If any validation check fails, throws an InvariantError
  */
 export function validate(puzzle: Partial<Puzzle>): asserts puzzle is Puzzle {
-  const {
-    fileVersion,
-    height,
-    isScrambled,
-    width,
-    solution,
-    state,
-    clues,
-    markupGrid,
-    rebus,
-  } = puzzle;
+  const { fileVersion, height, isScrambled, width, solution, state, clues, markupGrid, rebus } =
+    puzzle;
 
   // VALIDATE REQUIRED FIELDS
   invariant(height != null, 'Puzzle is missing required field: "height"');
@@ -48,9 +39,9 @@ export function validate(puzzle: Partial<Puzzle>): asserts puzzle is Puzzle {
   // VALIDATE SOLUTION SIZE
   invariant(
     solution.length === width * height,
-    `Puzzle width & height suggest solution should be ${
-      width * height
-    } characters long. Found ${solution.length} characters instead.`,
+    `Puzzle width & height suggest solution should be ${width * height} characters long. Found ${
+      solution.length
+    } characters instead.`,
   );
 
   // VALIDATE SOLUTION CONTENT
@@ -63,17 +54,15 @@ export function validate(puzzle: Partial<Puzzle>): asserts puzzle is Puzzle {
   if (state != null) {
     invariant(
       state.length === width * height,
-      `Puzzle width & height suggest state should be ${
-        width * height
-      } characters long. Found ${state.length} characters instead.`,
+      `Puzzle width & height suggest state should be ${width * height} characters long. Found ${
+        state.length
+      } characters instead.`,
     );
 
     // VALIDATE STATE MATCHES SOLUTION
     invariant(
       [...state].every(
-        (value, i) =>
-          REGEX_BLACK_SQUARE.test(value) ===
-          REGEX_BLACK_SQUARE.test(solution[i]),
+        (value, i) => REGEX_BLACK_SQUARE.test(value) === REGEX_BLACK_SQUARE.test(solution[i]),
       ),
       'Black Squares in solution and state must match',
     );
@@ -107,9 +96,7 @@ export function validate(puzzle: Partial<Puzzle>): asserts puzzle is Puzzle {
       markupGrid.every(
         (value) =>
           value != null &&
-          Object.keys(value).every((key) =>
-            squareMarkupKeys.includes(key as SquareMarkupKey),
-          ),
+          Object.keys(value).every((key) => squareMarkupKeys.includes(key as SquareMarkupKey)),
       ),
       `Markup grid contains unsupported values`,
     );
@@ -123,9 +110,7 @@ export function validate(puzzle: Partial<Puzzle>): asserts puzzle is Puzzle {
         `Rebus grid should match puzzle solution in length.  Expected length ${solution.length}, but got ${rebus.grid.length}`,
       );
 
-      const gridKeys = new Set(
-        rebus.grid.filter((a): a is number => a != null),
-      );
+      const gridKeys = new Set(rebus.grid.filter((a): a is number => a != null));
       gridKeys.forEach((key) => {
         invariant(
           typeof rebus.solution?.[key] === 'string',

@@ -1,17 +1,8 @@
 import { invariant } from 'ts-invariant';
 
 import { Puzzle } from '..';
-import {
-  getFileChecksum,
-  getHeaderChecksum,
-  getICheatedChecksum,
-} from '../projections';
-import {
-  EXTENSION,
-  FILE_SIGNATURE,
-  HEADER_OFFSET,
-  REGEX_TIMER_STRING,
-} from '../util/constants';
+import { getFileChecksum, getHeaderChecksum, getICheatedChecksum } from '../projections';
+import { EXTENSION, FILE_SIGNATURE, HEADER_OFFSET, REGEX_TIMER_STRING } from '../util/constants';
 import {
   decodeMarkup,
   guessFileEncodingFromVersion,
@@ -46,9 +37,7 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
 
   // try {
   const fileChecksum = buffer.readUInt16LE(HEADER_OFFSET.FILE_CHECKSUM_START);
-  const headerChecksum = buffer.readUInt16LE(
-    HEADER_OFFSET.HEADER_CHECKSUM_START,
-  );
+  const headerChecksum = buffer.readUInt16LE(HEADER_OFFSET.HEADER_CHECKSUM_START);
   const iCheatedChecksum = buffer.subarray(
     HEADER_OFFSET.ICHEATED_CHECKSUM_START,
     HEADER_OFFSET.ICHEATED_CHECKSUM_END,
@@ -57,18 +46,11 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
     .toString('ascii', HEADER_OFFSET.VERSION_START, HEADER_OFFSET.VERSION_END)
     .replace(/\x00/g, '');
   const unknown1 = buffer.readUInt16LE(HEADER_OFFSET.RESERVED_1C_START);
-  const scrambledChecksum = buffer.readUInt16LE(
-    HEADER_OFFSET.SCRAMBLED_CHECKSUM_START,
-  );
-  const unknown2 = buffer.subarray(
-    HEADER_OFFSET.RESERVED_20_START,
-    HEADER_OFFSET.RESERVED_20_END,
-  );
+  const scrambledChecksum = buffer.readUInt16LE(HEADER_OFFSET.SCRAMBLED_CHECKSUM_START);
+  const unknown2 = buffer.subarray(HEADER_OFFSET.RESERVED_20_START, HEADER_OFFSET.RESERVED_20_END);
   const width = buffer.readUInt8(HEADER_OFFSET.WIDTH_START);
   const height = buffer.readUInt8(HEADER_OFFSET.HEIGHT_START);
-  const numberOfClues = buffer.readUInt16LE(
-    HEADER_OFFSET.NUMBER_OF_CLUES_START,
-  );
+  const numberOfClues = buffer.readUInt16LE(HEADER_OFFSET.NUMBER_OF_CLUES_START);
   const unknown3 = buffer.readUInt16LE(HEADER_OFFSET.UNKNOWN_BITMASK_START);
   const scrambledTag = buffer.readUInt16LE(HEADER_OFFSET.SCRAMBLED_START);
   // } catch (e) {
@@ -159,8 +141,7 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
           REGEX_TIMER_STRING.test(timerString),
           "Timer data doesn't match expected format.",
         );
-        const [, secondsElapsed, isPaused] =
-          REGEX_TIMER_STRING.exec(timerString)!;
+        const [, secondsElapsed, isPaused] = REGEX_TIMER_STRING.exec(timerString)!;
         timer = {
           secondsElapsed: Number.parseInt(secondsElapsed),
           isPaused: isPaused === '1',

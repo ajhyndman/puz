@@ -23,8 +23,7 @@ const enum FILE_VERSION {
 const SIGNATURE_V1 = /^\s*\<ACROSS PUZZLE\>\s*$/;
 const SIGNATURE_V2 = /^\s*\<ACROSS PUZZLE V2\>\s*$/;
 
-const SECTION_TAG =
-  /^\s*\<(TITLE|AUTHOR|COPYRIGHT|SIZE|GRID|ACROSS|DOWN|NOTEPAD|REBUS)\>\s*$/;
+const SECTION_TAG = /^\s*\<(TITLE|AUTHOR|COPYRIGHT|SIZE|GRID|ACROSS|DOWN|NOTEPAD|REBUS)\>\s*$/;
 const SOLUTION_CONTENT_V1 = /^[A-Z.:]+/;
 const SOLUTION_CONTENT_V2 = /^[A-Za-z0-9@#$%&+?.:]+$/;
 const SIZE_CONTENT = /^(\d+)x(\d+)$/;
@@ -62,9 +61,7 @@ export function parseTextFile(file: string): Puzzle {
     SECTION.DOWN,
   ];
   requiredTags.forEach((tag) => {
-    const isTagPresent = lines.some((line) =>
-      new RegExp(`^\\s*\\<${tag}\\>\\s*$`).test(line),
-    );
+    const isTagPresent = lines.some((line) => new RegExp(`^\\s*\\<${tag}\\>\\s*$`).test(line));
     invariant(isTagPresent, `File is missing required tag: <${tag}>`);
   });
 
@@ -85,10 +82,7 @@ export function parseTextFile(file: string): Puzzle {
     const [, sectionName] = SECTION_TAG.exec(sectionTag)!;
 
     const sectionLines: string[] = [];
-    while (
-      unreadLineQueue.length > 0 &&
-      !SECTION_TAG.test(unreadLineQueue[0])
-    ) {
+    while (unreadLineQueue.length > 0 && !SECTION_TAG.test(unreadLineQueue[0])) {
       const line = unreadLineQueue.shift()!;
       sectionLines.push(line);
     }
@@ -124,9 +118,7 @@ export function parseTextFile(file: string): Puzzle {
       case SECTION.GRID: {
         const trimmedLines = sectionLines.map((line) => line.trim());
         const permittedSolutionContent =
-          fileVersion === FILE_VERSION.V2
-            ? SOLUTION_CONTENT_V2
-            : SOLUTION_CONTENT_V1;
+          fileVersion === FILE_VERSION.V2 ? SOLUTION_CONTENT_V2 : SOLUTION_CONTENT_V1;
         invariant(
           trimmedLines.every((line) => permittedSolutionContent.test(line)),
           '<GRID> section contains unsupported characters.',

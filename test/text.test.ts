@@ -8,9 +8,7 @@ describe('puz', () => {
     'v1_text_format.txt',
     'v2_text_format_mark.txt',
     'v2_text_format_rebus.txt',
-  ].map(
-    (path) => [path, readFileSync(join(__dirname, 'puzzles', path))] as const,
-  );
+  ].map((path) => [path, readFileSync(join(__dirname, 'puzzles', path))] as const);
 
   describe('parseTextFile', () => {
     it('throws if file signature is not present', () => {
@@ -45,21 +43,15 @@ describe('puz', () => {
       parseTextFile(buffer.toString('utf-8'));
     });
 
-    it.each(puzzleFiles)(
-      'extracts expected Puzzle object from "%s"',
-      (path, buffer) => {
-        expect(parseTextFile(buffer.toString('utf-8'))).toMatchSnapshot();
-      },
-    );
+    it.each(puzzleFiles)('extracts expected Puzzle object from "%s"', (path, buffer) => {
+      expect(parseTextFile(buffer.toString('utf-8'))).toMatchSnapshot();
+    });
   });
 
   describe('printTextFiles', () => {
-    it.each(puzzleFiles)(
-      'prints "%s" back to expected V2 file',
-      (path, buffer) => {
-        const puzzle = parseTextFile(buffer.toString('utf-8'));
-        expect(printTextFile(puzzle)).toMatchSnapshot();
-      },
-    );
+    it.each(puzzleFiles)('prints "%s" back to expected V2 file', (path, buffer) => {
+      const puzzle = parseTextFile(buffer.toString('utf-8'));
+      expect(printTextFile(puzzle)).toMatchSnapshot();
+    });
   });
 });

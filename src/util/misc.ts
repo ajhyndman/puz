@@ -19,14 +19,10 @@ import { PuzzleReader } from './PuzzleReader';
 export function parseVersion(
   version: string = DEFAULT_FILE_VERSION,
 ): [number, number, string | undefined] {
-  invariant(
-    REGEX_VERSION_STRING.test(version),
-    'file version data did not match expected format',
-  );
+  invariant(REGEX_VERSION_STRING.test(version), 'file version data did not match expected format');
   version;
 
-  const [, majorVersion, minorVersion, patch] =
-    REGEX_VERSION_STRING.exec(version)!;
+  const [, majorVersion, minorVersion, patch] = REGEX_VERSION_STRING.exec(version)!;
   return [Number.parseInt(majorVersion), Number.parseInt(minorVersion), patch];
 }
 
@@ -50,10 +46,7 @@ export function parseRebusTable(tableString: string): {
     .slice(0, -1) // drop trailing semicolon
     .split(';')
     .map((entryString) => entryString.split(':'))
-    .reduce(
-      (acc, [key, value]) => ({ ...acc, [Number.parseInt(key)]: value }),
-      {},
-    );
+    .reduce((acc, [key, value]) => ({ ...acc, [Number.parseInt(key)]: value }), {});
 }
 
 /**
@@ -69,9 +62,7 @@ export function parseRebusTable(tableString: string): {
  * @returns
  * A semicolon-delimited string. Note that there will be a trailing semicolon.
  */
-export function printRebusTable(tableObject: {
-  [key: number]: string | undefined;
-}): string {
+export function printRebusTable(tableObject: { [key: number]: string | undefined }): string {
   return Object.entries(tableObject).reduce(
     (acc, [key, value]) => `${acc}${key.padStart(2, ' ')}:${value};`,
     '',
@@ -89,9 +80,7 @@ export function zstring(input?: string): string {
   return input != null ? input + '\x00' : '';
 }
 
-export function guessFileEncodingFromVersion(
-  fileVersion: string = DEFAULT_FILE_VERSION,
-): ENCODING {
+export function guessFileEncodingFromVersion(fileVersion: string = DEFAULT_FILE_VERSION): ENCODING {
   const [majorVersion] = parseVersion(fileVersion);
 
   return majorVersion >= 2 ? ENCODING.UTF_8 : ENCODING.ISO_8859_1;
@@ -135,37 +124,18 @@ export function encodeHeaderWithoutChecksums(puzzle: Puzzle): Buffer {
   const header = Buffer.alloc(HEADER_OFFSET.HEADER_END);
 
   header.write(FILE_SIGNATURE, HEADER_OFFSET.FILE_SIGNATURE_START, 'ascii');
-  header.write(
-    puzzle.fileVersion ?? DEFAULT_FILE_VERSION,
-    HEADER_OFFSET.VERSION_START,
-    'ascii',
-  );
-  header.writeUInt16LE(
-    puzzle?.misc?.unknown1 ?? 0x00,
-    HEADER_OFFSET.RESERVED_1C_START,
-  );
+  header.write(puzzle.fileVersion ?? DEFAULT_FILE_VERSION, HEADER_OFFSET.VERSION_START, 'ascii');
+  header.writeUInt16LE(puzzle?.misc?.unknown1 ?? 0x00, HEADER_OFFSET.RESERVED_1C_START);
   header.writeUInt16LE(
     puzzle?.misc?.scrambledChecksum ?? 0x00,
     HEADER_OFFSET.SCRAMBLED_CHECKSUM_START,
   );
-  Buffer.from(puzzle?.misc?.unknown2 ?? NULL_BYTE).copy(
-    header,
-    HEADER_OFFSET.RESERVED_20_START,
-  );
+  Buffer.from(puzzle?.misc?.unknown2 ?? NULL_BYTE).copy(header, HEADER_OFFSET.RESERVED_20_START);
   header.writeUInt8(puzzle.width, HEADER_OFFSET.WIDTH_START);
   header.writeUInt8(puzzle.height, HEADER_OFFSET.HEIGHT_START);
-  header.writeUInt16LE(
-    puzzle.clues.length,
-    HEADER_OFFSET.NUMBER_OF_CLUES_START,
-  );
-  header.writeUInt16LE(
-    puzzle?.misc?.unknown3 ?? 0x00,
-    HEADER_OFFSET.UNKNOWN_BITMASK_START,
-  );
-  header.writeUInt16LE(
-    puzzle.isScrambled ? 0x04 : 0x00,
-    HEADER_OFFSET.SCRAMBLED_START,
-  );
+  header.writeUInt16LE(puzzle.clues.length, HEADER_OFFSET.NUMBER_OF_CLUES_START);
+  header.writeUInt16LE(puzzle?.misc?.unknown3 ?? 0x00, HEADER_OFFSET.UNKNOWN_BITMASK_START);
+  header.writeUInt16LE(puzzle.isScrambled ? 0x04 : 0x00, HEADER_OFFSET.SCRAMBLED_START);
 
   return header;
 }
@@ -177,10 +147,7 @@ export function encodeHeaderWithoutChecksums(puzzle: Puzzle): Buffer {
  * @param data A byte array containing the extension data.
  * @returns The extension data encoded in a null-terminated byte array.
  */
-export function encodeExtensionSection(
-  title: EXTENSION,
-  data: Uint8Array,
-): Buffer {
+export function encodeExtensionSection(title: EXTENSION, data: Uint8Array): Buffer {
   const header = Buffer.alloc(0x08);
   const dataChecksum = checksum(data);
 
@@ -212,10 +179,7 @@ export function parseExtensionSection(reader: PuzzleReader) {
   const data = reader.readBytes(length)!;
   const sectionTerminator = reader.readBytes(0x01);
 
-  invariant(
-    checksum(data!) === checksum_e,
-    `"${title}" section data does not match checksum"`,
-  );
+  invariant(checksum(data!) === checksum_e, `"${title}" section data does not match checksum"`);
 
   invariant(
     NULL_BYTE.equals(sectionTerminator!),
@@ -249,16 +213,11 @@ export function squareNeedsDownClue(
     // square is top edge or has black square above
     (i < width || REGEX_BLACK_SQUARE.test(solution[i - width])) &&
     // square is bottom edge or has black square below
-    !(
-      i >= solution.length - width ||
-      REGEX_BLACK_SQUARE.test(solution[i + width])
-    )
+    !(i >= solution.length - width || REGEX_BLACK_SQUARE.test(solution[i + width]))
   );
 }
 
-export function divideClues(
-  puzzle: Pick<Puzzle, 'clues' | 'solution' | 'width'>,
-): {
+export function divideClues(puzzle: Pick<Puzzle, 'clues' | 'solution' | 'width'>): {
   across: string[];
   down: string[];
 } {
@@ -317,20 +276,14 @@ export function mergeClues(
 export function decodeMarkup(byte: number): SquareMarkup {
   const markupObject: SquareMarkup = {};
   if ((byte & SQUARE_MARKUP_BITMASK.CIRCLED) !== 0) markupObject.circled = true;
-  if ((byte & SQUARE_MARKUP_BITMASK.INCORRECT) !== 0)
-    markupObject.incorrect = true;
+  if ((byte & SQUARE_MARKUP_BITMASK.INCORRECT) !== 0) markupObject.incorrect = true;
   if ((byte & SQUARE_MARKUP_BITMASK.PREVIOUSLY_INCORRECT) !== 0)
     markupObject.previouslyIncorrect = true;
-  if ((byte & SQUARE_MARKUP_BITMASK.REVEALED) !== 0)
-    markupObject.revealed = true;
-  if ((byte & SQUARE_MARKUP_BITMASK.UNKNOWN_08) !== 0)
-    markupObject.unknown_08 = true;
-  if ((byte & SQUARE_MARKUP_BITMASK.UNKNOWN_04) !== 0)
-    markupObject.unknown_04 = true;
-  if ((byte & SQUARE_MARKUP_BITMASK.UNKNOWN_02) !== 0)
-    markupObject.unknown_02 = true;
-  if ((byte & SQUARE_MARKUP_BITMASK.UNKNOWN_01) !== 0)
-    markupObject.unknown_01 = true;
+  if ((byte & SQUARE_MARKUP_BITMASK.REVEALED) !== 0) markupObject.revealed = true;
+  if ((byte & SQUARE_MARKUP_BITMASK.UNKNOWN_08) !== 0) markupObject.unknown_08 = true;
+  if ((byte & SQUARE_MARKUP_BITMASK.UNKNOWN_04) !== 0) markupObject.unknown_04 = true;
+  if ((byte & SQUARE_MARKUP_BITMASK.UNKNOWN_02) !== 0) markupObject.unknown_02 = true;
+  if ((byte & SQUARE_MARKUP_BITMASK.UNKNOWN_01) !== 0) markupObject.unknown_01 = true;
   return markupObject;
 }
 

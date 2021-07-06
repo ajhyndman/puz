@@ -20,40 +20,29 @@ describe('puz', () => {
     'unicode_with_state.puz',
     'washpost.puz',
     'wsj110624.puz',
-  ].map(
-    (path) => [path, readFileSync(join(__dirname, 'puzzles', path))] as const,
-  );
+  ].map((path) => [path, readFileSync(join(__dirname, 'puzzles', path))] as const);
 
   describe('parseBinaryFile', () => {
     it.each(puzzleFiles)('parses "%s" without crashing', (path, buffer) => {
       parseBinaryFile(buffer);
     });
 
-    it.each(puzzleFiles)(
-      'extracts expected Puzzle object from "%s"',
-      (path, buffer) => {
-        expect(parseBinaryFile(buffer)).toMatchSnapshot();
-      },
-    );
+    it.each(puzzleFiles)('extracts expected Puzzle object from "%s"', (path, buffer) => {
+      expect(parseBinaryFile(buffer)).toMatchSnapshot();
+    });
   });
 
   describe('printBinaryFile', () => {
-    it.each(puzzleFiles)(
-      'prints "%s" preserving exact bytes',
-      (path, buffer) => {
-        const puzzle = parseBinaryFile(buffer);
-        expect(printBinaryFile(puzzle)).toEqual(buffer);
-      },
-    );
+    it.each(puzzleFiles)('prints "%s" preserving exact bytes', (path, buffer) => {
+      const puzzle = parseBinaryFile(buffer);
+      expect(printBinaryFile(puzzle)).toEqual(buffer);
+    });
   });
 
   describe('parseBinaryFile and printTextFile', () => {
-    it.each(puzzleFiles)(
-      'together print "%s" to expected text',
-      (path, buffer) => {
-        const puzzle = parseBinaryFile(buffer);
-        expect(printTextFile(puzzle)).toMatchSnapshot();
-      },
-    );
+    it.each(puzzleFiles)('together print "%s" to expected text', (path, buffer) => {
+      const puzzle = parseBinaryFile(buffer);
+      expect(printTextFile(puzzle)).toMatchSnapshot();
+    });
   });
 });

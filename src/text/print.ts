@@ -41,9 +41,7 @@ export function printTextFile(
 
   // PRINT GRID
   text += '<GRID>' + lineEnding;
-  const gridRows = puzzle.solution.match(
-    new RegExp(`.{${puzzle.width}}`, 'g'),
-  )!;
+  const gridRows = puzzle.solution.match(new RegExp(`.{${puzzle.width}}`, 'g'))!;
   gridRows.forEach((row) => {
     text += printLine(row);
   });

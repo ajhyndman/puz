@@ -28,28 +28,21 @@ export function getFileChecksum(puzzle: Puzzle): number {
   const checksum_h = checksum(
     headerBuffer.subarray(HEADER_OFFSET.WIDTH_START, HEADER_OFFSET.HEADER_END),
   );
-  const checksum_f = checksum(
-    Buffer.from(boardStrings + metaStrings, encoding),
-    checksum_h,
-  );
+  const checksum_f = checksum(Buffer.from(boardStrings + metaStrings, encoding), checksum_h);
 
   return checksum_f;
 }
 
 export function getHeaderChecksum(puzzle: Puzzle): number {
   const header = encodeHeaderWithoutChecksums(puzzle);
-  return checksum(
-    header.subarray(HEADER_OFFSET.WIDTH_START, HEADER_OFFSET.HEADER_END),
-  );
+  return checksum(header.subarray(HEADER_OFFSET.WIDTH_START, HEADER_OFFSET.HEADER_END));
 }
 
 export function getICheatedChecksum(puzzle: Puzzle): Uint8Array {
   const encoding = guessFileEncodingFromVersion(puzzle.fileVersion);
 
   const header = encodeHeaderWithoutChecksums(puzzle);
-  const checksum_h = checksum(
-    header.subarray(HEADER_OFFSET.WIDTH_START, HEADER_OFFSET.HEADER_END),
-  );
+  const checksum_h = checksum(header.subarray(HEADER_OFFSET.WIDTH_START, HEADER_OFFSET.HEADER_END));
 
   const metaStrings = getMetaStrings(puzzle);
   const checksum_i1 = checksum_h;
@@ -78,9 +71,7 @@ export function getFileEncoding(puzzle: Puzzle): ENCODING {
   return guessFileEncodingFromVersion(puzzle.fileVersion);
 }
 
-export function gridNumbering(
-  puzzle: Pick<Puzzle, 'solution' | 'width'>,
-): (number | undefined)[] {
+export function gridNumbering(puzzle: Pick<Puzzle, 'solution' | 'width'>): (number | undefined)[] {
   const { solution } = puzzle;
   let clueNumber = 0;
 
