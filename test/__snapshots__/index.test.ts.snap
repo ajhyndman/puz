@@ -6322,35 +6322,35 @@ Object {
   "isScrambled": false,
   "markupGrid": Array [
     Object {
-      "unknown": true,
+      "unknown_08": true,
     },
     Object {
-      "unknown": true,
+      "unknown_08": true,
     },
     Object {
       "incorrect": true,
-      "unknown": true,
+      "unknown_08": true,
     },
     Object {
-      "unknown": true,
+      "unknown_08": true,
     },
     Object {
       "previouslyIncorrect": true,
-      "unknown": true,
+      "unknown_08": true,
     },
     Object {
       "incorrect": true,
-      "unknown": true,
+      "unknown_08": true,
     },
     Object {
-      "unknown": true,
+      "unknown_08": true,
     },
     Object {
-      "unknown": true,
+      "unknown_08": true,
     },
     Object {
       "circled": true,
-      "unknown": true,
+      "unknown_08": true,
     },
   ],
   "misc": Object {
