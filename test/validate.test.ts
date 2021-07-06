@@ -1,10 +1,14 @@
-import { validate } from '../src';
+import { Puzzle, validate } from '../src';
 
-const MINIMAL_PUZZLE = {
+const MINIMAL_PUZZLE: Puzzle = {
   height: 2,
   width: 2,
   solution: 'ABCD',
   clues: ['1A', '1D', '2D', '3A'],
+};
+
+const MINIMAL_REBUS: Puzzle['rebus'] = {
+  grid: [undefined, undefined, undefined, undefined],
 };
 
 describe('validate', () => {
@@ -120,16 +124,16 @@ describe('validate', () => {
       ).not.toThrow();
     });
 
-    it("throws if markupGrid doesn't match solution length", () => {
+    it("throws if markup grid doesn't match solution length", () => {
       expect(() =>
         validate({ ...MINIMAL_PUZZLE, markupGrid: [] }),
-      ).toThrowError('markupGrid should match puzzle solution in length');
+      ).toThrowError('Markup grid should match puzzle solution in length');
       expect(() =>
         validate({
           ...MINIMAL_PUZZLE,
           markupGrid: [{}, {}, {}, {}, {}],
         }),
-      ).toThrowError('markupGrid should match puzzle solution in length');
+      ).toThrowError('Markup grid should match puzzle solution in length');
     });
 
     it('throws if there are invalid annotations', () => {
@@ -139,7 +143,50 @@ describe('validate', () => {
           // @ts-expect-error
           markupGrid: [{}, { other: false }, {}, {}],
         }),
-      ).toThrowError('markupGrid contains unsupported values');
+      ).toThrowError('Markup grid contains unsupported values');
+    });
+  });
+
+  describe('rebus', () => {
+    it('accepts minimal rebus object', () => {
+      expect(() =>
+        validate({ ...MINIMAL_PUZZLE, rebus: MINIMAL_REBUS }),
+      ).not.toThrow();
+    });
+
+    it("throws if rebus grid doesn't match solution length", () => {
+      expect(() =>
+        validate({ ...MINIMAL_PUZZLE, rebus: { ...MINIMAL_REBUS, grid: [] } }),
+      ).toThrowError(
+        'Rebus grid should match puzzle solution in length.  Expected length 4, but got 0',
+      );
+
+      expect(() =>
+        validate({
+          ...MINIMAL_PUZZLE,
+          rebus: {
+            ...MINIMAL_REBUS,
+            grid: [undefined, undefined, undefined, undefined, undefined],
+          },
+        }),
+      ).toThrowError(
+        'Rebus grid should match puzzle solution in length.  Expected length 4, but got 5',
+      );
+    });
+
+    it("throws if rebus grid references a key which isn't present in solution", () => {
+      expect(() =>
+        validate({
+          ...MINIMAL_PUZZLE,
+          rebus: { grid: [1, undefined, undefined, undefined] },
+        }),
+      ).toThrowError('Rebus grid references key that is not found in solution');
+      expect(() =>
+        validate({
+          ...MINIMAL_PUZZLE,
+          rebus: { grid: [1, 1, 2, 3], solution: { 1: 'AA', 2: 'BB' } },
+        }),
+      ).toThrowError('Rebus grid references key that is not found in solution');
     });
   });
 });

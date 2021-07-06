@@ -100,7 +100,7 @@ export function validate(puzzle: Partial<Puzzle>): asserts puzzle is Puzzle {
   if (markupGrid != null) {
     invariant(
       markupGrid.length === solution.length,
-      `markupGrid should match puzzle solution in length. Expected length ${solution.length}, but got ${markupGrid.length}`,
+      `Markup grid should match puzzle solution in length. Expected length ${solution.length}, but got ${markupGrid.length}`,
     );
 
     invariant(
@@ -111,11 +111,29 @@ export function validate(puzzle: Partial<Puzzle>): asserts puzzle is Puzzle {
             squareMarkupKeys.includes(key as SquareMarkupKey),
           ),
       ),
-      `markupGrid contains unsupported values`,
+      `Markup grid contains unsupported values`,
     );
   }
 
   // VALIDATE REBUS
+  if (rebus != null) {
+    if (rebus.grid != null) {
+      invariant(
+        rebus.grid.length === solution.length,
+        `Rebus grid should match puzzle solution in length.  Expected length ${solution.length}, but got ${rebus.grid.length}`,
+      );
+
+      const gridKeys = new Set(
+        rebus.grid.filter((a): a is number => a != null),
+      );
+      gridKeys.forEach((key) => {
+        invariant(
+          typeof rebus.solution?.[key] === 'string',
+          `Rebus grid references key that is not found in solution: "${key}"`,
+        );
+      });
+    }
+  }
 
   // VALIDATE SCRAMBLING
 
