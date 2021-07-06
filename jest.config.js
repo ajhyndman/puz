@@ -4,6 +4,6 @@ module.exports = {
   globals: {
     'ts-jest': {
       isolatedModules: true, // disable typecheckiing
-    }
+    },
   },
 };
