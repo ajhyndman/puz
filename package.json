@@ -14,6 +14,7 @@
   "scripts": {
     "build": "rollup --config rollup.config.js",
     "format": "prettier --write src test",
+    "size": " rollup -i src/index.ts -f cjs -p @rollup/plugin-typescript | uglifyjs -c -m | gzip | wc -c",
     "test": "jest"
   },
   "devDependencies": {
@@ -23,7 +24,8 @@
     "prettier": "2.3.2",
     "rollup": "2.52.7",
     "ts-jest": "27.0.3",
-    "typescript": "4.3.4"
+    "typescript": "4.3.4",
+    "uglify-js": "3.13.10"
   },
   "dependencies": {
     "ts-invariant": "0.8.2"
