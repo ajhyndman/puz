@@ -51,3 +51,5 @@ export { parseTextFile } from './text/parse';
 export { printTextFile } from './text/print';
 
 export { validate } from './validate';
+
+export * from './projections';
