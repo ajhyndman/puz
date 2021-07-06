@@ -5,6 +5,8 @@ import {
   REGEX_SOLUTION,
   REGEX_STATE,
   REGEX_VERSION_STRING,
+  SquareMarkupKey,
+  squareMarkupKeys,
 } from './util/constants';
 import { squareNeedsAcrossClue, squareNeedsDownClue } from './util/misc';
 
@@ -17,8 +19,16 @@ import { squareNeedsAcrossClue, squareNeedsDownClue } from './util/misc';
  * @throws If any validation check fails, throws an InvariantError
  */
 export function validate(puzzle: Partial<Puzzle>): asserts puzzle is Puzzle {
-  const { fileVersion, height, isScrambled, width, solution, state, clues } =
-    puzzle;
+  const {
+    fileVersion,
+    height,
+    isScrambled,
+    width,
+    solution,
+    state,
+    clues,
+    markupGrid,
+  } = puzzle;
 
   // VALIDATE REQUIRED FIELDS
   invariant(height != null, 'Puzzle is missing required field: "height"');
@@ -84,6 +94,25 @@ export function validate(puzzle: Partial<Puzzle>): asserts puzzle is Puzzle {
     requiredClueCount === clues.length,
     `Puzzle solution expects ${requiredClueCount} clues, but found ${clues.length} clues`,
   );
+
+  // VALIDATE MARKUP GRID
+  if (markupGrid) {
+    invariant(
+      markupGrid.length === solution.length,
+      `markupGrid should match puzzle solution in length. Expected length ${solution.length}, but got ${markupGrid.length}`,
+    );
+
+    invariant(
+      markupGrid.every(
+        (value) =>
+          typeof value != null &&
+          Object.keys(value).every((key) =>
+            squareMarkupKeys.includes(key as SquareMarkupKey),
+          ),
+      ),
+      `markupGrid should not contain values other than 0, 16, 32, 64 and 128`,
+    );
+  }
 
   // VALIDATE REBUS
 

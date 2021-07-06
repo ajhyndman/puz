@@ -98,4 +98,48 @@ describe('validate', () => {
       validate({ ...MINIMAL_PUZZLE, clues: ['1A', '1D', '2D'] }),
     ).toThrowError('Puzzle solution expects 4 clues, but found 3 clues');
   });
+
+  describe('markupGrid', () => {
+    it('accepts valid grids', () => {
+      expect(() =>
+        validate({
+          ...MINIMAL_PUZZLE,
+          markupGrid: [{}, {}, {}, {}],
+        }),
+      ).not.toThrow();
+      expect(() =>
+        validate({
+          ...MINIMAL_PUZZLE,
+          markupGrid: [
+            {},
+            { circled: true },
+            { incorrect: true },
+            { revealed: true },
+          ],
+        }),
+      ).not.toThrow();
+    });
+
+    it("throws if markupGrid doesn't match solution length", () => {
+      expect(() =>
+        validate({ ...MINIMAL_PUZZLE, markupGrid: [] }),
+      ).toThrowError('markupGrid should match puzzle solution in length');
+      expect(() =>
+        validate({
+          ...MINIMAL_PUZZLE,
+          markupGrid: [{}, {}, {}, {}, {}],
+        }),
+      ).toThrowError('markupGrid should match puzzle solution in length');
+    });
+
+    it('throws if there are invalid annotations', () => {
+      expect(() =>
+        validate({
+          ...MINIMAL_PUZZLE,
+          // @ts-expect-error
+          markupGrid: [{}, { other: false }, {}, {}],
+        }),
+      ).toThrowError('markupGrid should not contain values other than');
+    });
+  });
 });
