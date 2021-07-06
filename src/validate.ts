@@ -106,7 +106,7 @@ export function validate(puzzle: Partial<Puzzle>): asserts puzzle is Puzzle {
     invariant(
       markupGrid.every(
         (value) =>
-          typeof value != null &&
+          value != null &&
           Object.keys(value).every((key) =>
             squareMarkupKeys.includes(key as SquareMarkupKey),
           ),
