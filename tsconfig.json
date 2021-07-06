@@ -3,5 +3,6 @@
     "lib": ["ES2021"],
     "downlevelIteration": true,
     "strict": true,
+    "target": "ES2015"
   }
 }
