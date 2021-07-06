@@ -116,5 +116,7 @@ export function validate(puzzle: Partial<Puzzle>): asserts puzzle is Puzzle {
 
   // VALIDATE REBUS
 
+  // VALIDATE SCRAMBLING
+
   // TODO: Throw if puzzle file isn't valid in any way.
 }
