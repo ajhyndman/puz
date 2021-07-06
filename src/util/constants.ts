@@ -26,11 +26,14 @@ export const enum HEADER_OFFSET {
 }
 
 export enum SQUARE_MARKUP_BITMASK {
-  UNKNOWN = 0x08,
-  PREVIOUSLY_INCORRECT = 0x10,
-  INCORRECT = 0x20,
-  REVEALED = 0x40,
   CIRCLED = 0x80,
+  REVEALED = 0x40,
+  INCORRECT = 0x20,
+  PREVIOUSLY_INCORRECT = 0x10,
+  UNKNOWN_08 = 0x08,
+  UNKNOWN_04 = 0x04,
+  UNKNOWN_02 = 0x02,
+  UNKNOWN_01 = 0x01,
 }
 
 export const enum EXTENSION {
@@ -40,6 +43,19 @@ export const enum EXTENSION {
   REBUS_STATE = 'RUSR',
   TIMER = 'LTIM',
 }
+
+export const squareMarkupKeys = [
+  'circled',
+  'incorrect',
+  'previouslyIncorrect',
+  'revealed',
+  'unknown_08',
+  'unknown_04',
+  'unknown_02',
+  'unknown_01',
+] as const;
+
+export type SquareMarkupKey = typeof squareMarkupKeys[number];
 
 export const EMPTY_BUFFER = Buffer.from([]);
 export const NULL_BYTE = Buffer.from([0x00]);

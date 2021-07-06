@@ -309,26 +309,33 @@ export function mergeClues(
 }
 
 /**
- * Decode markup bits from a two-byte integer.
+ * Decode markup bits from a one-byte integer.
  *
  * @param markup Two bute integer with bits to be decoded
  * @returns An object with boolean keys describing the markup for a square.
  */
-export function decodeMarkup(bits: number): SquareMarkup {
+export function decodeMarkup(byte: number): SquareMarkup {
   const markupObject: SquareMarkup = {};
-  if ((bits & SQUARE_MARKUP_BITMASK.CIRCLED) !== 0) markupObject.circled = true;
-  if ((bits & SQUARE_MARKUP_BITMASK.INCORRECT) !== 0)
+  if ((byte & SQUARE_MARKUP_BITMASK.CIRCLED) !== 0) markupObject.circled = true;
+  if ((byte & SQUARE_MARKUP_BITMASK.INCORRECT) !== 0)
     markupObject.incorrect = true;
-  if ((bits & SQUARE_MARKUP_BITMASK.PREVIOUSLY_INCORRECT) !== 0)
+  if ((byte & SQUARE_MARKUP_BITMASK.PREVIOUSLY_INCORRECT) !== 0)
     markupObject.previouslyIncorrect = true;
-  if ((bits & SQUARE_MARKUP_BITMASK.REVEALED) !== 0)
+  if ((byte & SQUARE_MARKUP_BITMASK.REVEALED) !== 0)
     markupObject.revealed = true;
-  if ((bits & SQUARE_MARKUP_BITMASK.UNKNOWN) !== 0) markupObject.unknown = true;
+  if ((byte & SQUARE_MARKUP_BITMASK.UNKNOWN_08) !== 0)
+    markupObject.unknown_08 = true;
+  if ((byte & SQUARE_MARKUP_BITMASK.UNKNOWN_04) !== 0)
+    markupObject.unknown_04 = true;
+  if ((byte & SQUARE_MARKUP_BITMASK.UNKNOWN_02) !== 0)
+    markupObject.unknown_02 = true;
+  if ((byte & SQUARE_MARKUP_BITMASK.UNKNOWN_01) !== 0)
+    markupObject.unknown_01 = true;
   return markupObject;
 }
 
 /**
- * Encodes a markup object into a two-byte integer suitable for storing in
+ * Encodes a markup object into a one-byte integer suitable for storing in
  * PUZ files.
  *
  * @param markup Object to be encoded
@@ -339,13 +346,19 @@ export function encodeMarkup({
   incorrect,
   previouslyIncorrect,
   revealed,
-  unknown,
+  unknown_08,
+  unknown_04,
+  unknown_02,
+  unknown_01,
 }: SquareMarkup): number {
   return (
     (circled ? SQUARE_MARKUP_BITMASK.CIRCLED : 0) +
     (incorrect ? SQUARE_MARKUP_BITMASK.INCORRECT : 0) +
     (previouslyIncorrect ? SQUARE_MARKUP_BITMASK.PREVIOUSLY_INCORRECT : 0) +
     (revealed ? SQUARE_MARKUP_BITMASK.REVEALED : 0) +
-    (unknown ? SQUARE_MARKUP_BITMASK.UNKNOWN : 0)
+    (unknown_08 ? SQUARE_MARKUP_BITMASK.UNKNOWN_08 : 0) +
+    (unknown_04 ? SQUARE_MARKUP_BITMASK.UNKNOWN_04 : 0) +
+    (unknown_02 ? SQUARE_MARKUP_BITMASK.UNKNOWN_02 : 0) +
+    (unknown_01 ? SQUARE_MARKUP_BITMASK.UNKNOWN_01 : 0)
   );
 }

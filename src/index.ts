@@ -1,9 +1,7 @@
+import { SquareMarkupKey } from './util/constants';
+
 export type SquareMarkup = {
-  circled?: boolean;
-  incorrect?: boolean;
-  previouslyIncorrect?: boolean;
-  revealed?: boolean;
-  unknown?: boolean;
+  [key in SquareMarkupKey]?: boolean;
 };
 
 export type Puzzle = {
