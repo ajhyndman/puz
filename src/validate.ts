@@ -133,6 +133,13 @@ export function validate(puzzle: Partial<Puzzle>): asserts puzzle is Puzzle {
         );
       });
     }
+
+    if (rebus.state != null) {
+      invariant(
+        rebus.state.length === solution.length,
+        `Rebus state should match puzzle solution in length.  Expected length ${solution.length}, but got ${rebus.state.length}`,
+      );
+    }
   }
 
   // VALIDATE SCRAMBLING

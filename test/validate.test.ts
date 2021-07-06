@@ -188,5 +188,24 @@ describe('validate', () => {
         }),
       ).toThrowError('Rebus grid references key that is not found in solution');
     });
+
+    it("throws if rebus state doesn't match solution length", () => {
+      expect(() =>
+        validate({ ...MINIMAL_PUZZLE, rebus: { state: [] } }),
+      ).toThrowError(
+        'Rebus state should match puzzle solution in length.  Expected length 4, but got 0',
+      );
+
+      expect(() =>
+        validate({
+          ...MINIMAL_PUZZLE,
+          rebus: {
+            state: [undefined, undefined, undefined, undefined, undefined],
+          },
+        }),
+      ).toThrowError(
+        'Rebus state should match puzzle solution in length.  Expected length 4, but got 5',
+      );
+    });
   });
 });
