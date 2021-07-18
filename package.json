@@ -2,7 +2,9 @@
   "name": "puz",
   "version": "0.0.1",
   "description": "Read and write Across Lite .puz files",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
   "repository": "git@github.com:ajhyndman/puz.git",
   "author": "Andrew Hyndman <ajhyndman@hotmail.com>",
   "license": "MIT",
@@ -11,15 +13,21 @@
     "node": ">=15.0"
   },
   "scripts": {
+    "build": "rollup --config rollup.config.js",
     "format": "prettier --write src test",
+    "size": " rollup -i src/index.ts -f cjs -p @rollup/plugin-typescript | uglifyjs -c -m | gzip | wc -c",
     "test": "jest"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "8.2.1",
     "@types/jest": "26.0.23",
     "jest": "27.0.4",
     "prettier": "2.3.2",
+    "rollup": "2.52.7",
+    "rollup-plugin-dts": "3.0.2",
     "ts-jest": "27.0.3",
-    "typescript": "4.3.4"
+    "typescript": "4.3.4",
+    "uglify-js": "3.13.10"
   },
   "dependencies": {
     "ts-invariant": "0.8.2"

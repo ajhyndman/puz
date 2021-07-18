@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "lib": ["ES2021"],
+    "moduleResolution": "node",
     "downlevelIteration": true,
     "strict": true,
+    "target": "ES2015"
   }
 }
