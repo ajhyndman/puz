@@ -211,6 +211,9 @@ export function parseTextFile(file: string): Puzzle {
     }
   }
 
+  // normalize final puzzle solution to uppercase
+  puzzle.solution = puzzle.solution?.toUpperCase();
+
   const { width, solution } = puzzle;
   if (width != null && solution != null && across! != null && down! != null) {
     puzzle.clues = mergeClues({ width, solution }, across, down);
