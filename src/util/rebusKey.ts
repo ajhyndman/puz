@@ -1,4 +1,51 @@
 import { invariant, InvariantError } from 'ts-invariant';
+import { range } from './range';
+
+/**
+ * Compress the keys used in a puzzle rebus to the smallest integer range.
+ *
+ * i.e. if puzzle uses sparse integer keys, like [1, 6, 240, 10020], compress
+ * these to sequential integers: [0, 1, 2, 3]
+ *
+ * This is useful when writing a binary puzzle to text.
+ *
+ * NOTE: This function does not validate that the grid and solution correspond.
+ *
+ * @param rebusGrid A non-empty rebus grid, as specified in a Puzzle object
+ * @param rebusSolution A non-empty rebus solution, as sepcified in a Puzzle object
+ *
+ * @returns An equivalent rebus grid and solution with normalized key values.
+ */
+export function compressKeys(
+  rebusGrid: (number | undefined)[],
+  rebusSolution: { [key: number]: string },
+) {
+  const suppliedKeys = Object.keys(rebusSolution)
+    .map((key) => Number.parseInt(key))
+    .sort((a, b) => a - b);
+  const nextKeys = range(0, suppliedKeys.length);
+
+  // if keys are already sequential, we're done!
+  if (nextKeys.every((value, i) => value === suppliedKeys[i])) {
+    return { rebusGrid, rebusSolution };
+  }
+
+  function getNextKey(suppliedKey?: number) {
+    return suppliedKey && nextKeys[suppliedKeys.indexOf(suppliedKey)];
+  }
+
+  // map old keys to new keys in grid
+  // const nextGrid = new Array(rebusGrid.length)
+  const nextGrid = rebusGrid.map((key) => getNextKey(key));
+  // map old keys to new keys in solution
+  const nextSolution: { [key: number]: string } = Object.fromEntries(
+    Object.entries(rebusSolution).map(([key, substitution]) => [
+      getNextKey(Number.parseInt(key)),
+      substitution,
+    ]),
+  );
+  return { rebusGrid: nextGrid, rebusSolution: nextSolution };
+}
 
 export function rebusKeyCharToNum(char: string): number {
   let num;

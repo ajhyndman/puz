@@ -1,7 +1,7 @@
 import invariant from 'ts-invariant';
 import { Puzzle } from '..';
 import { divideClues } from '../util/misc';
-import { rebusKeyNumToChar } from '../util/rebusKey';
+import { compressKeys, rebusKeyNumToChar } from '../util/rebusKey';
 import { validate } from '../validate';
 
 type LineEndingStyle = 'Windows' | 'Unix';
@@ -36,46 +36,45 @@ export function printTextFile(
   }
 
   // preprocess rebus substitutions
-  if (rebus != null) {
-    const { grid: rebusGrid, solution } = rebus;
-    if (rebusGrid != null && solution != null) {
-      Object.entries(solution).forEach(([key, substitution]) => {
-        let shortSolution: string;
-        let indices: number[] = [];
+  if (rebus?.grid != null && rebus?.solution != null) {
+    const { rebusGrid, rebusSolution } = compressKeys(rebus.grid, rebus.solution);
 
-        // map key to single character "marker" used in text format
-        const numericKey = Number.parseInt(key);
-        invariant(!Number.isNaN(numericKey), `Encoded rebus keys should be numeric. Found: ${key}`);
-        const charKey = rebusKeyNumToChar(numericKey);
+    Object.entries(rebusSolution).forEach(([key, substitution]) => {
+      let shortSolution: string;
+      let indices: number[] = [];
 
-        // find associated grid indices (and short solution)
-        rebusGrid.forEach((key, i) => {
-          if (key === numericKey) {
-            indices.push(i);
-            if (shortSolution == null) {
-              shortSolution = grid[i];
-            }
-            invariant(
-              shortSolution === grid[i],
-              'Text format cannot encode multiple short solutions for a single rebus substitution',
-            );
+      // map key to single character "marker" used in text format
+      const numericKey = Number.parseInt(key);
+      invariant(!Number.isNaN(numericKey), `Encoded rebus keys should be numeric. Found: ${key}`);
+      const charKey = rebusKeyNumToChar(numericKey);
+
+      // find associated grid indices (and short solution)
+      rebusGrid.forEach((key, i) => {
+        if (key === numericKey) {
+          indices.push(i);
+          if (shortSolution == null) {
+            shortSolution = grid[i];
           }
-        });
-        invariant(
-          shortSolution! != null && indices.length > 0,
-          `Rebus solutions should have at least one corresponding grid entry. Key: ${key} Grid: ${rebusGrid}`,
-        );
-
-        // encode rebus substitution in grid
-        grid = grid
-          .split('')
-          .map((character, i) => (indices.includes(i) ? charKey : character))
-          .join('');
-
-        // encode rebus substitution as annotation
-        rebusAnnotations.push(`${charKey}:${substitution}:${shortSolution}`);
+          invariant(
+            shortSolution === grid[i],
+            'Text format cannot encode multiple short solutions for a single rebus substitution',
+          );
+        }
       });
-    }
+      invariant(
+        shortSolution! != null && indices.length > 0,
+        `Rebus solutions should have at least one corresponding grid entry. Key: ${key} Grid: ${rebusGrid}`,
+      );
+
+      // encode rebus substitution in grid
+      grid = grid
+        .split('')
+        .map((character, i) => (indices.includes(i) ? charKey : character))
+        .join('');
+
+      // encode rebus substitution as annotation
+      rebusAnnotations.push(`${charKey}:${substitution}:${shortSolution}`);
+    });
   }
 
   let text = '';

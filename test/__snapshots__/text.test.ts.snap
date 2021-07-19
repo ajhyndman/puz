@@ -1276,11 +1276,11 @@ exports[`puz printTextFiles prints "v2_text_format_rebus.txt" back to expected V
 	ETE.BA1.OBEY.S3TY.COB
 	ATTS..AWAIT.POOR.ATMO
 	SEEINGRED..GUTSY.TRIO
-	TRA$OMMISSIONS..R4OCK
+	TRA#OMMISSIONS..R4OCK
 	...ADAY..TOIT.GATO...
 	CADRE..SWANN.BENEFITS
 	OTO.AUSTIN.GIANT.ITOO
-	MA#ERBOARD.ANCIENT5AN
+	MA@ERBOARD.ANCIENT5AN
 	BRAY.OATES.LIKESO.BIG
 	SINEWAVE.FELTS..BAERS
 	...DATE.NIKI..MOLD...
@@ -1302,8 +1302,8 @@ exports[`puz printTextFiles prints "v2_text_format_rebus.txt" back to expected V
 	8:AUG:A
 	9:SEP:S
 	0:OCT:O
-	#:NOV:N
-	$:DEC:D
+	@:NOV:N
+	#:DEC:D
 <ACROSS>
 	Portraitist of George Washington
 	Robot maid on \\"The Jetsons\\"
