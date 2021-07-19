@@ -23,12 +23,12 @@ export type Puzzle = {
   clues: string[];
 
   // extension data
+  markupGrid?: SquareMarkup[];
   rebus?: {
     grid?: (number | undefined)[];
     solution?: { [key: number]: string };
     state?: (string | undefined)[];
   };
-  markupGrid?: SquareMarkup[];
   timer?: {
     secondsElapsed: number;
     isPaused: boolean;
