@@ -1,5 +1,7 @@
+import invariant from 'ts-invariant';
 import { Puzzle } from '..';
 import { divideClues } from '../util/misc';
+import { rebusKeyNumToChar } from '../util/rebusKey';
 import { validate } from '../validate';
 
 type LineEndingStyle = 'Windows' | 'Unix';
@@ -7,8 +9,8 @@ type Indentation = '' | '  ' | '    ' | '\t';
 
 export function printTextFile(
   puzzle: Puzzle,
-  lineEndingStyle: LineEndingStyle = 'Unix',
   indentation: Indentation = '\t',
+  lineEndingStyle: LineEndingStyle = 'Unix',
 ): string {
   validate(puzzle);
 
@@ -16,6 +18,64 @@ export function printTextFile(
 
   function printLine(content?: string) {
     return `${indentation}${content ?? ''}${lineEnding}`;
+  }
+
+  // PROCESS REBUS DATA
+  const { markupGrid, rebus } = puzzle;
+  const needsRebusSection = markupGrid != null || rebus != null;
+
+  let grid = puzzle.solution;
+  let rebusAnnotations: string[] = [];
+
+  // encode circled squares into grid
+  if (markupGrid != null) {
+    grid = grid
+      .split('')
+      .map((character, i) => (markupGrid[i].circled ? character.toLowerCase() : character))
+      .join('');
+  }
+
+  // preprocess rebus substitutions
+  if (rebus != null) {
+    const { grid: rebusGrid, solution } = rebus;
+    if (rebusGrid != null && solution != null) {
+      Object.entries(solution).forEach(([key, substitution]) => {
+        let shortSolution: string;
+        let indices: number[] = [];
+
+        // map key to single character "marker" used in text format
+        const numericKey = Number.parseInt(key);
+        invariant(!Number.isNaN(numericKey), `Encoded rebus keys should be numeric. Found: ${key}`);
+        const charKey = rebusKeyNumToChar(numericKey);
+
+        // find associated grid indices (and short solution)
+        rebusGrid.forEach((key, i) => {
+          if (key === numericKey) {
+            indices.push(i);
+            if (shortSolution == null) {
+              shortSolution = grid[i];
+            }
+            invariant(
+              shortSolution === grid[i],
+              'Text format cannot encode multiple short solutions for a single rebus substitution',
+            );
+          }
+        });
+        invariant(
+          shortSolution! != null && indices.length > 0,
+          `Rebus solutions should have at least one corresponding grid entry. Key: ${key} Grid: ${rebusGrid}`,
+        );
+
+        // encode rebus substitution in grid
+        grid = grid
+          .split('')
+          .map((character, i) => (indices.includes(i) ? charKey : character))
+          .join('');
+
+        // encode rebus substitution as annotation
+        rebusAnnotations.push(`${charKey}:${substitution}:${shortSolution}`);
+      });
+    }
   }
 
   let text = '';
@@ -41,12 +101,22 @@ export function printTextFile(
 
   // PRINT GRID
   text += '<GRID>' + lineEnding;
-  const gridRows = puzzle.solution.match(new RegExp(`.{${puzzle.width}}`, 'g'))!;
+  // split puzzle solution into strings of puzzle.width length
+  const gridRows = grid.match(new RegExp(`.{${puzzle.width}}`, 'g'))!;
   gridRows.forEach((row) => {
     text += printLine(row);
   });
 
   // PRINT REBUS (Optional)
+  if (needsRebusSection) {
+    text += '<REBUS>' + lineEnding;
+    if (puzzle.markupGrid?.some(({ circled }) => circled)) {
+      text += printLine('MARK;');
+    }
+    rebusAnnotations.forEach((annotation) => {
+      text += printLine(annotation);
+    });
+  }
 
   // PRINT CLUES
   const { across, down } = divideClues(puzzle);
