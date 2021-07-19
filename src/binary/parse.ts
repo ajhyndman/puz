@@ -1,4 +1,4 @@
-import { invariant } from 'ts-invariant';
+import invariant from 'ts-invariant';
 
 import { Puzzle } from '..';
 import { getFileChecksum, getHeaderChecksum, getICheatedChecksum } from '../projections';
