@@ -6,6 +6,8 @@ import { terser } from 'rollup-plugin-terser';
 
 // do not bundle external dependencies
 const external = ['ts-invariant'];
+
+// the name of the package export, when exported as a global
 const name = 'Puz';
 
 export default [
