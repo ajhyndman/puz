@@ -5,16 +5,19 @@
  * the functional equivalents to "getter" methods from object-oriented software
  * patterns.
  */
+import invariant from 'ts-invariant';
 import { Puzzle } from './';
 import { checksum } from './util/checksum';
 import { ENCODING, HEADER_OFFSET, ICHEATED } from './util/constants';
 import {
   encodeHeaderWithoutChecksums,
   getMetaStrings,
+  getSubstitution,
   guessFileEncodingFromVersion,
   squareNeedsAcrossClue,
   squareNeedsDownClue,
 } from './util/misc';
+import { validate } from './validate';
 
 export function getFileChecksum(puzzle: Puzzle): number {
   const { fileVersion, solution } = puzzle;
@@ -102,4 +105,66 @@ export function getBlankState(puzzle: Pick<Puzzle, 'solution'>): string {
  */
 export function getState(puzzle: Pick<Puzzle, 'solution' | 'state'>): string {
   return puzzle.state ?? getBlankState(puzzle);
+}
+
+/**
+ * Does the puzzle expect a rebus solution?
+ *
+ * @param puzzle A valid puzzle object.
+ * @returns True if the puzzle expects a rebus substitation for any index.
+ */
+export function hasRebusSolution(puzzle: Puzzle): boolean {
+  return puzzle.rebus?.solution != null && Object.keys(puzzle.rebus.solution).length > 0;
+}
+
+/**
+ * Has the user attempted to supply a rebus solution?
+ *
+ * @param puzzle A valid puzzle object.
+ * @returns True if the user has entered a non-empty rebus substitution.
+ */
+export function hasRebusState(puzzle: Puzzle): boolean {
+  return puzzle.rebus?.state != null && puzzle.rebus.state.some((value) => value != null);
+}
+
+/**
+ * Check whether the current puzzle is solved!
+ *
+ * @param puzzle
+ * A complete, valid puzzle object. The puzzle should not be scrambled.
+ * @param ignoreRebus
+ * Set this to true to check a puzzle for correctness ignoring expected rebus
+ * substitutions. This is useful when an application does not support rebus
+ * user input.
+ *
+ * @returns If the puzzle is correct, returns true
+ * @throws InvariantViolation if the puzzle is scrambled or invalid.
+ */
+export function isCorrect(puzzle: Puzzle, ignoreRebus: boolean = false): boolean {
+  validate(puzzle);
+  invariant(!puzzle.isScrambled, 'Please unscramble the puzzle before checking correctness');
+
+  // compare Rebus state to solution
+  let rebusCorrect = false;
+  if (!hasRebusSolution(puzzle) && hasRebusState(puzzle)) {
+    // reject if user entered a rebus and none was required
+    rebusCorrect = false;
+  } else if (ignoreRebus || !hasRebusSolution(puzzle)) {
+    // save to skip checking solution
+    rebusCorrect = true;
+  } else {
+    // validate that every state entry matches expected solution
+    const state = puzzle.rebus?.state;
+    rebusCorrect =
+      state != null &&
+      state.every((value, i) => {
+        const substitution = getSubstitution(puzzle, i);
+        return substitution != null && value === substitution;
+      });
+  }
+
+  // compare simple state to solution
+  const stateCorrect = puzzle.state === puzzle.solution;
+
+  return rebusCorrect && stateCorrect;
 }

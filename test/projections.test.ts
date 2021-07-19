@@ -1,4 +1,12 @@
-import { gridNumbering } from '../src/projections';
+import { Puzzle } from '../src';
+import { gridNumbering, isCorrect } from '../src/projections';
+
+const MINIMAL_PUZZLE: Puzzle = {
+  height: 2,
+  width: 2,
+  solution: 'ABCD',
+  clues: ['1A', '1D', '2D', '3A'],
+};
 
 describe('projections', () => {
   describe('gridNumbering', () => {
@@ -40,6 +48,61 @@ describe('projections', () => {
         undefined,
         undefined,
       ]);
+    });
+  });
+
+  describe('isCorrect', () => {
+    it('rejects empty solutions', () => {
+      expect(isCorrect(MINIMAL_PUZZLE)).toBe(false);
+    });
+
+    it('correctly identifies simple solution', () => {
+      expect(isCorrect({ ...MINIMAL_PUZZLE, state: '----' })).toBe(false);
+      expect(isCorrect({ ...MINIMAL_PUZZLE, state: 'ABC-' })).toBe(false);
+      expect(isCorrect({ ...MINIMAL_PUZZLE, state: 'ABCd' })).toBe(false);
+      expect(isCorrect({ ...MINIMAL_PUZZLE, state: 'ABDC' })).toBe(false);
+      expect(isCorrect({ ...MINIMAL_PUZZLE, state: 'ABCD' })).toBe(true);
+    });
+
+    it('requires rebus state if solution supplied', () => {
+      expect(
+        isCorrect({
+          ...MINIMAL_PUZZLE,
+          rebus: { solution: { 1: 'AAA' }, grid: [1, , , ,] },
+          state: 'ABCD',
+        }),
+      ).toBe(false);
+
+      expect(
+        isCorrect({
+          ...MINIMAL_PUZZLE,
+          rebus: { solution: { 1: 'AAA' }, grid: [1, , , ,], state: ['AAA', , , ,] },
+          state: 'ABCD',
+        }),
+      ).toBe(true);
+    });
+
+    it('rejects extraneous rebus state', () => {
+      expect(
+        isCorrect({
+          ...MINIMAL_PUZZLE,
+          rebus: { state: ['AAA', , , ,] },
+          state: 'ABCD',
+        }),
+      ).toBe(false);
+    });
+
+    it('allows opting out of rebus validation', () => {
+      expect(
+        isCorrect(
+          {
+            ...MINIMAL_PUZZLE,
+            rebus: { solution: { 1: 'AAA' }, grid: [1, , , ,] },
+            state: 'ABCD',
+          },
+          true,
+        ),
+      ).toBe(true);
     });
   });
 });

@@ -315,3 +315,16 @@ export function encodeMarkup({
     (unknown_01 ? SQUARE_MARKUP_BITMASK.UNKNOWN_01 : 0)
   );
 }
+
+/**
+ * Get the expected substitution for a given solution index, if any.
+ */
+export function getSubstitution(
+  puzzle: Pick<Puzzle, 'rebus' | 'solution'>,
+  index: number,
+): string | undefined {
+  const substitutionKey = puzzle.rebus?.grid?.[index];
+  if (substitutionKey) {
+    return puzzle.rebus?.solution?.[substitutionKey];
+  }
+}
