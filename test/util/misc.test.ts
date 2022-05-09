@@ -1,4 +1,4 @@
-import { divideClues, mergeClues } from '../../src/util/misc';
+import { divideClues, mergeClues, rotateRows, transpose } from '../../src/util/misc';
 
 describe('util/misc', () => {
   describe('divideClues', () => {
@@ -58,5 +58,44 @@ describe('util/misc', () => {
       const { across, down } = divideClues(puzzle);
       expect(mergeClues(puzzle, across, down)).toEqual(puzzle.clues);
     });
+  });
+
+  describe('transpose', () => {
+    it('transposes square grids', () => {
+      expect(transpose('ABCD', 2, 2)).toBe('ACBD');
+      expect(transpose('ABCDEFGHI', 3, 3)).toBe('ADGBEHCFI');
+    });
+
+    it('transposes rectangular grids', () => {
+      expect(transpose('ABCDEF', 3, 2)).toBe('ACEBDF');
+      expect(transpose('ABCDEF', 2, 3)).toBe('ADBECF');
+    });
+  });
+});
+
+describe('rotateRows', () => {
+  it('shifts rows in square grids', () => {
+    expect(rotateRows('ABCD', 1, 2, 2)).toBe('BADC');
+    expect(rotateRows('ABCDEFGHI', 1, 3, 3)).toBe('BCAEFDHIG');
+    expect(rotateRows('ABCDEFGHIJKLMNOP', 1, 4, 4)).toBe('BCDAFGHEJKLINOPM');
+    expect(rotateRows('ABCDEFGHIJKLMNOP', 2, 4, 4)).toBe('CDABGHEFKLIJOPMN');
+  });
+
+  it('shifts rows in rectangular grids', () => {
+    expect(rotateRows('ABCDEFGH', 1, 4, 2)).toBe('BCDAFGHE');
+    expect(rotateRows('ABCDEFGH', 2, 4, 2)).toBe('CDABGHEF');
+    expect(rotateRows('ABCDEFGH', 3, 4, 2)).toBe('DABCHEFG');
+    expect(rotateRows('ABCDEFGH', 1, 2, 4)).toBe('BADCFEHG');
+  });
+
+  it('supports shifts larger than the table dimensions', () => {
+    expect(rotateRows('ABCDEFGHIJKLMNOP', 4, 4, 4)).toBe('ABCDEFGHIJKLMNOP');
+    expect(rotateRows('ABCDEFGHIJKLMNOP', 5, 4, 4)).toBe('BCDAFGHEJKLINOPM');
+  });
+
+  it('collapses empty cells in rows that have less than width characters', () => {
+    expect(rotateRows('ABCDE', 1, 3, 2)).toBe('BCAED');
+    expect(rotateRows('ABCDE', 1, 2, 3)).toBe('BADCE');
+    expect(rotateRows('ABCDE', 1, 3, 3)).toBe('BCAED');
   });
 });

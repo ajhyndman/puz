@@ -3,6 +3,7 @@ import invariant from 'ts-invariant';
 import { Puzzle, SquareMarkup } from '../';
 import { checksum } from './checksum';
 import {
+  CHAR_CODE_A,
   DEFAULT_FILE_VERSION,
   ENCODING,
   EXTENSION,
@@ -11,10 +12,12 @@ import {
   NULL_BYTE,
   REGEX_BLACK_SQUARE,
   REGEX_REBUS_TABLE_STRING,
+  REGEX_UPPERCASE_ALPHA,
   REGEX_VERSION_STRING,
   SQUARE_MARKUP_BITMASK,
 } from './constants';
 import { PuzzleReader } from './PuzzleReader';
+import { range } from './range';
 
 export function parseVersion(
   version: string = DEFAULT_FILE_VERSION,
@@ -327,4 +330,86 @@ export function getSubstitution(
   if (substitutionKey) {
     return puzzle.rebus?.solution?.[substitutionKey];
   }
+}
+
+/**
+ * Transpose the rows and columns in a solution.
+ *
+ * ABC    ADG
+ * DEF => BEH
+ * GHI    CFI
+ *
+ * @example
+ * transpose('ABCDEFGHI', 3, 3)
+ * // => 'ADGBEHCFI
+ *
+ * @param grid A string representing the concatenated rows of a grid of text
+ * @param height The height of the grid before transposing
+ * @param width The width of the grid before transposing
+ * @returns A string representing the concatenated rows of the resulting grid.
+ */
+export function transpose(grid: string, height: number, width: number): string {
+  let result = '';
+  for (let row = 0; row < width; row += 1) {
+    for (let col = 0; col < height; col += 1) {
+      result += grid[row + col * width];
+    }
+  }
+  return result;
+}
+
+/**
+ * Map a character to a digit from 0 to 25, inclusive.
+ */
+export function getCharCode(char: string) {
+  invariant(REGEX_UPPERCASE_ALPHA.test(char), 'getChar expects a single character from A-Z.');
+  return char.charCodeAt(0) - CHAR_CODE_A;
+}
+
+/**
+ * Substitute a letter in the latin alphabet by n positions.
+ *
+ * @param char Character to be shifted
+ * @param n number of positions to shift the character
+ * @returns The character to use as a substitute.
+ */
+export function shiftLetter(char: string, n: number) {
+  invariant(
+    REGEX_UPPERCASE_ALPHA.test(char),
+    `shiftLetter expects a single uppercase letter, but got: "${char}"`,
+  );
+  const index = char.charCodeAt(0) - CHAR_CODE_A;
+  const nextIndex = (index + n) % 26;
+  return String.fromCharCode(nextIndex + CHAR_CODE_A);
+}
+
+/**
+ * Given a grid (encoded as a string), shift the characters in each row to
+ * the left by n. Characters that are shifted off one end of a row should be
+ * added to the other.
+ *
+ * // n = 1
+ * ABC    CAB
+ * DEF => FDE
+ * GHI    IGH
+ *
+ * @example
+ * rotateRows('ABCDEFGHI', 1, 3, 3);
+ * // => 'CABFDEIGH'
+ *
+ * @param grid
+ * @param rows
+ * @param width
+ * @param height
+ */
+export function rotateRows(grid: string, n: number, width: number, height: number) {
+  return range(0, width * height)
+    .map((i) => {
+      const col = i % width;
+      const prevCol = (col + n) % width;
+      const row = Math.floor(i / width);
+      return grid[row * width + prevCol];
+    })
+    .filter((a) => a != null)
+    .join('');
 }
