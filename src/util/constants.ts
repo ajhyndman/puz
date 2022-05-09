@@ -57,6 +57,7 @@ export const squareMarkupKeys = [
 
 export type SquareMarkupKey = typeof squareMarkupKeys[number];
 
+export const CHAR_CODE_A = 'A'.charCodeAt(0);
 export const EMPTY_BUFFER = Buffer.from([]);
 export const NULL_BYTE = Buffer.from([0x00]);
 export const ICHEATED = Buffer.from('ICHEATED', 'ascii');
@@ -69,5 +70,6 @@ export const REGEX_TIMER_STRING = /^(\d+),([01])$/;
 export const REGEX_VERSION_STRING = /^(\d+)\.(\d+)([a-z])?$/;
 export const REGEX_SOLUTION = /^[.:A-Za-z0-9@#$%&+?]+$/;
 export const REGEX_STATE = /^[-.:A-Za-z0-9@#$%&+?]+$/;
+export const REGEX_UPPERCASE_ALPHA = /^[A-Z]$/;
 
 export const DEFAULT_FILE_VERSION = '1.4';
