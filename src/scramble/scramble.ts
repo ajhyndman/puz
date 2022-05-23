@@ -9,17 +9,11 @@
 import invariant from 'ts-invariant';
 import { Puzzle } from '..';
 import { checksum } from '../util/checksum';
-import { CHAR_CODE_A, REGEX_BLACK_SQUARE, REGEX_UPPERCASE_ALPHA } from '../util/constants';
-import { getCharCode, transpose } from '../util/misc';
+import { REGEX_BLACK_SQUARE } from '../util/constants';
+import { transpose } from '../util/misc';
 import { range } from '../util/range';
 import { validate } from '../validate';
-
-const KEY_REGEX = /^[0-9]{4}$/;
-
-function normalizeKey(key: string) {
-  invariant(KEY_REGEX.test(key));
-  return key.split('').map((a) => Number.parseInt(a)) as [number, number, number, number];
-}
+import { scrambleSolution, unscrambleSolution } from './scrambleC';
 
 /**
  * Interpret a list of characters as a grid with specified number of rows.
@@ -56,13 +50,6 @@ export function scramble(puzzle: Puzzle, inputKey: string): Puzzle {
   validate(puzzle);
   invariant(!puzzle.isScrambled, 'Puzzle is already scrambled!');
 
-  invariant(
-    puzzle.solution.length >= 12,
-    `Puzzle scrambling is only supported for puzzles with solutions of at least 12 characters. Found ${puzzle.solution.length} characters instead.`,
-  );
-
-  const key = normalizeKey(inputKey);
-
   const { height, width, solution } = puzzle;
 
   // Transpose the solution text so that it read's column-wise. i.e. From top
@@ -87,54 +74,12 @@ export function scramble(puzzle: Puzzle, inputKey: string): Puzzle {
   // ignoring black squares.
   const scrambledChecksum = checksum(Buffer.from(plainText, 'ascii'));
 
-  const isSizeEven = size % 2 === 0;
-
-  // Map characters to numbers from 0 to 25, inclusive.
-  let characters = plainText.split('').map(getCharCode);
-
-  // for each key digit
-  key.forEach((keyDigit, k) => {
-    let prev = characters.slice();
-
-    // sequentially add key digits to contents
-    prev = prev.map((value, i) => (value + key[i % 4]) % 26);
-
-    // group in 2^(4-k) cols, and shift rows
-    const width = Math.pow(2, 4 - k);
-    const height = Math.ceil(size / width);
-    characters = range(0, width * height)
-      .map((i) => {
-        const row = i % height;
-        const prevRow = (row + keyDigit) % height;
-        const col = Math.floor(i / height);
-        return prev[col * height + prevRow];
-      })
-      .filter((a) => a != null);
-
-    // TODO: if even, shift cols
-  });
-
-  // map numbers back to characters
-  const scrambledCharacters = characters.map((num) => String.fromCharCode(num + CHAR_CODE_A));
-
-  // re-insert black squares
-  let scrambledText = columnWiseSolution
-    .split('')
-    .map((originalChar, i) => {
-      if (REGEX_BLACK_SQUARE.test(originalChar)) {
-        return originalChar;
-      }
-      return scrambledCharacters.shift();
-    })
-    .join('');
-
-  // re-order solution back into rows
-  scrambledText = transpose(scrambledText, width, height);
+  const scrambledSolution = scrambleSolution(solution, inputKey);
 
   return {
     ...puzzle,
 
-    solution: scrambledText,
+    solution: scrambledSolution,
 
     isScrambled: true,
 
@@ -149,9 +94,22 @@ export function unscramble(puzzle: Puzzle, inputKey: string): Puzzle {
   validate(puzzle);
   invariant(puzzle.isScrambled, 'Puzzle is not scrambled!');
 
-  const key = normalizeKey(inputKey);
+  invariant(
+    puzzle.misc?.scrambledChecksum,
+    'This puzzle appears to be scrambled, but is missing a checksum.',
+  );
 
-  // TODO: unscramble
+  const unscrambledSolution = unscrambleSolution(puzzle.solution, inputKey);
 
-  return puzzle;
+  // TODO: validate checksum
+
+  return {
+    ...puzzle,
+    solution: unscrambledSolution,
+    isScrambled: false,
+    misc: {
+      ...puzzle.misc,
+      scrambledChecksum: undefined,
+    },
+  };
 }
