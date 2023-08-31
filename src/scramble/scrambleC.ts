@@ -3,7 +3,7 @@ import { CHAR_CODE_A } from '../util/constants';
 
 const KEY_REGEX = /^[0-9]{4}$/;
 
-function normalizeKey(key: number | string) {
+function parseKey(key: number | string) {
   const stringKey = typeof key === 'string' ? key : key.toString();
   invariant(KEY_REGEX.test(stringKey));
   return stringKey.split('').map((a) => Number.parseInt(a)) as [number, number, number, number];
@@ -26,7 +26,7 @@ function normalizeKey(key: number | string) {
  * @returns The plain
  */
 export function scrambleSolution(plainText: string, keyString: string) {
-  const key = normalizeKey(keyString);
+  const key = parseKey(keyString);
   const size = plainText.length;
 
   const buffer = plainText.split('').map((char) => char.charCodeAt(0) - CHAR_CODE_A);
@@ -42,7 +42,7 @@ export function scrambleSolution(plainText: string, keyString: string) {
   }
 
   for (let k = 0; k < 4; k += 1) {
-    let n = Math.pow(2, 4 - k);
+    let n = 2 ** (4 - k);
     let j = -1;
     for (let i = 0; i < size; i += 1) {
       j += n;
@@ -52,7 +52,7 @@ export function scrambleSolution(plainText: string, keyString: string) {
       buffer[j] = (buffer[j] + key[i % 4]) % 26;
     }
 
-    if (n >= size) {
+    if (n > size) {
       n -= size | 1;
     }
 
@@ -79,7 +79,7 @@ export function scrambleSolution(plainText: string, keyString: string) {
 }
 
 export function unscrambleSolution(plainText: string, keyString: string) {
-  const key = normalizeKey(keyString);
+  const key = parseKey(keyString);
   const size = plainText.length;
 
   const buffer = plainText.split('').map((char) => char.charCodeAt(0) - CHAR_CODE_A);

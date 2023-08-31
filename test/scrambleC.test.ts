@@ -10,7 +10,7 @@ describe('scrambleSolution', () => {
   });
 
   it('can scramble 16 character solutions', () => {
-    expect(scrambleSolution('AAAAAAAAAAAAAAAA', '1000')).toBe('CDBDABACBBABAAAB');
+    expect(scrambleSolution('AAAAAAAAAAAAAAAA', '1000')).toBe('DDBCBBABCBAABAAA');
     expect(scrambleSolution('AAAAAAAAAAAAAAAA', '0100')).toBe('ABCCBCCCAABCAAAB');
     expect(scrambleSolution('AAAAAAAAAAAAAAAA', '0010')).toBe('BBBACDBBABAABCBB');
     expect(scrambleSolution('AAAAAAAAAAAAAAAA', '0001')).toBe('AABABBCABADBDCAB');
@@ -63,9 +63,9 @@ describe('unscrambleSolution', () => {
 
     it('for a 16 character solution', () => {
       // FIXME: Why does this case not pass??
-      // expect(unscrambleSolution(scrambleSolution('AAAAAAAAAAAAAAAA', '1000'), '1000')).toBe(
-      //   'AAAAAAAAAAAAAAAA',
-      // );
+      expect(unscrambleSolution(scrambleSolution('AAAAAAAAAAAAAAAA', '1000'), '1000')).toBe(
+        'AAAAAAAAAAAAAAAA',
+      );
 
       expect(unscrambleSolution(scrambleSolution('AAAAAAAAAAAAAAAA', '0100'), '0100')).toBe(
         'AAAAAAAAAAAAAAAA',
