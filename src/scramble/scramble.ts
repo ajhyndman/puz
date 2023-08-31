@@ -11,53 +11,35 @@ import { Puzzle } from '..';
 import { checksum } from '../util/checksum';
 import { REGEX_BLACK_SQUARE } from '../util/constants';
 import { transpose } from '../util/misc';
-import { range } from '../util/range';
 import { validate } from '../validate';
 import { scrambleSolution, unscrambleSolution } from './scrambleC';
 
-/**
- * Interpret a list of characters as a grid with specified number of rows.
- * Then shuffle "key" cols from the left of the grid to the right.
- *
- * @param rows
- * @param key
- * @param characters
- * @returns
- */
-export function shuffle(rows: number, key: number, characters: number[]) {
-  // // if rows is greater than size of puzzle, shift rows
-  // let numRows = rows;
-  // if (rows > characters.length) {
-  //   numRows = rows - (characters.length | 1);
-  // }
-  invariant(
-    rows <= characters.length,
-    "can't shuffle solution assuming more rows than size of puzzle",
-  );
+function extractScrambleText(puzzle: Puzzle) {
+  const { height, width, solution } = puzzle;
+  // Transpose the solution text so that it read's column-wise. i.e. From top
+  // to bottom, then left to right.
+  const columnWiseSolution = transpose(solution, height, width);
+  return columnWiseSolution.replace(new RegExp(REGEX_BLACK_SQUARE, 'g'), '');
+}
 
-  const height = Math.ceil(characters.length / rows);
-  return range(0, rows * height)
-    .map((i) => {
-      const row = i % height;
-      const prevRow = (row + key) % height;
-      const col = Math.floor(i / height);
-      return characters[col * height + prevRow];
-    })
-    .filter((a) => a != null);
+function injectScrambleText(puzzle: Puzzle, plainText: string): string {
+  const { height, width, solution } = puzzle;
+  const plainTextArray = [...plainText];
+  // Transpose the solution text so that it read's column-wise. i.e. From top
+  // to bottom, then left to right.
+  let columnWiseSolution = transpose(solution, height, width);
+  columnWiseSolution = [...columnWiseSolution]
+    .map((char) => (REGEX_BLACK_SQUARE.test(char) ? char : plainTextArray.shift()))
+    .join('');
+  return transpose(columnWiseSolution, height, width);
 }
 
 export function scramble(puzzle: Puzzle, inputKey: string): Puzzle {
   validate(puzzle);
   invariant(!puzzle.isScrambled, 'Puzzle is already scrambled!');
 
-  const { height, width, solution } = puzzle;
-
-  // Transpose the solution text so that it read's column-wise. i.e. From top
-  // to bottom, then left to right.
-  const columnWiseSolution = transpose(solution, height, width);
-
   // omit black squares
-  const plainText = columnWiseSolution.replace(new RegExp(REGEX_BLACK_SQUARE, 'g'), '');
+  const plainText = extractScrambleText(puzzle);
   const size = plainText.length;
 
   invariant(
@@ -74,7 +56,8 @@ export function scramble(puzzle: Puzzle, inputKey: string): Puzzle {
   // ignoring black squares.
   const scrambledChecksum = checksum(Buffer.from(plainText, 'ascii'));
 
-  const scrambledSolution = scrambleSolution(solution, inputKey);
+  const scrambledText = scrambleSolution(plainText, inputKey);
+  const scrambledSolution = injectScrambleText(puzzle, scrambledText);
 
   return {
     ...puzzle,
@@ -99,7 +82,9 @@ export function unscramble(puzzle: Puzzle, inputKey: string): Puzzle {
     'This puzzle appears to be scrambled, but is missing a checksum.',
   );
 
-  const unscrambledSolution = unscrambleSolution(puzzle.solution, inputKey);
+  const plainText = extractScrambleText(puzzle);
+  const unscrambledText = unscrambleSolution(plainText, inputKey);
+  const unscrambledSolution = injectScrambleText(puzzle, unscrambledText);
 
   // TODO: validate checksum
 
