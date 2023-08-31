@@ -1,3 +1,4 @@
+import { scramble } from './scramble/scramble';
 import { SquareMarkupKey } from './util/constants';
 
 export type SquareMarkup = {
@@ -51,5 +52,7 @@ export { parseTextFile } from './text/parse';
 export { printTextFile } from './text/print';
 
 export { validate } from './validate';
+
+export { scramble, unscramble } from './scramble/scramble';
 
 export * from './projections';
