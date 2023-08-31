@@ -1,4 +1,4 @@
-import { divideClues, mergeClues } from '../../src/util/misc';
+import { divideClues, mergeClues, transpose } from '../../src/util/misc';
 
 describe('util/misc', () => {
   describe('divideClues', () => {
@@ -57,6 +57,18 @@ describe('util/misc', () => {
 
       const { across, down } = divideClues(puzzle);
       expect(mergeClues(puzzle, across, down)).toEqual(puzzle.clues);
+    });
+  });
+
+  describe('transpose', () => {
+    it('transposes square grids', () => {
+      expect(transpose('ABCD', 2, 2)).toBe('ACBD');
+      expect(transpose('ABCDEFGHI', 3, 3)).toBe('ADGBEHCFI');
+    });
+
+    it('transposes rectangular grids', () => {
+      expect(transpose('ABCDEF', 3, 2)).toBe('ACEBDF');
+      expect(transpose('ABCDEF', 2, 3)).toBe('ADBECF');
     });
   });
 });

@@ -1,4 +1,5 @@
 import { invariant, InvariantError } from 'ts-invariant';
+import { CHAR_CODE_A } from './constants';
 import { range } from './range';
 
 /**
@@ -58,10 +59,10 @@ export function rebusKeyCharToNum(char: string): number {
     num = { '@': 11, '#': 12, $: 13, '%': 14, '&': 15, '+': 16, '?': 17 }[char]!;
   } else if (/^[A-Z]$/.test(char)) {
     const offset = 10 + 7;
-    num = offset + char.charCodeAt(0) - 'A'.charCodeAt(0) + 1;
+    num = offset + char.charCodeAt(0) - CHAR_CODE_A + 1;
   } else if (/^[a-z]$/.test(char)) {
     const offset = 10 + 7 + 26;
-    num = offset + char.charCodeAt(0) - 'a'.charCodeAt(0) + 1;
+    num = offset + char.charCodeAt(0) - CHAR_CODE_A + 1;
   }
 
   invariant(num != null, `encodeRebusKey: Encountered an invalid character "${char}"`);
