@@ -41,7 +41,7 @@ export function getHeaderChecksum(puzzle: Puzzle): number {
   return checksum(header.subarray(HEADER_OFFSET.WIDTH_START, HEADER_OFFSET.HEADER_END));
 }
 
-export function getICheatedChecksum(puzzle: Puzzle): Uint8Array {
+export function getICheatedChecksum(puzzle: Puzzle): Buffer {
   const encoding = guessFileEncodingFromVersion(puzzle.fileVersion);
 
   const header = encodeHeaderWithoutChecksums(puzzle);
@@ -67,7 +67,7 @@ export function getICheatedChecksum(puzzle: Puzzle): Uint8Array {
     ],
     (byte, i) => byte ^ ICHEATED[i],
   );
-  return checksum_i;
+  return Buffer.from(checksum_i);
 }
 
 export function getFileEncoding(puzzle: Puzzle): ENCODING {
