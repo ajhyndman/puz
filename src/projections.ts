@@ -74,6 +74,31 @@ export function getFileEncoding(puzzle: Puzzle): ENCODING {
   return guessFileEncodingFromVersion(puzzle.fileVersion);
 }
 
+export function enumerateClues(puzzle: Pick<Puzzle, 'solution' | 'clues' | 'width'>): {
+  across: { number: number; clue: string }[];
+  down: { number: number; clue: string }[];
+} {
+  const { clues, solution } = puzzle;
+  let clueNumber = 0;
+  const clueQueue = clues.slice();
+  const across: { number: number; clue: string }[] = [];
+  const down: { number: number; clue: string }[] = [];
+
+  [...solution].forEach((square, i) => {
+    const hasAcrossClue = squareNeedsAcrossClue(puzzle, i);
+    const hasDownClue = squareNeedsDownClue(puzzle, i);
+    if (hasAcrossClue || hasDownClue) clueNumber += 1;
+    if (hasAcrossClue) {
+      across.push({ number: clueNumber, clue: clueQueue.shift()! });
+    }
+    if (hasDownClue) {
+      down.push({ number: clueNumber, clue: clueQueue.shift()! });
+    }
+  });
+
+  return { across, down };
+}
+
 export function gridNumbering(puzzle: Pick<Puzzle, 'solution' | 'width'>): (number | undefined)[] {
   const { solution } = puzzle;
   let clueNumber = 0;

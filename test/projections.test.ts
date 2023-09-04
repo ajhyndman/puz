@@ -1,5 +1,5 @@
 import { Puzzle } from '../src';
-import { gridNumbering, isCorrect } from '../src/projections';
+import { enumerateClues, gridNumbering, isCorrect } from '../src/projections';
 
 const MINIMAL_PUZZLE: Puzzle = {
   height: 2,
@@ -9,6 +9,40 @@ const MINIMAL_PUZZLE: Puzzle = {
 };
 
 describe('projections', () => {
+  describe('enumerateClues', () => {
+    it('splits and numbers across & down clues', () => {
+      expect(enumerateClues(MINIMAL_PUZZLE)).toEqual({
+        across: [
+          { number: 1, clue: '1A' },
+          { number: 3, clue: '3A' },
+        ],
+        down: [
+          { number: 1, clue: '1D' },
+          { number: 2, clue: '2D' },
+        ],
+      });
+    });
+
+    it('handles black squares correctly', () => {
+      const puzzle = {
+        width: 3,
+        solution: 'A.CDEFGHI',
+        clues: ['1 down', '2 down', '3 across', '4 down', '5 across'],
+      };
+      expect(enumerateClues(puzzle)).toEqual({
+        across: [
+          { number: 3, clue: '3 across' },
+          { number: 5, clue: '5 across' },
+        ],
+        down: [
+          { number: 1, clue: '1 down' },
+          { number: 2, clue: '2 down' },
+          { number: 4, clue: '4 down' },
+        ],
+      });
+    });
+  });
+
   describe('gridNumbering', () => {
     it('assigns numbers to squares', () => {
       const puzzle = {
