@@ -84,9 +84,11 @@ export function unscramble(puzzle: Puzzle, inputKey: string): Puzzle {
 
   const plainText = extractScrambleText(puzzle);
   const unscrambledText = unscrambleSolution(plainText, inputKey);
-  const unscrambledSolution = injectScrambleText(puzzle, unscrambledText);
 
-  // TODO: validate checksum
+  // validate checksum
+  invariant(puzzle.misc.scrambledChecksum === checksum(Buffer.from(unscrambledText, 'ascii')));
+
+  const unscrambledSolution = injectScrambleText(puzzle, unscrambledText);
 
   return {
     ...puzzle,
