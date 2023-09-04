@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-import { parseBinaryFile, printBinaryFile, printTextFile } from '../src/index';
+import { parseBinaryFile, printBinaryFile, printTextFile, unscramble } from '../src/index';
 
 describe('puz', () => {
   const puzzleFiles = [
@@ -44,5 +44,13 @@ describe('puz', () => {
       const puzzle = parseBinaryFile(buffer);
       expect(printTextFile(puzzle)).toMatchSnapshot();
     });
+  });
+
+  describe('unscramble unlocks puzzle', () => {
+    const buffer = readFileSync(join(__dirname, 'puzzles', 'nyt_locked.puz'));
+    const puzzle = parseBinaryFile(buffer);
+    const unscrambledPuzzle = unscramble(puzzle, '7844');
+    expect(unscrambledPuzzle.isScrambled).toBe(false);
+    expect(unscrambledPuzzle.solution.startsWith('PANDORASBOX'));
   });
 });
