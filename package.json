@@ -16,6 +16,7 @@
     "build": "rollup --config rollup.config.js",
     "format": "prettier --write src test",
     "prepare": "yarn build",
+    "release": "np",
     "size": " rollup -i src/index.ts -f cjs -p @rollup/plugin-typescript | uglifyjs -c -m | gzip | wc -c",
     "test": "jest"
   },
