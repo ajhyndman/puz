@@ -24,6 +24,7 @@
     "@rollup/plugin-typescript": "8.2.1",
     "@types/jest": "26.0.23",
     "jest": "27.0.4",
+    "np": "8.0.4",
     "prettier": "2.3.2",
     "rollup": "2.52.7",
     "rollup-plugin-dts": "3.0.2",
