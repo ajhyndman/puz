@@ -1,3 +1,4 @@
+import { Buffer } from 'buffer';
 import { checksum } from '../src/util/checksum';
 import { EMPTY_BUFFER } from '../src/util/constants';
 

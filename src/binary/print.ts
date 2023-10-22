@@ -1,3 +1,4 @@
+import { Buffer } from 'buffer';
 import { Puzzle } from '../';
 import { getFileChecksum, getHeaderChecksum, getICheatedChecksum, getState } from '../projections';
 import { EMPTY_BUFFER, EXTENSION, HEADER_OFFSET } from '../util/constants';

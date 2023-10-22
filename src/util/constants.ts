@@ -1,3 +1,5 @@
+import { Buffer } from 'buffer';
+
 // supported text encodings
 export enum ENCODING {
   UTF_8 = 'utf-8',

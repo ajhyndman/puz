@@ -6,6 +6,7 @@
  * {@see http://www.muppetlabs.com/~breadbox/txt/acre.html}
  * {@see http://www.muppetlabs.com/~breadbox/txt/scramble-c.txt}
  */
+import { Buffer } from 'buffer';
 import invariant from 'ts-invariant';
 import { Puzzle } from '..';
 import { checksum } from '../util/checksum';

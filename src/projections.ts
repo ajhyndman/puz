@@ -5,6 +5,7 @@
  * the functional equivalents to "getter" methods from object-oriented software
  * patterns.
  */
+import { Buffer } from 'buffer';
 import invariant from 'ts-invariant';
 import { Puzzle } from './';
 import { checksum } from './util/checksum';

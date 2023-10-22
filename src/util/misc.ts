@@ -1,3 +1,4 @@
+import { Buffer } from 'buffer';
 import invariant from 'ts-invariant';
 
 import { Puzzle, SquareMarkup } from '../';
