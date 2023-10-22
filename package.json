@@ -1,6 +1,6 @@
 {
   "name": "@ajhyndman/puz",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Read and write Across Lite .puz files",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
