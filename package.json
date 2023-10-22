@@ -38,6 +38,9 @@
   "dependencies": {
     "ts-invariant": "0.8.2"
   },
+  "optionalDependencies": {
+    "buffer": ">=5"
+  },
   "files": [
     "dist/index.d.ts",
     "dist/index.esm.js",

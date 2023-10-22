@@ -5,7 +5,7 @@ import nodePolyfills from 'rollup-plugin-polyfill-node';
 import { terser } from 'rollup-plugin-terser';
 
 // do not bundle external dependencies
-const external = ['ts-invariant'];
+const external = ['buffer', 'ts-invariant'];
 
 // the name of the package export, when exported as a global
 const name = 'Puz';
