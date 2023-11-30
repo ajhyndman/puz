@@ -307,7 +307,7 @@ export function encodeMarkup({
   unknown_04,
   unknown_02,
   unknown_01,
-}: SquareMarkup): number {
+}: SquareMarkup = {}): number {
   return (
     (circled ? SQUARE_MARKUP_BITMASK.CIRCLED : 0) +
     (incorrect ? SQUARE_MARKUP_BITMASK.INCORRECT : 0) +
