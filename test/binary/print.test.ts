@@ -20,7 +20,7 @@ describe('printBinaryFile', () => {
   it('prints a puzzle with a sparse markupGrid', () => {
     const markupGrid: SquareMarkup[] = [];
     markupGrid.length = MINIMAL_PUZZLE.solution.length;
-    markupGrid[4] = { unknown_08: true };
+    markupGrid[4] = { penciled: true };
 
     expect(() => printBinaryFile({ ...MINIMAL_PUZZLE, markupGrid })).not.toThrow();
   });
