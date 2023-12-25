@@ -1,5 +1,66 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`puz parseTextFile extracts expected Puzzle object from "2023-12-25-christmas-cipher.txt" 1`] = `
+Object {
+  "author": "The circled letters reveal the secret!",
+  "clues": Array [
+    "Vehicle model named for the Atlantic Jetstream",
+    "Brother of Esau",
+    "It came before Slack",
+    "A collection of figures",
+    "A brief space of time",
+    "Role-playing with Wynken and Blynken?",
+    "___ day is equal to 24 hours, 37 minutes and 22 seconds",
+    "It might be made of logs",
+    "One who might sell petroleum",
+    "Leak, to Murderbot",
+  ],
+  "copyright": "©2023 Andrew Hyndman",
+  "height": 5,
+  "markupGrid": Array [
+    Object {
+      "circled": true,
+    },
+    Object {},
+    Object {},
+    Object {},
+    Object {},
+    Object {},
+    Object {
+      "circled": true,
+    },
+    Object {},
+    Object {},
+    Object {},
+    Object {},
+    Object {},
+    Object {
+      "circled": true,
+    },
+    Object {},
+    Object {},
+    Object {},
+    Object {},
+    Object {
+      "circled": true,
+    },
+    Object {},
+    Object {},
+    Object {},
+    Object {},
+    Object {},
+    Object {},
+    Object {
+      "circled": true,
+    },
+  ],
+  "notepad": "  The circled letters reveal the secret!",
+  "solution": "JETTAAMARSCABINOILCOBLEED",
+  "title": "December 25, 2023 — Christmas Cipher",
+  "width": 5,
+}
+`;
+
 exports[`puz parseTextFile extracts expected Puzzle object from "v1_text_format.txt" 1`] = `
 Object {
   "author": "Created by Avalonian",
@@ -1031,6 +1092,41 @@ Object {
   "title": "NY Times, Sun, Sep 14, 2008  YEAR-ROUND",
   "width": 21,
 }
+`;
+
+exports[`puz printTextFiles prints "2023-12-25-christmas-cipher.txt" back to expected V2 file 1`] = `
+"<ACROSS PUZZLE V2>
+<TITLE>
+	December 25, 2023 — Christmas Cipher
+<AUTHOR>
+	The circled letters reveal the secret!
+<COPYRIGHT>
+	©2023 Andrew Hyndman
+<SIZE>
+	5x5
+<GRID>
+	jETTA
+	AmARS
+	CAbIN
+	OIlCO
+	BLEEd
+<REBUS>
+	MARK;
+<ACROSS>
+	Vehicle model named for the Atlantic Jetstream
+	___ day is equal to 24 hours, 37 minutes and 22 seconds
+	It might be made of logs
+	One who might sell petroleum
+	Leak, to Murderbot
+<DOWN>
+	Brother of Esau
+	It came before Slack
+	A collection of figures
+	A brief space of time
+	Role-playing with Wynken and Blynken?
+<NOTEPAD>
+  The circled letters reveal the secret!
+"
 `;
 
 exports[`puz printTextFiles prints "v1_text_format.txt" back to expected V2 file 1`] = `

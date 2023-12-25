@@ -1,10 +1,11 @@
-import { readFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
-import { parseTextFile, printTextFile } from '../src/index';
+import { parseTextFile, printBinaryFile, printTextFile } from '../src/index';
 
 describe('puz', () => {
   const puzzleFiles = [
+    '2023-12-25-christmas-cipher.txt',
     'v1_text_format.txt',
     'v2_text_format_mark.txt',
     'v2_text_format_rebus.txt',
@@ -53,5 +54,15 @@ describe('puz', () => {
       const puzzle = parseTextFile(buffer.toString('utf-8'));
       expect(printTextFile(puzzle)).toMatchSnapshot();
     });
+  });
+
+  describe('convert text file to binary', () => {
+    const inPath = join(__dirname, 'puzzles', '2023-12-25-christmas-cipher.txt');
+    const buffer = readFileSync(inPath);
+    const puzzle = parseTextFile(buffer.toString('utf-8'));
+    let binaryFile: Uint8Array;
+    binaryFile = printBinaryFile(puzzle);
+    const outPath = join(__dirname, 'puzzles', '2023-12-25-christmas-cipher.puz');
+    writeFileSync(outPath, binaryFile);
   });
 });

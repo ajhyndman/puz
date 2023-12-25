@@ -1,0 +1,31 @@
+<ACROSS PUZZLE V2>
+<TITLE>
+	December 25, 2023 — Christmas Cipher
+<AUTHOR>
+	The circled letters reveal the secret!
+<COPYRIGHT>
+	©2023 Andrew Hyndman
+<SIZE>
+	5x5
+<GRID>
+	jETTA
+	AmARS
+	CAbIN
+	OIlCO
+	BLEEd
+<REBUS>
+	MARK;
+<ACROSS>
+  Vehicle model named for the Atlantic Jetstream
+  ___ day is equal to 24 hours, 37 minutes and 22 seconds
+  It might be made of logs
+  One who might sell petroleum
+  Leak, to Murderbot
+<DOWN>
+  Brother of Esau
+  It came before Slack
+  A collection of figures
+  A brief space of time
+  Role-playing with Wynken and Blynken?
+<NOTEPAD>
+  The circled letters reveal the secret!
