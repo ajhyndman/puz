@@ -3,6 +3,8 @@ This document is copied from Google Code wikis, with some formatting cleanup.
 
 Source: https://code.google.com/archive/p/puz/wikis/FileFormat.wiki
 
+Additional details: https://github.com/alexdej/puzpy
+
 ---
 
 # Introduction
@@ -42,7 +44,7 @@ The following checksums are described in more detail in a separate section below
 | Width | 0x2C | 0x2C | 0x1 | byte | The width of the board |
 | Height | 0x2D | 0x2D | 0x1 | byte | The height of the board |
 | # of Clues | 0x2E | 0x2F | 0x2 | short | The number of clues for this board |
-| Unknown Bitmask | 0x30 | 0x31 | 0x2 | short | A bitmask. Operations unknown. |
+| Puzzle Type | 0x30 | 0x31 | 0x2 | short | A bitmask. Crossword = 0x0001, Diagramless = 0x0401. |
 | Scrambled Tag | 0x32 | 0x33 | 0x2 | short | 0 for unscrambled puzzles. Nonzero (often 4) for scrambled puzzles. |
 
 ## Puzzle Layout and State

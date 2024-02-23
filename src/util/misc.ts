@@ -138,7 +138,7 @@ export function encodeHeaderWithoutChecksums(puzzle: Puzzle): Buffer {
   header.writeUInt8(puzzle.width, HEADER_OFFSET.WIDTH_START);
   header.writeUInt8(puzzle.height, HEADER_OFFSET.HEIGHT_START);
   header.writeUInt16LE(puzzle.clues.length, HEADER_OFFSET.NUMBER_OF_CLUES_START);
-  header.writeUInt16LE(puzzle?.misc?.unknown3 ?? 0x00, HEADER_OFFSET.UNKNOWN_BITMASK_START);
+  header.writeUInt16LE(puzzle?.misc?.puzzleFormat ?? 0x0001, HEADER_OFFSET.PUZZLE_FORMAT_START);
   header.writeUInt16LE(puzzle.isScrambled ? 0x04 : 0x00, HEADER_OFFSET.SCRAMBLED_START);
 
   return header;
