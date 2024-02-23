@@ -1975,6 +1975,7 @@ Object {
   "markupGrid": undefined,
   "misc": Object {
     "preamble": undefined,
+    "puzzleFormat": 1,
     "scrambledChecksum": 1213,
     "unknown1": 28009,
     "unknown2": Object {
@@ -1994,7 +1995,6 @@ Object {
       ],
       "type": "Buffer",
     },
-    "unknown3": 1,
   },
   "notepad": undefined,
   "rebus": undefined,
@@ -2096,6 +2096,7 @@ Object {
   "markupGrid": undefined,
   "misc": Object {
     "preamble": undefined,
+    "puzzleFormat": 1,
     "scrambledChecksum": 0,
     "unknown1": 0,
     "unknown2": Object {
@@ -2115,7 +2116,6 @@ Object {
       ],
       "type": "Buffer",
     },
-    "unknown3": 1,
   },
   "notepad": undefined,
   "rebus": undefined,
@@ -2217,6 +2217,7 @@ Object {
   "markupGrid": undefined,
   "misc": Object {
     "preamble": undefined,
+    "puzzleFormat": 1,
     "scrambledChecksum": 0,
     "unknown1": 0,
     "unknown2": Object {
@@ -2236,7 +2237,6 @@ Object {
       ],
       "type": "Buffer",
     },
-    "unknown3": 1,
   },
   "notepad": undefined,
   "rebus": undefined,
@@ -2342,6 +2342,7 @@ Object {
   "markupGrid": undefined,
   "misc": Object {
     "preamble": undefined,
+    "puzzleFormat": 1025,
     "scrambledChecksum": 16930,
     "unknown1": 0,
     "unknown2": Object {
@@ -2361,7 +2362,6 @@ Object {
       ],
       "type": "Buffer",
     },
-    "unknown3": 1025,
   },
   "notepad": "This diagramless is 17 squares wide by 17 squares deep and has an asymmetrical pattern suggested by the puzzles theme. The first square across is the seventh square in the first row.
 ",
@@ -2459,6 +2459,7 @@ Object {
   "markupGrid": undefined,
   "misc": Object {
     "preamble": undefined,
+    "puzzleFormat": 1,
     "scrambledChecksum": 40861,
     "unknown1": 28009,
     "unknown2": Object {
@@ -2478,7 +2479,6 @@ Object {
       ],
       "type": "Buffer",
     },
-    "unknown3": 1,
   },
   "notepad": undefined,
   "rebus": undefined,
@@ -2580,6 +2580,7 @@ Object {
   "markupGrid": undefined,
   "misc": Object {
     "preamble": undefined,
+    "puzzleFormat": 1,
     "scrambledChecksum": 0,
     "unknown1": 28009,
     "unknown2": Object {
@@ -2599,7 +2600,6 @@ Object {
       ],
       "type": "Buffer",
     },
-    "unknown3": 1,
   },
   "notepad": undefined,
   "rebus": undefined,
@@ -2938,6 +2938,7 @@ Object {
   ],
   "misc": Object {
     "preamble": undefined,
+    "puzzleFormat": 1,
     "scrambledChecksum": 0,
     "unknown1": 16632,
     "unknown2": Object {
@@ -2957,7 +2958,6 @@ Object {
       ],
       "type": "Buffer",
     },
-    "unknown3": 1,
   },
   "notepad": "TEEN PUZZLEMAKER WEEK
 All the daily crosswords this week, Monday through Saturday, have been contributed by puzzlemakers under the age of 20. Today's crossword is by Caleb Madison, 15, of New York City. He is a sophomore at Bard High School in Manhattan. This is his fourth puzzle for The Times.
@@ -3357,6 +3357,7 @@ Object {
   "markupGrid": undefined,
   "misc": Object {
     "preamble": undefined,
+    "puzzleFormat": 1,
     "scrambledChecksum": 23056,
     "unknown1": 60768,
     "unknown2": Object {
@@ -3376,7 +3377,6 @@ Object {
       ],
       "type": "Buffer",
     },
-    "unknown3": 1,
   },
   "notepad": undefined,
   "rebus": Object {
@@ -4553,6 +4553,7 @@ Object {
   ],
   "misc": Object {
     "preamble": undefined,
+    "puzzleFormat": 1,
     "scrambledChecksum": 0,
     "unknown1": 0,
     "unknown2": Object {
@@ -4572,7 +4573,6 @@ Object {
       ],
       "type": "Buffer",
     },
-    "unknown3": 1,
   },
   "notepad": "Drop one letter from each set of circled letters in the grid to name a major-league baseball team. The letters thus removed, in order from top to bottom, will spell an appropriate answer at 76-Down.
 ",
@@ -5111,6 +5111,7 @@ Object {
   "markupGrid": undefined,
   "misc": Object {
     "preamble": undefined,
+    "puzzleFormat": 1,
     "scrambledChecksum": 49648,
     "unknown1": 16032,
     "unknown2": Object {
@@ -5130,7 +5131,6 @@ Object {
       ],
       "type": "Buffer",
     },
-    "unknown3": 1,
   },
   "notepad": "TEEN PUZZLEMAKER WEEK
 All the daily crosswords this week, Monday through Saturday, have been contributed by puzzlemakers under the age of 20. Today's crossword is by Natan Last, 17, of Brooklyn. He is a first-year student at Brown University. This is his sixth puzzle for The Times.
@@ -5803,6 +5803,7 @@ Object {
   ],
   "misc": Object {
     "preamble": undefined,
+    "puzzleFormat": 1,
     "scrambledChecksum": 63979,
     "unknown1": 8281,
     "unknown2": Object {
@@ -5822,7 +5823,6 @@ Object {
       ],
       "type": "Buffer",
     },
-    "unknown3": 1,
   },
   "notepad": undefined,
   "rebus": Object {
@@ -6296,6 +6296,7 @@ Object {
   "markupGrid": undefined,
   "misc": Object {
     "preamble": undefined,
+    "puzzleFormat": 1,
     "scrambledChecksum": 0,
     "unknown1": 0,
     "unknown2": Object {
@@ -6315,7 +6316,6 @@ Object {
       ],
       "type": "Buffer",
     },
-    "unknown3": 1,
   },
   "notepad": undefined,
   "rebus": undefined,
@@ -6377,6 +6377,7 @@ Object {
   ],
   "misc": Object {
     "preamble": undefined,
+    "puzzleFormat": 1,
     "scrambledChecksum": 0,
     "unknown1": 0,
     "unknown2": Object {
@@ -6396,7 +6397,6 @@ Object {
       ],
       "type": "Buffer",
     },
-    "unknown3": 1,
   },
   "notepad": undefined,
   "rebus": Object {
@@ -6530,6 +6530,7 @@ Object {
       ],
       "type": "Buffer",
     },
+    "puzzleFormat": 1,
     "scrambledChecksum": 0,
     "unknown1": 61696,
     "unknown2": Object {
@@ -6549,7 +6550,6 @@ Object {
       ],
       "type": "Buffer",
     },
-    "unknown3": 1,
   },
   "notepad": undefined,
   "rebus": undefined,
@@ -6711,6 +6711,7 @@ Object {
   "markupGrid": undefined,
   "misc": Object {
     "preamble": undefined,
+    "puzzleFormat": 1,
     "scrambledChecksum": 0,
     "unknown1": 18664,
     "unknown2": Object {
@@ -6730,7 +6731,6 @@ Object {
       ],
       "type": "Buffer",
     },
-    "unknown3": 1,
   },
   "notepad": undefined,
   "rebus": undefined,

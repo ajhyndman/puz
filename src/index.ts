@@ -39,7 +39,7 @@ export type Puzzle = {
   misc?: {
     unknown1?: number;
     unknown2?: Uint8Array;
-    unknown3?: number;
+    puzzleFormat?: number;
     preamble?: Uint8Array;
     scrambledChecksum?: number;
   };
