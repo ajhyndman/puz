@@ -1,3 +1,6 @@
+![version](https://img.shields.io/npm/v/@ajhyndman/puz)
+![minzip size](https://img.shields.io/bundlephobia/minzip/@ajhyndman/puz)
+
 # Polyfills
 
 This package relies on the following modern JavaScript features. You may need
