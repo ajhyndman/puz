@@ -52,7 +52,7 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
   const width = buffer.readUInt8(HEADER_OFFSET.WIDTH_START);
   const height = buffer.readUInt8(HEADER_OFFSET.HEIGHT_START);
   const numberOfClues = buffer.readUInt16LE(HEADER_OFFSET.NUMBER_OF_CLUES_START);
-  const unknown3 = buffer.readUInt16LE(HEADER_OFFSET.UNKNOWN_BITMASK_START);
+  const puzzleFormat = buffer.readUInt16LE(HEADER_OFFSET.PUZZLE_FORMAT_START);
   const scrambledTag = buffer.readUInt16LE(HEADER_OFFSET.SCRAMBLED_START);
   // } catch (e) {
   //   // throw error indicating corrupt header data
@@ -176,7 +176,7 @@ export function parseBinaryFile(data: Uint8Array): Puzzle {
     misc: {
       unknown1,
       unknown2,
-      unknown3,
+      puzzleFormat,
       preamble,
       scrambledChecksum,
     },
